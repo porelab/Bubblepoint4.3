@@ -126,6 +126,7 @@ public class manualcontroller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		addShortCut();
+		
 
 		fm1=FXCollections.observableArrayList();
 		fm2=FXCollections.observableArrayList();

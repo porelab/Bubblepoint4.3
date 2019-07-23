@@ -85,6 +85,11 @@ public class DatareadN {
 
 				if (ln > 0) {
 
+					if(line.contains(",,")||line.contains(", ,"))
+					{
+						data=null;
+						break;
+					}
 					String key = line.substring(0, line.indexOf(','));
 
 					String value = line.substring(line.indexOf(',') + 1,
@@ -98,6 +103,8 @@ public class DatareadN {
 
 		} catch (Exception e) {
 
+			System.out.println("datareadN : error 22"+filename);
+			data=null;
 		}
 
 	}

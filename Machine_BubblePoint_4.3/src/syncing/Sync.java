@@ -82,11 +82,30 @@ public class Sync {
 			    		 
 			    		 dd.fileRead(ff[j]);
 			    		 
-			    		 System.out.println("Sample name : "+listOfFiles[i].getName());
-			    		 System.out.println("Test name : "+ff[j].getName().substring(0,ff[j].getName().indexOf('.')));
-			    		
-			    		 temp.put(ff[j].getName().substring(0,ff[j].getName().indexOf('.')), dd.data);
 			    		 
+			    			if(dd.data!=null)
+			    			{
+			    				try
+			    				{
+			    					if(dd.data.containsKey("testdate"))
+			    					{
+			    					 System.out.println("Sample name : "+listOfFiles[i].getName());
+						    		 System.out.println("Test name : "+ff[j].getName().substring(0,ff[j].getName().indexOf('.')));
+						    		
+						    		 temp.put(ff[j].getName().substring(0,ff[j].getName().indexOf('.')), dd.data);
+			    					}
+			    				}
+			    				catch(Exception e)
+			    				{
+			    					System.out.println("sync error22 : "+ff[j]);
+			    					
+			    				}
+			    					
+			    			}
+			    			
+			    		 
+			    		 
+			    		
 			    		 
 			    	//	 System.out.println(" DFLOW : "+dd.getMap().get("dflow"));
 			    		 
@@ -94,8 +113,14 @@ public class Sync {
 			    	//	 FirebaseConnect.ref.child("users").child(id).child(ch).child(listOfFiles[i].getName()).child(ff[j].getName().substring(0,ff[j].getName().indexOf('.'))).setValue("data");
 			    		
 			    	 }
+			    	 if(temp.size()>0)
+			    	 {
 			    	 os.put(listOfFiles[i].getName(), temp);
-			        
+			    	 }
+			    	 else
+			    	 {
+			    		 System.out.println("Not upload"+listOfFiles[i].getName());
+			    	 }
 			    	 
 			    	 }
 			    	 
@@ -141,6 +166,7 @@ public class Sync {
 		
 		
 	}
+	
 	
 	boolean checkEmptyFile(File file)
 	{

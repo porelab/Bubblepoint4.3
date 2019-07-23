@@ -1484,7 +1484,7 @@ public class Multiplepororeport {
 			tabledata.setColor(new BaseColor(98, 98, 98));
 			
 			// Set Column widths
-			float[] columnWidths = { 1f, 1f, 1f, 1f, 1f, 1f };
+			float[] columnWidths = { 1f, 1f, 1f, 1f};
 
 			try {
 				tablem.setWidths(columnWidths);

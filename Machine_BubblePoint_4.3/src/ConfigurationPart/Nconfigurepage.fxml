@@ -22,9 +22,9 @@
                         <AnchorPane prefHeight="615.0" prefWidth="1374.0" stylesheets="@../application/new_application.css" AnchorPane.bottomAnchor="0.0">
                            <children>
                               <Rectangle arcHeight="300.0" arcWidth="30.0" fill="#1f93ff00" height="28.0" layoutX="444.0" layoutY="185.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: white;" visible="false" width="46.0" />
-                              <JFXToggleButton fx:id="fm1" alignment="BASELINE_CENTER" layoutX="435.0" layoutY="171.0" text=" " toggleColor="#0e3c87" toggleLineColor="WHITE" unToggleLineColor="#99999903" />
+                              <JFXToggleButton fx:id="fm1" alignment="BASELINE_CENTER" layoutX="435.0" layoutY="171.0" text=" " toggleColor="#0e3c87" toggleLineColor="WHITE" unToggleLineColor="#99999903" visible="false" />
                               <Rectangle arcHeight="300.0" arcWidth="30.0" fill="TRANSPARENT" height="28.0" layoutX="444.0" layoutY="256.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" style="-fx-fill: white;" visible="false" width="46.0" />
-                              <JFXToggleButton fx:id="fm2" alignment="BASELINE_CENTER" layoutX="435.0" layoutY="242.0" text=" " toggleColor="#0f3c85" toggleLineColor="WHITE" unToggleLineColor="#99999903" />
+                              <JFXToggleButton fx:id="fm2" alignment="BASELINE_CENTER" layoutX="435.0" layoutY="242.0" text=" " toggleColor="#0f3c85" toggleLineColor="WHITE" unToggleLineColor="#99999903" visible="false" />
                               <Label layoutX="385.0" layoutY="180.0" styleClass="col-gray70" text="Low" textFill="WHITE" visible="false">
                                  <font>
                                     <Font size="24.0" />
@@ -361,13 +361,13 @@
                         </RadioButton>
                         <Line endX="580.0" layoutX="146.0" layoutY="111.0" startX="-100.0" stroke="#bfb9b9" strokeWidth="2.0" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="110.0" />
                         <Line endX="580.0" layoutX="146.0" layoutY="186.0" startX="-100.0" stroke="#bfb9b9" strokeWidth="2.0" AnchorPane.leftAnchor="45.0" />
-                        <RadioButton fx:id="flowcalibr" layoutX="50.0" layoutY="209.0" mnemonicParsing="false" styleClass="col-gray70" text="Flow Calibration">
+                        <RadioButton fx:id="flowcontrolcalibr" layoutX="50.0" layoutY="209.0" mnemonicParsing="false" styleClass="col-gray70" text="Flow Controller Calibration">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </RadioButton>
                         <Line endX="210.0" layoutX="147.0" layoutY="262.0" startX="-100.0" stroke="#bfb9b9" strokeWidth="2.0" />
-                        <RadioButton fx:id="presscalibra" layoutX="51.0" layoutY="285.0" mnemonicParsing="false" styleClass="col-gray70" text="Pressure Calibration">
+                        <RadioButton fx:id="troubleshot" layoutX="51.0" layoutY="285.0" mnemonicParsing="false" styleClass="col-gray70" text="Troubleshoot">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -379,12 +379,6 @@
                            </font>
                         </RadioButton>
                         <Line endX="210.0" layoutX="149.0" layoutY="414.0" startX="-100.0" stroke="#bfb9b9" strokeWidth="2.0" />
-                        <RadioButton fx:id="troubleshot" layoutX="54.0" layoutY="438.0" mnemonicParsing="false" styleClass="col-gray70" text="Troubleshoot">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </RadioButton>
-                        <Line endX="210.0" layoutX="151.0" layoutY="491.0" startX="-100.0" stroke="#bfb9b9" strokeWidth="2.0" />
                         <Button fx:id="btncalibration" mnemonicParsing="false" prefHeight="60.0" prefWidth="223.0" style="-fx-background-radius: 50;" styleClass="linear-grad-to-bottom-right" text="Start" textFill="WHITE" AnchorPane.leftAnchor="567.0" AnchorPane.topAnchor="484.0">
                            <font>
                               <Font name="System Bold" size="20.0" />

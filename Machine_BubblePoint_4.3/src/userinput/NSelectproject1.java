@@ -865,7 +865,7 @@ public class NSelectproject1 implements Initializable {
 		{
 			try
 			{
-				int re=Integer.parseInt(txtthiknes.getText());
+				Float re=Float.parseFloat(txtthiknes.getText());
 				
 			}
 			catch(Exception es)

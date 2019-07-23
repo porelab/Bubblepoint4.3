@@ -83,7 +83,7 @@ public class NConfigurePageController implements Initializable {
 	static String selectedrad4 = "",selectedrad5 = "";
 	
 	@FXML
-    RadioButton pressregulator,flowcalibr,presscalibra,leaktest,troubleshot,boardcali,manual,autometed;
+    RadioButton pressregulator,flowcontrolcalibr,troubleshot,leaktest,boardcali,manual,autometed;
 
    
     
@@ -172,12 +172,8 @@ public class NConfigurePageController implements Initializable {
 							Openscreen.open("/calibration/leaktest_graph.fxml");
 							
 						}
-						else if (flowcalibr.isSelected()) {
+						else if (flowcontrolcalibr.isSelected()) {
 							Openscreen.open("/calibration/flowcalibration.fxml");
-							
-						}
-						else if (presscalibra.isSelected()) {
-							Openscreen.open("/calibration/pressurecalibration.fxml");
 							
 						}
 
@@ -648,16 +644,14 @@ public class NConfigurePageController implements Initializable {
 
 			pressregulator.setToggleGroup(tgb5);
 			pressregulator.setUserData("1");
-			flowcalibr.setToggleGroup(tgb5);
-			flowcalibr.setUserData("2");
-			presscalibra.setToggleGroup(tgb5);
-			presscalibra.setUserData("3");
+			flowcontrolcalibr.setToggleGroup(tgb5);
+			flowcontrolcalibr.setUserData("2");
+			troubleshot.setToggleGroup(tgb5);
+			troubleshot.setUserData("3");
 			leaktest.setToggleGroup(tgb5);
 			leaktest.setUserData("4");
-			troubleshot.setToggleGroup(tgb5);
-			troubleshot.setUserData("5");
 			boardcali.setToggleGroup(tgb5);
-			boardcali.setUserData("6");
+			boardcali.setUserData("5");
 
 			selectedrad4 = "1";
 

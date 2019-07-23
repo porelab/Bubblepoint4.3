@@ -120,7 +120,7 @@ public class ReportController implements Initializable
 	AnchorPane slides;
 	
 	@FXML
-	Label avgbub;
+	Label avgbub,lblmporetype;
 	
 	double avgbubpt=0;
 
@@ -792,8 +792,24 @@ public class ReportController implements Initializable
 		                   new Section(66, 132, Color.DARKGRAY),
 		                   new Section(132, 200, Color.DARKSLATEGRAY))
 		         .build();
-		gauge1.setPrefSize(150, 150);
+		 		gauge1.setPrefSize(150, 150);
 				gauge1.setValue(d);
+				
+				if ( d >= 0.1 && d <= 2 ) {
+
+					lblmporetype.setText("( Micro Pore )");
+					gauge1.setMaxValue(2);
+				}
+				else if (d >= 2 && d <= 50) {
+					lblmporetype.setText("( Mizo Pore )");	
+					gauge1.setMaxValue(50);
+				}
+				else {
+					lblmporetype.setText("( Macro Pore )");
+					gauge1.setMaxValue(200);
+				}
+
+
 		
 	        ancgauge1.getChildren().add(gauge1);
 

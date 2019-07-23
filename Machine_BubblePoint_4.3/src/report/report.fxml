@@ -124,6 +124,11 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <Label fx:id="lblmporetype" alignment="CENTER" layoutX="1074.0" layoutY="493.0" prefWidth="160.0" styleClass="col-gray70" text="Macropore" textFill="#545151">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
    <stylesheets>
       <URL value="@../application/application.css" />

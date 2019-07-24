@@ -49,12 +49,12 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Pagination;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -62,16 +62,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.transform.Transform;
 import javafx.stage.FileChooser;
 import javafx.stage.Popup;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import javax.imageio.ImageIO;
@@ -80,11 +80,9 @@ import toast.MyDialoug;
 import toast.Openscreen;
 import application.Main;
 import application.Myapp;
-import data_read_write.CalculatePoreSizeMultiple;
 import data_read_write.DatareadN;
 import de.tesis.dynaware.javafx.fancychart.zoom.Zoom;
 import drawchart.ChartPlot;
-import drawchart.SmoothedChart;
 import eu.hansolo.medusa.Gauge;
 import eu.hansolo.medusa.Gauge.SkinType;
 import eu.hansolo.medusa.GaugeBuilder;
@@ -93,6 +91,8 @@ import extrafont.Myfont;
 
 public class ReportController implements Initializable
 {
+	@FXML
+	AnchorPane anc;
 	
 	 private static final String CHART_FILE_PREFIX = "chart_";
 	  private static final String WORKING_DIR = System.getProperty("user.dir")+"/mypic/";
@@ -109,6 +109,26 @@ public class ReportController implements Initializable
 	  ChartPlot c;
 	  
 	 ArrayList<Boolean> onlyonce;
+	 
+	    @FXML
+	    private ImageView micropic;
+
+	    @FXML
+	    private ImageView mizopic;
+
+	    @FXML
+	    private ImageView macropic;
+
+	    @FXML
+	    private Text microlab;
+
+	    @FXML
+	    private Text mizolab;
+
+	    @FXML
+	    private Text macrolab;
+
+	 
 	  
 	@FXML
 	Button report,btnback,btnsavereport,btnhome;
@@ -799,18 +819,36 @@ public class ReportController implements Initializable
 
 					lblmporetype.setText("( Micro Pore )");
 					gauge1.setMaxValue(2);
+					
+					
+					microlab.setVisible(true);
+					micropic.setVisible(true);
+					microlab.setText(Myapp.getRound(d, 2));
+					
 				}
 				else if (d >= 2 && d <= 50) {
 					lblmporetype.setText("( Mizo Pore )");	
 					gauge1.setMaxValue(50);
+					
+					mizolab.setVisible(true);
+					mizopic.setVisible(true);
+
+					mizolab.setText(Myapp.getRound(d, 2));
 				}
 				else {
 					lblmporetype.setText("( Macro Pore )");
 					gauge1.setMaxValue(200);
+					
+					macrolab.setVisible(true);
+					macropic.setVisible(true);
+
+					macrolab.setText(Myapp.getRound(d, 2));
 				}
 
 
 		
+				savePic(anc);
+				
 	        ancgauge1.getChildren().add(gauge1);
 
 	    //   
@@ -854,6 +892,28 @@ public class ReportController implements Initializable
         saveChartsTask.workDoneProperty().addListener(WORK_DONE_LISTENER);
       }
    
+	
+	void savePic(AnchorPane n)
+	{
+
+        double pixelScale=2.0;
+	        
+	        WritableImage writableImage = new WritableImage((int)Math.rint(pixelScale*n.getPrefWidth()), (int)Math.rint(pixelScale*n.getPrefHeight()));
+		    SnapshotParameters spa = new SnapshotParameters();
+		    spa.setTransform(Transform.scale(pixelScale, pixelScale));
+		    WritableImage image = n.snapshot(spa, writableImage); 
+       // WritableImage image = lineChart.snapshot(new SnapshotParameters(), null);
+		    
+        File newfile = new File("mypic/scale.png");
+       
+        System.out.println("ImageWriting is Starting");
+      try {
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", newfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Image writing is done");
+	}
     
 	
 }

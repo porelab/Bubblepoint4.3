@@ -243,6 +243,7 @@ public class ReportController implements Initializable
  
  class ChartsSnapshotTask extends Task<Void> {
    private final int nCharts;
+   
    private final BlockingQueue<Parent> charts;
    private final BlockingQueue<BufferedImage> images;
    

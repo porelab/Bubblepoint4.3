@@ -116,17 +116,14 @@ public class PdfselectionController implements Initializable {
 
 				if (!txtcomname.getText().equals("")) {
 					MyDialoug.closeDialoug();
-					saveReport(ReportController.pdffilepath.getPath());
 
-					try {
-						Runtime.getRuntime().exec(
-								"rundll32 url.dll,FileProtocolHandler "
-										+ ReportController.pdffilepath
-												.getAbsolutePath());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					 saveReport(ReportController.pdffilepath.getPath()+".pdf");
+					 try {
+							Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + ReportController.pdffilepath.getAbsolutePath()+".pdf");
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 				} else {
 					Toast.makeText(Main.mainstage, "Please enter companyname",
 							1500, 500, 500);

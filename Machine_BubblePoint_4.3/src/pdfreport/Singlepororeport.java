@@ -354,7 +354,7 @@ public class Singlepororeport {
 		date.setColor(BaseColor.BLACK);
 
 		PdfPCell r3 = new PdfPCell(
-				new Paragraph("PORE SIZE TEST REPORT", testt));
+				new Paragraph("BUBBLE POINT TEST REPORT", testt));
 		r3.setBorder(0);
 		r3.setBackgroundColor(getColor(14));
 		r3.setFixedHeight(25f);
@@ -565,7 +565,7 @@ public class Singlepororeport {
 			e1.printStackTrace();
 		}
 
-		PdfPCell cell1h = new PdfPCell(new Paragraph("Sample Info", whitecol));
+		PdfPCell cell1h = new PdfPCell(new Paragraph("Sample Information", whitecol));
 		cell1h.setBorder(1);
 		cell1h.setBorder(cell1h.TOP);
 		cell1h.setBorderColor(new BaseColor(255, 255, 255));
@@ -577,7 +577,7 @@ public class Singlepororeport {
 		cell1h.setHorizontalAlignment(Element.ALIGN_CENTER);
 		cell1h.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		PdfPCell cell1 = new PdfPCell(new Paragraph("Customer id", sampleinfoq));
+		PdfPCell cell1 = new PdfPCell(new Paragraph("Customer ID", sampleinfoq));
 		cell1.setBorder(1);
 		cell1.setBorder(cell1.TOP | cell1.LEFT | cell1.RIGHT);
 		cell1.setBorderColor(new BaseColor(130, 130, 130));
@@ -705,7 +705,7 @@ public class Singlepororeport {
 		t3.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
 		PdfPCell t4 = new PdfPCell(new Paragraph("" + d.data.get("duration")
-				+ " s/min", sampleinfoa));
+				+ " min", sampleinfoa));
 		t4.setBorder(1);
 		t4.setBorder(t4.RIGHT);
 		t4.setBorderColor(new BaseColor(130, 130, 130));
@@ -763,7 +763,7 @@ public class Singlepororeport {
 		f4.setHorizontalAlignment(Element.ALIGN_LEFT);
 		f4.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		PdfPCell f11 = new PdfPCell(new Paragraph("Test Fluid", sampleinfoq));
+		PdfPCell f11 = new PdfPCell(new Paragraph("Wetting Fluid", sampleinfoq));
 		f11.setPaddingLeft(10);
 		// f11.setBackgroundColor(backcellcoltable1);
 		f11.setPaddingTop(1);
@@ -798,7 +798,7 @@ public class Singlepororeport {
 		f33.setHorizontalAlignment(Element.ALIGN_LEFT);
 		f33.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		PdfPCell f44 = new PdfPCell(new Paragraph("Will smit", sampleinfoa));
+		PdfPCell f44 = new PdfPCell(new Paragraph(""+Myapp.username, sampleinfoa));
 		f44.setBorder(1);
 		f44.setBorder(f44.BOTTOM | f44.RIGHT);
 		f44.setBorderColor(new BaseColor(130, 130, 130));
@@ -1235,7 +1235,7 @@ public class Singlepororeport {
 		cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		PdfPCell cell2 = new PdfPCell(new Paragraph("\u0394 P", rowhed));
+		PdfPCell cell2 = new PdfPCell(new Paragraph("Differential Presure", rowhed));
 		cell2.setBackgroundColor(backcellcoltable);
 		cell2.setBorder(0);
 		// cell2.setBorder(cell2.TOP | cell2.BOTTOM | cell2.LEFT);
@@ -1246,7 +1246,7 @@ public class Singlepororeport {
 		cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
 		cell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		PdfPCell cell3 = new PdfPCell(new Paragraph("\u0394 T", rowhed));
+		PdfPCell cell3 = new PdfPCell(new Paragraph("Differential Time", rowhed));
 		cell3.setBackgroundColor(backcellcoltable);
 		cell3.setBorder(0);
 		// cell3.setBorder(cell3.TOP | cell3.BOTTOM | cell3.LEFT);
@@ -1272,7 +1272,7 @@ public class Singlepororeport {
 		
 		// Units
 
-		PdfPCell ucell1 = new PdfPCell(new Paragraph("(scc/m)", unitlabrow));
+		PdfPCell ucell1 = new PdfPCell(new Paragraph("(scc)", unitlabrow));
 		ucell1.setBackgroundColor(backcellcoltable);
 		ucell1.setBorder(1);
 		ucell1.setBorder(ucell1.LEFT);

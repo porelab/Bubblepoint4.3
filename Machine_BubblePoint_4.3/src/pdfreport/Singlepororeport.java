@@ -203,13 +203,19 @@ public class Singlepororeport {
 
 			System.out.println("Selection :" + graphs);
 
-			for (int i = 0; i < listOfFiles.length; i++) {
+			for (int i = 0; i < 1; i++) {
 
 				System.out.println("File :" + listOfFiles[i].getName() + " : "
 						+ graphs.get(i));
 
 				if (graphs.get(i).equals("1")) {
 					resultgraph(listOfFiles[i]);
+					
+
+					
+					
+					
+					
 
 					if (nflag % 2 == 1) {
 						document.newPage();
@@ -221,6 +227,13 @@ public class Singlepororeport {
 				}
 
 			}
+			
+			File sclaeimg = new File("mypic/scale.png");
+			Image imgs = Image.getInstance(sclaeimg.toURI().toString());
+			imgs.scaleAbsolute(500, 70);
+			imgs.setAbsolutePosition(60f, 300f);
+			document.add(imgs);
+			
 			if (btabledata == true) {
 				document.newPage();
 				rowData();
@@ -1212,6 +1225,8 @@ public class Singlepororeport {
 			image.scaleAbsolute(520, 300);
 
 			document.add(image);
+		
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

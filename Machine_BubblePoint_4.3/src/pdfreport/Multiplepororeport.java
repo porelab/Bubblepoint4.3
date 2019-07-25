@@ -153,10 +153,12 @@ public class Multiplepororeport {
 			File[] listOfFiles = folder.listFiles();
 			int nflag = 0;
 
-			for (int i = 0; i < listOfFiles.length; i++) {
+			for (int i = 0; i < 1; i++) {
 
 			
 					resultgraph(listOfFiles[i]);
+					
+					
 					if (i % 2 == 1) {
 						document.newPage();
 
@@ -170,6 +172,13 @@ public class Multiplepororeport {
 
 				
 			}
+			File sclaeimg = new File("mypic/scale.png");
+			Image imgs = Image.getInstance(sclaeimg.toURI().toString());
+			imgs.scaleAbsolute(500, 70);
+			imgs.setAbsolutePosition(60f, 300f);
+			document.add(imgs);
+		
+			
 			if (btabledata == true) {
 				document.newPage();
 				rowData(allfiles);

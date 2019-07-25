@@ -124,7 +124,7 @@ public class ChangeprofilepopupController implements Initializable {
 				{
 					MyDialoug.closeDialoug();
 					Myapp.oldpass=""+EditeprofileController.txtnewpassdup.getText();
-					Toast.makeText(Main.mainstage, "Succefully updated", 1500, 500, 500);
+					Toast.makeText(Main.mainstage, "Succefully updated password", 1500, 500, 500);
 					
 				}
 			   else 
@@ -233,7 +233,7 @@ public class ChangeprofilepopupController implements Initializable {
 			  if(d.Insert(updatequry))
 				{
 					MyDialoug.closeDialoug();
-					Toast.makeText(Main.mainstage, "Succefully updated", 1500, 500, 500);		
+					Toast.makeText(Main.mainstage, "Succefully updated email id", 1500, 500, 500);		
 					
 				}
 			   else 

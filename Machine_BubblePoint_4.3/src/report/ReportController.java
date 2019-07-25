@@ -457,6 +457,7 @@ public class ReportController implements Initializable
 			public void handle(ActionEvent arg0) {
 				// TODO Auto-generated method stub
 
+		        savePic(ancgauge1,"temp.png");
 			
 				 FileChooser fileChooser = new FileChooser();
 				  
@@ -851,6 +852,8 @@ public class ReportController implements Initializable
 				savePic(anc);
 				
 	        ancgauge1.getChildren().add(gauge1);
+	        
+	        
 
 	    //   
 			
@@ -878,7 +881,7 @@ public class ReportController implements Initializable
 	         	    setDataPointPopup(lineChart);
 	     	     
 	         	
-	         	       Zoom zoom =new Zoom(lineChart,ap);    	
+	         	     //  Zoom zoom =new Zoom(lineChart,ap);    	
 	         	
 	           pagination1.getChildren().setAll(ap);
 
@@ -915,6 +918,26 @@ public class ReportController implements Initializable
         }
         System.out.println("Image writing is done");
 	}
-    
+	void savePic(AnchorPane n,String name)
+	{
+
+        double pixelScale=2.0;
+	        
+	        WritableImage writableImage = new WritableImage((int)Math.rint(pixelScale*n.getPrefWidth()), (int)Math.rint(pixelScale*n.getPrefHeight()));
+		    SnapshotParameters spa = new SnapshotParameters();
+		    spa.setTransform(Transform.scale(pixelScale, pixelScale));
+		    WritableImage image = n.snapshot(spa, writableImage); 
+       // WritableImage image = lineChart.snapshot(new SnapshotParameters(), null);
+		    
+        File newfile = new File("mypic/"+name);
+       
+        System.out.println("ImageWriting is Starting");
+      try {
+            ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", newfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Image writing is done");
+	}
 	
 }

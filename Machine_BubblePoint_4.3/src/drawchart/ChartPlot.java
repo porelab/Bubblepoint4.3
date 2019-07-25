@@ -39,6 +39,7 @@ import javax.imageio.ImageIO;
 import com.sun.javafx.charts.Legend;
 
 import data_read_write.DatareadN;
+import de.tesis.dynaware.javafx.fancychart.zoom.Zoom;
 import drawchart.SmoothedChart.ChartType;
 
 public class ChartPlot {
@@ -225,6 +226,8 @@ public class ChartPlot {
 		lineChart.setAnimated(false);
 	//	lineChart.getData().addAll(series);
 
+
+	       Zoom zoom =new Zoom(lineChart,p);
 		return p;
 
 	}
@@ -547,6 +550,7 @@ public class ChartPlot {
 
 		System.out.println("LineChart is Created");
 
+	       Zoom zoom =new Zoom(lineChart,p);
 		return p;
 	}
 
@@ -747,6 +751,7 @@ public class ChartPlot {
 
 		System.out.println("LineChart is Created");
 
+	       Zoom zoom =new Zoom(lineChart,p);
 		return p;
 	}
 

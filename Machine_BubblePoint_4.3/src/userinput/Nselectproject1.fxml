@@ -384,7 +384,7 @@
                         <Rectangle arcHeight="500.0" arcWidth="65.0" fill="#bfb9b900" height="64.0" layoutX="438.0" layoutY="244.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" width="570.0" AnchorPane.leftAnchor="438.0" />
                         <Rectangle arcHeight="500.0" arcWidth="65.0" fill="#bfb9b900" height="64.0" layoutX="504.0" layoutY="138.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="570.0" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="222.0" />
                         <Rectangle arcHeight="500.0" arcWidth="65.0" fill="#bfb9b900" height="64.0" layoutX="440.0" layoutY="348.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" visible="false" width="570.0" AnchorPane.leftAnchor="440.0" AnchorPane.topAnchor="348.0" />
-                        <JFXSlider fx:id="bpind" blockIncrement="1.0" cache="true" layoutX="524.0" layoutY="201.0" majorTickUnit="10.0" max="100.0" min="0.0" minorTickCount="0" prefHeight="30.0" prefWidth="423.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="0.0" />
+                        <JFXSlider fx:id="bpind" blockIncrement="1.0" cache="true" layoutX="517.0" layoutY="255.0" majorTickUnit="10.0" max="100.0" min="0.0" minorTickCount="0" prefHeight="30.0" prefWidth="423.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="0.0" />
                         <JFXSlider fx:id="poroind" blockIncrement="1.0" cache="true" layoutX="521.0" layoutY="238.0" majorTickUnit="10.0" max="100.0" min="0.0" minorTickCount="0" prefHeight="30.0" prefWidth="429.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="0.0" visible="false" />
                         <Label fx:id="lblendpress" layoutX="268.0" layoutY="354.0" styleClass="col-gray70" text="Test Pressure" textFill="#000000b8">
                            <font>
@@ -424,7 +424,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <JFXSlider fx:id="curvefit" blockIncrement="1.0" cache="true" layoutX="520.0" layoutY="362.0" majorTickUnit="10.0" max="100.0" min="0.0" minorTickCount="0" prefHeight="30.0" prefWidth="429.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="0.0" />
+                        <JFXSlider fx:id="curvefit" blockIncrement="1.0" cache="true" layoutX="520.0" layoutY="362.0" majorTickUnit="10.0" max="100.0" min="0.0" minorTickCount="0" prefHeight="30.0" prefWidth="429.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="0.0" visible="false" />
                         <Label fx:id="lblporo1" layoutX="278.0" layoutY="286.0" styleClass="col-gray70" text="Data Stability" textFill="#000000b8" visible="false">
                            <font>
                               <Font size="22.0" />

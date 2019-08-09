@@ -40,6 +40,9 @@ public class PopupresultController implements Initializable {
 		DatareadN d=new DatareadN();
 		d.fileRead(NLivetestController.savefile);
 		
+		System.out.println("File : "+NLivetestController.savefile);
+		System.out.println("Data : "+d.data);
+		
 		setData(d);
 		
 		btnhome.setOnAction(new EventHandler<ActionEvent>() {
@@ -71,12 +74,14 @@ public class PopupresultController implements Initializable {
 		
 		List<DatareadN> list_d =new ArrayList<DatareadN>();
 			c=new ChartPlot(true);
+			
 		list_d.add(dr);
+		System.out.println(dr.data);
 	//pagination1.getChildren().add(c.drawBarchart(pagination1.getPrefWidth(),pagination1.getPrefHeight(),"Pore size Distribution", "Diameter (micron)", "Percentage (%)", list_d.get(0).getDistributionChart(list_d.get(0).getValuesOf(list_d.get(0).data.get("diameter")+""),list_d.get(0).getValuesOf(list_d.get(0).data.get("psd")+""),30)));
 	//pagination1.getChildren().add(c.drawBarchartNumber(pagination1.getPrefWidth(),pagination1.getPrefHeight(),"Pore size Distribution", "Diameter (micron)", "Percentage (%)", list_d.get(0).getValuesOf(list_d.get(0).data.get("diameter").toString()),list_d.get(0).getValuesOf(list_d.get(0).data.get("psd").toString())));
 	
 		pagination1.getChildren().add(c.drawLinechart(pagination1.getPrefWidth(),pagination1.getPrefHeight(),"1FPT vs Time", "Time (Second)", "FPT",list_d,false,11,12,"(3) Incremental Filter-Flow % vs Diameter"));
-
+  	  
 		
 		
 		

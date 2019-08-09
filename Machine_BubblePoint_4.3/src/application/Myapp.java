@@ -169,12 +169,20 @@ public class Myapp {
 	public static void setColor()
 	{
 		colors=new ArrayList<String>();
-		colors.add("#3b5998");
-		colors.add("#00ff38");
-		colors.add("#ee82ee");
-		colors.add("#4b0082");
-		colors.add("#dd2a8d");
-		colors.add("#ff8000");
+		colors.add("#DBBA4F");
+		colors.add("#3F76B5");
+		colors.add("#D67479");
+		colors.add("#12B59F");
+		colors.add("#F5903D");
+		colors.add("#BC4644");
+		colors.add("#AD4F73");
+		colors.add("#40A7C1");
+		colors.add("#95B64F");
+		
+		
+		colors.add("#613769");
+		colors.add("#234882");
+		colors.add("#A1846A");
 		
 	}
 

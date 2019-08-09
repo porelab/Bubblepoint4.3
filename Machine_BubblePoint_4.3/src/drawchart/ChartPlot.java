@@ -36,6 +36,8 @@ import javafx.scene.transform.Transform;
 
 import javax.imageio.ImageIO;
 
+import application.Myapp;
+
 import com.sun.javafx.charts.Legend;
 
 import data_read_write.DatareadN;
@@ -76,30 +78,14 @@ public class ChartPlot {
 
 	public void setColor() {
 
-		grpclr.add("#3F76B5");
-		grpclr.add("#D67479");
-		grpclr.add("#888888");
-		grpclr.add("#8f1b91");
-		grpclr.add("#fe9901");
-		grpclr.add("#00ba00");
+	grpclr.addAll(Myapp.colors);
 
 	}
 
 	public List<String> getColorMultiple() {
 	
 		List<String> grpclr=new ArrayList<String>();
-		grpclr.add("#DBBA4F");
-		grpclr.add("#3F76B5");
-		grpclr.add("#D67479");
-		grpclr.add("#12B59F");
-		grpclr.add("#F5903D");
-		grpclr.add("#BC4644");
-		grpclr.add("#AD4F73");
-		grpclr.add("#40A7C1");
-		grpclr.add("#95B64F");
-		grpclr.add("#613769");
-		grpclr.add("#234882");
-		grpclr.add("#A1846A");
+		grpclr.addAll(Myapp.colors);
 		return grpclr;
 	}
 	

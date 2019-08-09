@@ -2012,19 +2012,24 @@ public class NLivetestController implements Initializable {
 
 		try {
 			System.out.println("csv creating........");
-			System.out.println("csv creating........");
 			CsvWriter cs = new CsvWriter();
 
 			Date d1 = new Date();
 			SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("ddMMyy");
 			String date1 = DATE_FORMAT.format(d1);
 
+
 			File fff = new File("TableCsvs");
 			if (!fff.exists()) {
 				fff.mkdir();
 			}
 
-			File f = new File(fff.getPath() + "/" + Myapp.sampleid);
+			File fffff = new File("TableCsvs/" + Myapp.uid);
+			if (!fffff.exists()) {
+				fffff.mkdir();
+			}
+
+			File f = new File(fffff.getPath() + "/" + Myapp.sampleid);
 			if (!f.isDirectory()) {
 				f.mkdir();
 				System.out.println("Dir csv folder created");
@@ -2034,8 +2039,9 @@ public class NLivetestController implements Initializable {
 
 			CalculatePorometerData c = new CalculatePorometerData();
 
-			cs.wtirefile(f.getPath() + "/" + Myapp.sampleid + "_" + date1 + "_"
-					+ findInt(ff) + ".csv");
+			cs.wtirefile(f.getPath() + "/" + Myapp.sampleid + "_" + findInt(ff)
+					+ ".csv");
+
 
 			cs.firstLine("bubblepoint");
 			cs.newLine("testname", "bubblepoint");
@@ -2091,7 +2097,10 @@ public class NLivetestController implements Initializable {
 			cs.newLine("ans", bans);
 			cs.newLine("t",tlist);
 
+			savefile=new File(cs.filename);
 			cs.closefile();
+			showResultPopup();
+			
 			System.out.println("csv Created");
 
 		} catch (Exception e) {

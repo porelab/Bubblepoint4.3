@@ -42,6 +42,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
@@ -102,6 +103,8 @@ public class NLivetestController implements Initializable {
 
 	static SimpleBooleanProperty isDryStart;
 
+	AudioClip tones;
+	
 	@FXML
 	private Button btnabr, starttestdry, starttest, stoptest, starttestwet,
 			startautotest;
@@ -337,6 +340,11 @@ public class NLivetestController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		
+		tones = 
+	            new AudioClip(NLivetestController.class.getResource("stoptone.mp3").toString());
+
+		
 		if (DataStore.getchambertype().equals("Autometed")) {
 
 			chamberonoff.setVisible(true);
@@ -2050,8 +2058,17 @@ public class NLivetestController implements Initializable {
 			int hour = (s / 3600);
 			int min = (s / 60) % 60;
 			int remsec = (s % 60);
-			String durr = hour + ":" + min + ":" + remsec;
-
+			String durr ="";
+			if(hour!=0)
+			{
+			durr= hour + " hr:" + min + " min:" + remsec+" sec";
+			}
+			else
+			{
+				durr=min + " min:" + remsec+" sec";	
+			}
+			
+			
 			cs.newLine("duration", durr);
 			cs.newLine("durationsecond", s + "");
 			cs.newLine("testtime", timeFormat.format(date));
@@ -2085,6 +2102,7 @@ public class NLivetestController implements Initializable {
 
 
 	void showResultPopup() {
+		tones.play();
 		mydia = new MyDialoug(Main.mainstage, "/userinput/popupresult.fxml");
 
 		mydia.showDialoug();

@@ -336,7 +336,7 @@ public class DataStore
 					wrd1.addChar('O');
 					wrd1.addChar('P');
 					wrd1.addChar('1');
-					wrd1.addChar((char)getPressureCrossover());
+					wrd1.addChar(getPressureCrossover().charAt(0));
 					wrd1.addLast();
 					sendData(wrd1,3000);
 					
@@ -346,7 +346,7 @@ public class DataStore
 					wrd2.addChar('O');
 					wrd2.addChar('F');
 					wrd2.addChar('1');
-					wrd2.addChar((char)getPressureCrossover());
+					wrd2.addChar(getFlowCrossover().charAt(0));
 					wrd2.addLast();
 					sendData(wrd2,4000);
 					
@@ -453,23 +453,24 @@ public class DataStore
 		return bp;
 	}
 	
-	public static int getPressureCrossover()
+	public static String getPressureCrossover()
 	{
 		int bp;
 		Database db=new Database();		
 		List<List<String>> ll=db.getData("select pc from admin_screen1");
 		bp =Integer.parseInt((ll.get(0).get(0)));
-		return bp;
+		return bp+"";
 	}
 	
-	public static int getFlowCrossover()
+	public static String getFlowCrossover()
 	{
 		int bp;
 		Database db=new Database();		
 		List<List<String>> ll=db.getData("select fc from admin_screen1");
 		bp =Integer.parseInt((ll.get(0).get(0)));
-		return bp;
+		return bp+"";
 	}
+	
 		
 	public static void defaultsetting()
 	{

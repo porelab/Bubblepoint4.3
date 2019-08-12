@@ -17,7 +17,7 @@ import ConfigurationPart.SkadaController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+// for communicating with MCU
 public class SerialCommunicator {
 
 	int ind = 0;

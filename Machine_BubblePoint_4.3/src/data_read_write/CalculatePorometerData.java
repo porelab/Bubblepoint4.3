@@ -13,6 +13,7 @@ import java.util.Map;
 import application.DataStore;
 import application.Myapp;
 
+//for range poresize distribution
 public class CalculatePorometerData {
 
 	public List<String> getDiameter(List<String> wetpressure, String surt) {

@@ -2,8 +2,6 @@ package admin_order;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -12,15 +10,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.stream.Collectors;
 
-import javassist.tools.reflect.Sample;
-
-import com.jfoenix.controls.JFXSpinner;
-import com.jfoenix.controls.JFXToggleButton;
-
-import ch.qos.logback.core.net.server.Client;
-import admin_user.Users;
-import application.Main;
-import application.Myapp;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -37,19 +26,17 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-import javafx.util.Callback;
 import toast.Openscreen;
 import toast.Toast;
+import application.Main;
+
+import com.jfoenix.controls.JFXToggleButton;
 
 public class First_orderController implements Initializable {
 	
@@ -104,6 +91,7 @@ public class First_orderController implements Initializable {
 			}
 		});
 		
+		/*Search order*/
 		txtnameserche.textProperty().addListener(((observable, oldValue, newValue) -> {
 			//   search((String) oldValue, (String) newValue);
 		
@@ -128,6 +116,7 @@ public class First_orderController implements Initializable {
 	    }
 	 
 	 
+	 /*Selected order Order information set in table*/
 	void addItemToTable(String no,String test,String sample,String material,String factore)
 	{
 		HBox h = new HBox(0);
@@ -167,6 +156,7 @@ public class First_orderController implements Initializable {
 
 	}
 
+	/*Get All completed , pending and running Order*/
 	void getOrders(String sta)
 	{
 		Platform.runLater(new Runnable() {
@@ -251,6 +241,7 @@ void setTimer() {
 		timer.schedule(task, 2000);
 	}
 
+/*Selected order set basic information*/
 void setUsersData(OrderData o)
 {
 	v.getChildren().clear();
@@ -294,8 +285,10 @@ void setUsersData(OrderData o)
 	}
 }
 	
+/*All Button event in status change*/
 	void setBtnclick()
 	{
+		/*Status change in order completed*/
 		btnscom.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
@@ -340,7 +333,7 @@ void setUsersData(OrderData o)
 				
 			
 		});
-
+		/*Status change in order running */
 		btnsrun.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
@@ -382,7 +375,7 @@ void setUsersData(OrderData o)
 						
 			}
 		});
-
+		/*Status change in order Received*/
 		btnsrec.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override

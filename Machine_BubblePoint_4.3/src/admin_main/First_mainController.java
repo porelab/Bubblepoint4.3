@@ -3,8 +3,6 @@ package admin_main;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import toast.Openscreen;
-import toast.Systemtime;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import toast.Openscreen;
+import toast.Systemtime;
 
 public class First_mainController implements Initializable {
 
@@ -35,6 +35,7 @@ public class First_mainController implements Initializable {
 		setBtnClicks();
 	}
 
+	/*set image in button*/
 	void setMainBtns()
 	{
 		
@@ -63,6 +64,7 @@ public class First_mainController implements Initializable {
       
 	}
 
+	/*All button click event*/
 	void setBtnClicks()
 	{
 		btnmainback.setOnAction(new EventHandler<ActionEvent>() {

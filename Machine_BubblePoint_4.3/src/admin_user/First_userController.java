@@ -2,8 +2,6 @@ package admin_user;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -11,11 +9,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.stream.Collectors;
 
-import com.jfoenix.controls.JFXSpinner;
-
-import ch.qos.logback.core.net.server.Client;
-import application.Main;
-import application.Myapp;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -27,13 +20,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
-import javafx.util.Callback;
 import toast.Openscreen;
-import toast.Toast;
 
 public class First_userController implements Initializable {
 	
@@ -69,7 +58,7 @@ public class First_userController implements Initializable {
 		});
 	
 		setTimer();
-		
+		/*Search register user*/
 		txtnameserche.textProperty().addListener(((observable, oldValue, newValue) -> {
 			//   search((String) oldValue, (String) newValue);
 		
@@ -132,7 +121,7 @@ public class First_userController implements Initializable {
 		timer.schedule(task, 2000);
 	}
 
-	
+	/*Selected order basic information set in table*/
 	void setUsersData(UserData u)
 	{
 		

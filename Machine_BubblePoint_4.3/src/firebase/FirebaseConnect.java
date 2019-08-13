@@ -11,6 +11,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.itextpdf.text.pdf.codec.Base64.InputStream;
 
+// for connection with online cloud..
+
 public class FirebaseConnect {
 	public static FirebaseDatabase db1;
 	

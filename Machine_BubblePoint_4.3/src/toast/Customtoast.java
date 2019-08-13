@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+// for customized notification
+
 public class Customtoast 
 {
 	Stage ownerStage;

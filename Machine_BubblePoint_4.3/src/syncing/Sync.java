@@ -28,6 +28,7 @@ import com.google.firebase.tasks.Task;
 import data_read_write.DatareadN;
 import firebase.FirebaseConnect;
 
+//for sync test file online from local drive
 public class Sync {
 
 

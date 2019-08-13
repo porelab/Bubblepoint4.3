@@ -14,6 +14,7 @@ import com.itextpdf.text.pdf.codec.Base64.InputStream;
 // for connection with online cloud..
 
 public class FirebaseConnect {
+	
 	public static FirebaseDatabase db1;
 	
 

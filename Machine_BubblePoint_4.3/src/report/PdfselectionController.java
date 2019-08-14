@@ -72,6 +72,7 @@ public class PdfselectionController implements Initializable {
 
 		txtnotes.setText("The following test Procedure is based on ASTM D6767 (Standard Test Method for Pore Size Characterization.)");
 
+		/*Close Popup*/
 		btncancel.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -80,7 +81,7 @@ public class PdfselectionController implements Initializable {
 				MyDialoug.closeDialoug();
 			}
 		});
-		
+		/*Excel File Save*/
 		excelsave.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
@@ -108,6 +109,7 @@ public class PdfselectionController implements Initializable {
 		});
 
 
+		/*PDF File Save*/
 		pdfsave.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -133,6 +135,7 @@ public class PdfselectionController implements Initializable {
 			}
 		});
 
+		/*Sample Image Browse*/
 		btnbrows.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override

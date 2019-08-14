@@ -33,7 +33,8 @@ public class NteststartpopupController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+	
+		/*Test Start Popup*/
 		
 		lblsname.setText(Myapp.sampleid);
 		

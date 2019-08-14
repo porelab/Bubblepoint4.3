@@ -536,7 +536,7 @@ public class ReportController implements Initializable
 	
 
 
-	
+	/*Set result data in table*/
 	void setResult()
 	{
 
@@ -591,7 +591,7 @@ public class ReportController implements Initializable
 	
 
 
-	
+	/*Set data point in graph*/
     private void setDataPointPopup(XYChart<Number, Number> sc) {
 		final Popup popup = new Popup();
 		popup.setHeight(20);
@@ -686,6 +686,7 @@ public class ReportController implements Initializable
 		
 	}
 	
+	/*Set gauge with result data*/
 	void setTableAndGuage()
 	{
 		double wid=slides.getPrefWidth();
@@ -792,7 +793,7 @@ public class ReportController implements Initializable
 	}
 		
 	
-
+/*Bubble Point Diamter Gauge*/
 	void setgaugeBubb(double d)
 	{
 		
@@ -860,6 +861,7 @@ public class ReportController implements Initializable
 
 	        
 	}
+/*Chart Image Snapshot*/
 	private void createChartImagePagination(final SaveChartsTask saveChartsTask) {
 		
 		
@@ -896,7 +898,7 @@ public class ReportController implements Initializable
         saveChartsTask.workDoneProperty().addListener(WORK_DONE_LISTENER);
       }
    
-	
+	/*Save Scale*/
 	void savePic(AnchorPane n)
 	{
 

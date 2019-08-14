@@ -161,7 +161,7 @@ public class Singlepororeport {
 	public Font font;
 
 	public String text;
-	
+
 	public void WatermarkPageEvent(String text) {
 		this.text = text;
 		Font font = FontFactory.getFont(FontFactory.HELVETICA);
@@ -169,7 +169,7 @@ public class Singlepororeport {
 		font.setStyle(Font.BOLD);
 		this.font = font;
 	}
-
+	/* Main Function Create Report */
 	public void Report(String path, DatareadN d, String notes, String comname,
 			String imgpath, List<String> graphs, Boolean btabledata) {
 
@@ -245,7 +245,7 @@ public class Singlepororeport {
 		}
 
 	}
-
+	/* RGB Color Code */
 	BaseColor getColor(int i) {
 		List<BaseColor> clrs = new ArrayList<>();
 		clrs.add(new BaseColor(255, 00, 00));
@@ -267,7 +267,7 @@ public class Singlepororeport {
 		return clrs.get(i);
 
 	}
-
+	/* Cover Page */
 	void coverpage(DatareadN d) {
 		try {
 
@@ -464,7 +464,7 @@ public class Singlepororeport {
 		}
 
 	}
-
+	/* current Date */
 	String getCurrentData() {
 		String[] suffixes =
 		// 0 1 2 3 4 5 6 7 8 9
@@ -489,7 +489,7 @@ public class Singlepororeport {
 		return dayStr + dateFormat.format(cal.getTime());
 
 	}
-
+	/* Single Test File Information Display in Table */
 	void sampleinfo(DatareadN d) {
 
 		int r = 130;
@@ -1184,7 +1184,7 @@ public class Singlepororeport {
 		}
 
 	}
-
+	/* Display Graph */
 	void resultgraph(File f) {
 		try {
 
@@ -1235,7 +1235,7 @@ public class Singlepororeport {
 		System.out.println("File is created");
 
 	}
-
+	/* Row Data Table Header in Title name and unite */
 	void addTableHeader(PdfPTable tablem) {
 		PdfPCell cell1 = new PdfPCell(new Paragraph("Flow", rowhed));
 		cell1.setBackgroundColor(backcellcoltable);
@@ -1348,7 +1348,7 @@ public class Singlepororeport {
 		tablem.addCell(ucell9);
 		
 	}
-
+	/* Set Test Data in Table */
 	void rowData() {
 		
 		
@@ -1665,7 +1665,7 @@ public class Singlepororeport {
 		}
 
 	}
-
+	/* Header and Footer */
 	class HeaderFooterPageEvent extends PdfPageEventHelper {
 		Font titleFont = FontFactory.getFont(FontFactory.HELVETICA, 15,
 				Font.BOLD, new CMYKColor(92, 17, 0, 15));

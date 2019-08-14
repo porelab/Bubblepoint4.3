@@ -94,7 +94,7 @@ public class OnlinefilepopupController implements Initializable {
 					}
 				}
 			}).start();
-		
+		/*Close Popup*/
 		btncancel.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -106,6 +106,7 @@ public class OnlinefilepopupController implements Initializable {
 			}
 		});
 
+		/*Sample Download Click Event*/
 		starttest.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -128,6 +129,7 @@ public class OnlinefilepopupController implements Initializable {
 
 	}
 
+	/*Get All Sample List*/
 	void getOnlineList() throws UnknownHostException
 	{
 		try {
@@ -196,6 +198,7 @@ public class OnlinefilepopupController implements Initializable {
 		}
 	}
 
+	/*File save Local Storage*/
 	void saveFile() {
 		try{
 		if (fileno >= listofdownloadfile.size()) {
@@ -273,6 +276,7 @@ public class OnlinefilepopupController implements Initializable {
 		}
 	}
 
+	/*create csv in sample download*/
 	void createCsvporometers(Map<String, Object> dr, String uid,
 			String samname, String testname) {
 
@@ -326,6 +330,7 @@ public class OnlinefilepopupController implements Initializable {
 
 	}
 
+	/*Set Folder with sample*/
 	VBox getVBoxofFolderOnline(String name) {
 		VBox v1 = new VBox(15);
 

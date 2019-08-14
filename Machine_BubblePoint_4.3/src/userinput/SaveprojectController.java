@@ -41,9 +41,8 @@ public class SaveprojectController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		
 	
+		/*New test setup complete after open save project popup*/
 		
 		 btncancel.getStyleClass().add("transperant_comm");
 		  

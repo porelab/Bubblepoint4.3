@@ -42,8 +42,9 @@ public class DrypopupController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 
+		/*Dry Test warning Popup*/
+		
 		if (DataStore.getchambertype().equals("Autometed")) {
 			
 			lblchambertype.setVisible(true);

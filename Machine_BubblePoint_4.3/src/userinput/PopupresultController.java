@@ -36,6 +36,9 @@ public class PopupresultController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+	
+		/*Test Complete After Open Result Popup*/
+		
 		//File f=new File("test_sample0221.csv");
 		DatareadN d=new DatareadN();
 		d.fileRead(NLivetestController.savefile);

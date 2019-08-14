@@ -99,7 +99,8 @@ public class NSelectproject1 implements Initializable {
 	private Button btnsub, btnplus;
 
 	@FXML
-	RadioButton rbhybic, rbhylic, rbunknown, bwd, dbw, bdw,datas1,datas2,datas3;
+	RadioButton rbhybic, rbhylic, rbunknown, bwd, dbw, bdw, datas1, datas2,
+			datas3;
 
 	@FXML
 	private JFXSlider bpind;
@@ -107,7 +108,7 @@ public class NSelectproject1 implements Initializable {
 	@FXML
 	private JFXSlider poroind, curvefit;
 
-	static String selectedrad4 = "", selectedrad6 = "",selectedrad7 = "";
+	static String selectedrad4 = "", selectedrad6 = "", selectedrad7 = "";
 
 	static ToggleGroup tgb5, tgb6, tgb7;
 
@@ -200,17 +201,15 @@ public class NSelectproject1 implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 
 		curvefit.setMin(10);
 		poroind.setMin(10);
 		bpind.setMin(10);
-		
+
 		bpind.setValue(100);
 		poroind.setValue(50);
 		curvefit.setValue(50);
-	
-		
+
 		txtsampleid1 = txtsampleid;
 
 		setkeyboardmode();
@@ -341,35 +340,30 @@ public class NSelectproject1 implements Initializable {
 			public void handle(ActionEvent arg0) {
 				if (!txtendpre.getText().trim().equals("")
 						&& !txtstartpre.getText().trim().equals("")) {
-					
-					try
-					{
-						int re=Integer.parseInt(txtstartpre.getText());
-						int re1=Integer.parseInt(txtendpre.getText());
-						
-						
-						
-					Myapp.sampleid = "" + txtsampleid.getText();
-					Myapp.testtrial = "" + cmbtestt.getValue();
-					Myapp.indtype = "" + cmbselectind.getValue();
-					Myapp.materialapp = "" + cmbmateriala.getValue();
-					String[] s = cmbselectflui.getValue().toString().split(":");
-					Myapp.fluidname = "" + s[0];
-					Myapp.fluidvalue = "" + s[1];
-					Myapp.thikness = "" + txtthiknes.getText();
-					Myapp.endpress = "" + txtendpre.getText();
-					Myapp.tfactore = "" + txttfvalue.getText();
-					Myapp.lotnumber = "" + txtlotno.getText();
-					Myapp.startpress = "" + txtstartpre.getText();
 
-					startClick();
-					}
-					catch(Exception es)
-					{
+					try {
+						int re = Integer.parseInt(txtstartpre.getText());
+						int re1 = Integer.parseInt(txtendpre.getText());
+
+						Myapp.sampleid = "" + txtsampleid.getText();
+						Myapp.testtrial = "" + cmbtestt.getValue();
+						Myapp.indtype = "" + cmbselectind.getValue();
+						Myapp.materialapp = "" + cmbmateriala.getValue();
+						String[] s = cmbselectflui.getValue().toString()
+								.split(":");
+						Myapp.fluidname = "" + s[0];
+						Myapp.fluidvalue = "" + s[1];
+						Myapp.thikness = "" + txtthiknes.getText();
+						Myapp.endpress = "" + txtendpre.getText();
+						Myapp.tfactore = "" + txttfvalue.getText();
+						Myapp.lotnumber = "" + txtlotno.getText();
+						Myapp.startpress = "" + txtstartpre.getText();
+
+						startClick();
+					} catch (Exception es) {
 						Toast.makeText(Main.mainstage,
 								"Please enter valid input.", 1500, 500, 500);
 					}
-
 
 				} else {
 					Toast.makeText(Main.mainstage, "Please enter all details",
@@ -381,6 +375,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* set image in button */
 	void setMainbtns() {
 		image = new Image(this.getClass().getResourceAsStream(
 				"/userinput/tfact-6.png"));
@@ -661,6 +656,7 @@ public class NSelectproject1 implements Initializable {
 		});
 	}
 
+	/* Get Fluid in Databse */
 	void getFluiddata() {
 		Database d = new Database();
 		List<List<String>> info = d.getData("select * from fluiddata");
@@ -679,6 +675,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* Add new Fluid ame and value */
 	void setNewfluiddata() {
 
 		Database d1 = new Database();
@@ -689,15 +686,15 @@ public class NSelectproject1 implements Initializable {
 					txtnfname.getText() + ":" + txtnfvalue.getText());
 			cmbselectflui.getSelectionModel().select(
 					txtnfname.getText() + ":" + txtnfvalue.getText());
-			
+
 			Toast.makeText(Main.mainstage,
-					"Successfully New Fluid Data Added.", 1500,
-					500, 500);
+					"Successfully New Fluid Data Added.", 1500, 500, 500);
 		} else {
 		}
 
 	}
 
+	/* Fluid delete */
 	void Deletefluid() {
 		String ss = cmbselectflui.getSelectionModel().getSelectedItem();
 		String del = "delete from fluiddata where name='"
@@ -710,6 +707,7 @@ public class NSelectproject1 implements Initializable {
 		}
 	}
 
+	/* set css class in Label */
 	void setLabels() {
 		lblproject.setFont(f.getM_M());
 		lblsampleid.setFont(f.getM_M());
@@ -770,152 +768,118 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
-	void nextClick()
-	{
-		boolean isvalid=true;
+	/* Main Test Setup Next Button */
+	void nextClick() {
+		boolean isvalid = true;
 		// TODO Auto-generated method stub
-	int oldpos=maintab.getSelectionModel().getSelectedIndex();
-	
-	
+		int oldpos = maintab.getSelectionModel().getSelectedIndex();
 
-	if((oldpos + 1) == 1)
-	{
-	boolean bol = true;
-	if(txtsampleid.getText().toString().contains(".") || txtsampleid.getText().toString().contains("#") || txtsampleid.getText().toString().contains("_") ||txtsampleid.getText().toString().contains("-") )
-	{
-		bol=false;
-	}
-		if(!txtsampleid.getText().trim().equals("") && !txtlotno.getText().trim().equals("") && cmbtestt.getSelectionModel().getSelectedItem()!=null)
-		{
-		if(bol)
-		{
-			
+		if ((oldpos + 1) == 1) {
+			boolean bol = true;
+			if (txtsampleid.getText().toString().contains(".")
+					|| txtsampleid.getText().toString().contains("#")
+					|| txtsampleid.getText().toString().contains("_")
+					|| txtsampleid.getText().toString().contains("-")) {
+				bol = false;
+			}
+			if (!txtsampleid.getText().trim().equals("")
+					&& !txtlotno.getText().trim().equals("")
+					&& cmbtestt.getSelectionModel().getSelectedItem() != null) {
+				if (bol) {
 
+					prgmain.setProgress(0.41);
+				} else {
+					isvalid = false;
+					Toast.makeText(Main.mainstage,
+							"Special characters not allowed in SampleID", 1500,
+							500, 500);
 
-			prgmain.setProgress(0.41);
-		}
-		else {
-			isvalid=false;
-			Toast.makeText(Main.mainstage, "Special characters not allowed in SampleID", 1500, 500, 500);
+				}
+			} else {
+				isvalid = false;
+				Toast.makeText(Main.mainstage, "Please enter all details",
+						1500, 500, 500);
 
-		}
-		}
-		else
-		{
-			isvalid=false;
-			Toast.makeText(Main.mainstage, "Please enter all details", 1500, 500, 500);
-			
-		}
-		
-	}
-	else if((oldpos + 1) == 2)
-	{
-		if(cmbmateriala.getSelectionModel().getSelectedItem()!=null && cmbselectind.getSelectionModel().getSelectedItem()!=null)
-		{
+			}
+
+		} else if ((oldpos + 1) == 2) {
+			if (cmbmateriala.getSelectionModel().getSelectedItem() != null
+					&& cmbselectind.getSelectionModel().getSelectedItem() != null) {
+				lblsample.setTextFill(Paint.valueOf("#0d3c88"));
+				lblmaterial.setTextFill(Paint.valueOf("#0d3c88"));
+				lbltestcon.setTextFill(Paint.valueOf("#727376"));
+
+				c1.setVisible(false);
+				ic1.setVisible(true);
+				c2.setFill(Paint.valueOf("#0d3c88"));
+				prgmain.setProgress(0.50);
+			} else {
+				isvalid = false;
+				Toast.makeText(Main.mainstage, "Please enter all details",
+						1500, 500, 500);
+
+			}
+
+		} else if ((oldpos + 1) == 3) {
+
+			prgmain.setProgress(0.58);
+
+		} else if ((oldpos + 1) == 4) {
+			prgmain.setProgress(0.68);
+
+		} else if ((oldpos + 1) == 5) {
 			lblsample.setTextFill(Paint.valueOf("#0d3c88"));
 			lblmaterial.setTextFill(Paint.valueOf("#0d3c88"));
-			lbltestcon.setTextFill(Paint.valueOf("#727376"));
-			
-			c1.setVisible(false);			
+			lbltestcon.setTextFill(Paint.valueOf("#0d3c88"));
+
+			c1.setVisible(false);
+			c2.setVisible(false);
 			ic1.setVisible(true);
-			c2.setFill(Paint.valueOf("#0d3c88"));
-		prgmain.setProgress(0.50);
-		}
-		else {
-			isvalid=false;
-			Toast.makeText(Main.mainstage, "Please enter all details", 1500, 500, 500);
-			
-		}
-		
-	}
-	else if((oldpos + 1) == 3)
-	{
-		
-		prgmain.setProgress(0.58);
-		
-	}
-	else if((oldpos + 1) == 4)
-	{
-		prgmain.setProgress(0.68);
-		
-		
+			ic2.setVisible(true);
+			c3.setFill(Paint.valueOf("#0d3c88"));
+			prgmain.setProgress(0.79);
 
-		
-		
-	}
-	else if((oldpos + 1) == 5)
-	{
-		lblsample.setTextFill(Paint.valueOf("#0d3c88"));
-		lblmaterial.setTextFill(Paint.valueOf("#0d3c88"));
-		lbltestcon.setTextFill(Paint.valueOf("#0d3c88"));
+		} else if ((oldpos + 1) == 6) {
+			if (cmbselectflui.getSelectionModel().getSelectedItem() != null
+					&& !txtthiknes.getText().trim().equals("")) {
+				try {
+					Float re = Float.parseFloat(txtthiknes.getText());
 
-		
-		c1.setVisible(false);			
-		c2.setVisible(false);			
-		ic1.setVisible(true);
-		ic2.setVisible(true);
-		c3.setFill(Paint.valueOf("#0d3c88"));
-		prgmain.setProgress(0.79);
+				} catch (Exception es) {
+					isvalid = false;
+					Toast.makeText(Main.mainstage, "Please enter valid input.",
+							1500, 500, 500);
+				}
+				prgmain.setProgress(0.90);
 
-		
-	}
-	else if((oldpos + 1) == 6)
-	{
-		if(cmbselectflui.getSelectionModel().getSelectedItem()!=null&&!txtthiknes.getText().trim().equals(""))
-		{
-			try
-			{
-				Float re=Float.parseFloat(txtthiknes.getText());
-				
+			} else {
+				isvalid = false;
+				Toast.makeText(Main.mainstage, "Please enter all details",
+						1500, 500, 500);
 			}
-			catch(Exception es)
-			{
-				isvalid=false;
-				Toast.makeText(Main.mainstage,
-						"Please enter valid input.", 1500, 500, 500);
+
+		} else if ((oldpos + 1) == 7) {
+			ic3.setVisible(true);
+			prgmain.setProgress(1);
+
+		}
+
+		if (isvalid) {
+			if (oldpos + 1 > 0) {
+				btnback.setVisible(true);
 			}
-		prgmain.setProgress(0.90);
-		
-		}
-		else
-		{
-		isvalid=false;
-		Toast.makeText(Main.mainstage, "Please enter all details", 1500, 500, 500);
-		}
-		
-	}
-	else if((oldpos + 1) == 7)
-	{
-		ic3.setVisible(true);
-		prgmain.setProgress(1);
-		
-	}
-	
-	
-	
-	if(isvalid)
-	{
-		if(oldpos+1>0)
-		{
-		btnback.setVisible(true);	
-		}
 
+			if (oldpos == 6) {
+				btnnext.setVisible(false);
+				maintab.getSelectionModel().select(oldpos + 1);
 
-		
-	if(oldpos==6)
-	{
-		btnnext.setVisible(false);				
-		maintab.getSelectionModel().select(oldpos+1);
-		
-		
-	}
-	else {
-		
-		btnnext.setVisible(true);
-		maintab.getSelectionModel().select(oldpos+1);
-		
-	}
-	}	
+			} else {
+
+				btnnext.setVisible(true);
+				maintab.getSelectionModel().select(oldpos + 1);
+
+			}
+		}
 	}
 
 	void setMaterialSpecification1() {
@@ -990,91 +954,62 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
-	void backClick()
-	{
+	void backClick() {
 
-		int oldpos=maintab.getSelectionModel().getSelectedIndex();
-		if(oldpos-1<7)
-		{
+		int oldpos = maintab.getSelectionModel().getSelectedIndex();
+		if (oldpos - 1 < 7) {
 			btnnext.setVisible(true);
 		}
-		
-		
-		if(oldpos==0)
-		{
+
+		if (oldpos == 0) {
 			btnback.setVisible(false);
-			
-		}
-		else {
-			if(oldpos-1==0)
-			{
-			btnback.setVisible(false);
+
+		} else {
+			if (oldpos - 1 == 0) {
+				btnback.setVisible(false);
+			} else {
+				btnback.setVisible(true);
 			}
-			else
-			{
-			btnback.setVisible(true);
-			}
-			maintab.getSelectionModel().select(oldpos-1);
-			
+			maintab.getSelectionModel().select(oldpos - 1);
+
 		}
 
-		if((oldpos - 1) == 0)
-		{
+		if ((oldpos - 1) == 0) {
 			prgmain.setProgress(0.33);
 			lblsample.setTextFill(Paint.valueOf("#0d3c88"));
 			lblmaterial.setTextFill(Paint.valueOf("#727376"));
 			lbltestcon.setTextFill(Paint.valueOf("#727376"));
-			
-			
-			
-			
-		}
-		else if((oldpos - 1) == 1)
-		{
-		
-		
+
+		} else if ((oldpos - 1) == 1) {
+
 			prgmain.setProgress(0.41);
-			
-		}
-		else if((oldpos - 1) == 2)
-		{
+
+		} else if ((oldpos - 1) == 2) {
 			prgmain.setProgress(0.50);
-			
-		}
-		else if((oldpos - 1) == 3)
-		{
+
+		} else if ((oldpos - 1) == 3) {
 			prgmain.setProgress(0.58);
 			lblsample.setTextFill(Paint.valueOf("#727376"));
 			lblmaterial.setTextFill(Paint.valueOf("#0d3c88"));
 			lbltestcon.setTextFill(Paint.valueOf("#727376"));
 
-			
-		}
-		else if((oldpos - 1) == 4)
-		{
+		} else if ((oldpos - 1) == 4) {
 			prgmain.setProgress(0.68);
 
-			
-		}
-		else if((oldpos - 1) == 5)
-		{
+		} else if ((oldpos - 1) == 5) {
 			prgmain.setProgress(0.79);
-			
-		}
-		else if((oldpos - 1) == 6)
-		{
-			prgmain.setProgress(0.90);
-			
-		}
-		else if((oldpos - 1) == 7)
-		{
-			prgmain.setProgress(1);
-			
-		}
-		
-	}
-	
 
+		} else if ((oldpos - 1) == 6) {
+			prgmain.setProgress(0.90);
+
+		} else if ((oldpos - 1) == 7) {
+			prgmain.setProgress(1);
+
+		}
+
+	}
+
+	/* tortuosity set */
 	void setTfactor() {
 		btnplus.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -1233,6 +1168,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* Tortuosity Value Set */
 	void setDefaultValue() {
 		try {
 
@@ -1257,6 +1193,7 @@ public class NSelectproject1 implements Initializable {
 		}
 	}
 
+	/* Sample Plate Selection */
 	void setTestConfiguration1() {
 
 		t1group.selectedToggleProperty().addListener(
@@ -1307,6 +1244,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* Material Type Selection */
 	void setMaterialType() {
 
 		tgb5 = new ToggleGroup();
@@ -1351,17 +1289,18 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* Select Test Type. */
 	void setTestSequence() {
 
 		tgb6 = new ToggleGroup();
 
 		bwd.setToggleGroup(tgb6);
-		bwd.setUserData("1");		
+		bwd.setUserData("1");
 		dbw.setToggleGroup(tgb6);
 		dbw.setUserData("2");
 		bdw.setToggleGroup(tgb6);
 		bdw.setUserData("3");
-		
+
 		selectedrad6 = "1";
 		Myapp.testsequence = "WUPDUP";
 
@@ -1374,8 +1313,9 @@ public class NSelectproject1 implements Initializable {
 					arg1.setSelected(true);
 				selectedrad6 = arg2.getUserData().toString();
 
-				System.out.println("SElect ted record................"+selectedrad6);
-				
+				System.out.println("SElect ted record................"
+						+ selectedrad6);
+
 				if (selectedrad6.equals("1")) {
 					Myapp.testsequence = "WUPDUP";
 				}
@@ -1390,6 +1330,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* Data Stability Selection */
 	void setDataStability() {
 
 		tgb7 = new ToggleGroup();
@@ -1427,7 +1368,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
-	
+	/* Load All Saved Project List */
 	void LoadProject() {
 
 		Database d = new Database();
@@ -1448,6 +1389,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* Selected Project Id to Load Test Setup Data in database */
 	void LoadProjectData(String projectname) {
 		Database d = new Database();
 		isproject = true;
@@ -1600,8 +1542,6 @@ public class NSelectproject1 implements Initializable {
 
 		}
 		// Test Sequance
-		
-		
 
 		if (testsequance.equals("WUPDUP")) {
 			bwd.selectedProperty().set(true);
@@ -1620,7 +1560,7 @@ public class NSelectproject1 implements Initializable {
 			Myapp.testsequence = "WUPDCALCULATED";
 
 		}
-		
+
 		// Stability Type
 
 		if (stabilitytype.equals("1")) {
@@ -1640,10 +1580,10 @@ public class NSelectproject1 implements Initializable {
 			Myapp.stabilitytype = "3";
 
 		}
-		
 
 	}
 
+	/* Check Selected project or Not */
 	void startClick() {
 
 		System.out.println("is : " + isproject);
@@ -1661,6 +1601,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* Selected Project in update data */
 	void setupdatedProjectData() {
 		Database d1 = new Database();
 
@@ -1677,9 +1618,8 @@ public class NSelectproject1 implements Initializable {
 				+ "',accporo='" + Myapp.accstep + "',lotno='" + Myapp.lotnumber
 				+ "',startpress='" + Myapp.startpress + "',testsequence='"
 				+ Myapp.testsequence + "',stabilitytype='"
-				+ Myapp.stabilitytype + "',accstability='"
-				+ Myapp.accstability + "'  where sampleid='" + Myapp.sampleid
-				+ "'";
+				+ Myapp.stabilitytype + "',accstability='" + Myapp.accstability
+				+ "'  where sampleid='" + Myapp.sampleid + "'";
 
 		if (d1.Insert(updatequry)) {
 			// System.out.println(" Updated Projec Data");
@@ -1689,6 +1629,7 @@ public class NSelectproject1 implements Initializable {
 		}
 	}
 
+	/* Load Last test Data */
 	void lastproject() {
 		Database d1 = new Database();
 		try {
@@ -1719,7 +1660,9 @@ public class NSelectproject1 implements Initializable {
 						+ "','" + Myapp.materialtype + "','"
 						+ txtendpre.getText() + "','" + Myapp.accbpt + "','"
 						+ Myapp.accstep + "','" + Myapp.lotnumber + "','"
-						+ Myapp.startpress + "', '" + Myapp.testsequence + "', '" + Myapp.stabilitytype + "', '" + Myapp.accstability + "')")) {
+						+ Myapp.startpress + "', '" + Myapp.testsequence
+						+ "', '" + Myapp.stabilitytype + "', '"
+						+ Myapp.accstability + "')")) {
 					// System.out.println("Last Project Insert data");
 				} else {
 					// System.out.println(" Last Project  not insertetd");
@@ -1760,6 +1703,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* Delete Selected Project */
 	void setDeleteProject() {
 
 		Database d = new Database();
@@ -1778,6 +1722,7 @@ public class NSelectproject1 implements Initializable {
 		}
 	}
 
+	/* Keyboard Mode Checking */
 	void setkeyboardmode() {
 
 		Database db = new Database();
@@ -1810,17 +1755,17 @@ public class NSelectproject1 implements Initializable {
 						Myapp.virtualStage.initOwner(Main.mainstage);
 						Myapp.virtualStage.initModality(Modality.WINDOW_MODAL);
 						Myapp.virtualStage.setScene(new Scene(root2, 805, 350));
-						
-						Myapp.virtualStage.setOnShown(new EventHandler<WindowEvent>() {
-							
-							@Override
-							public void handle(WindowEvent event) {
-								// TODO Auto-generated method stub
-								Myapp.keyboardinput
-								.setText(Myapp.currTf
-										.getText());
-							}
-						});
+
+						Myapp.virtualStage
+								.setOnShown(new EventHandler<WindowEvent>() {
+
+									@Override
+									public void handle(WindowEvent event) {
+										// TODO Auto-generated method stub
+										Myapp.keyboardinput
+												.setText(Myapp.currTf.getText());
+									}
+								});
 
 						Myapp.virtualStage
 								.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -1844,6 +1789,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* Open Keyboard Scren stage. */
 	public static void setVitual(TextField tf, TextField nextTf, String lbl,
 			String nextlbl) {
 		try {
@@ -1851,7 +1797,7 @@ public class NSelectproject1 implements Initializable {
 			// FXMLLoader.load(getClass().getClassLoader().getResource("/application/keyboard.fxml"));
 			Myapp.currTf = tf;
 			Myapp.nextTf = nextTf;
-			Myapp.nextlbl=nextlbl;
+			Myapp.nextlbl = nextlbl;
 			Myapp.lblkeyboard.setText(lbl);
 			Myapp.virtualStage.show();
 
@@ -1868,6 +1814,7 @@ public class NSelectproject1 implements Initializable {
 
 	}
 
+	/* Virtual Keyboard Textbox Click Event. */
 	void setClickkeyboard() {
 		txtsampleid.setOnMouseClicked(new EventHandler<Event>() {
 
@@ -1887,7 +1834,7 @@ public class NSelectproject1 implements Initializable {
 				setVitual(txtlotno, null, "Lot No.", null);
 			}
 		});
-		
+
 		txtthiknes.setOnMouseClicked(new EventHandler<Event>() {
 
 			@Override
@@ -1897,14 +1844,14 @@ public class NSelectproject1 implements Initializable {
 
 			}
 		});
-		
-		
+
 		txtstartpre.setOnMouseClicked(new EventHandler<Event>() {
 
 			@Override
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
-				setVitual(txtstartpre, txtendpre, "Start Pressure", "End Pressure");
+				setVitual(txtstartpre, txtendpre, "Start Pressure",
+						"End Pressure");
 
 			}
 		});
@@ -1917,7 +1864,7 @@ public class NSelectproject1 implements Initializable {
 				setVitual(txtendpre, null, "End Pressure", null);
 			}
 		});
-		
+
 	}
 
 }

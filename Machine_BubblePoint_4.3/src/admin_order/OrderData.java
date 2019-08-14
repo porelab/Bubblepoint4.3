@@ -2,18 +2,16 @@ package admin_order;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.FieldValue;
-import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
-import com.google.firebase.database.ServerValue;
 
 import firebase.FirebaseConnect;
+
+/*Get all order data in Cloud*/
 
 public class OrderData {
 DocumentSnapshot d;

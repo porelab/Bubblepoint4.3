@@ -9,6 +9,7 @@ import com.google.cloud.firestore.FirestoreOptions;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseCredentials;
 
+import errorcodes.ErrorList;
 import firebase.FirebaseConnect;
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -32,7 +33,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			try {	
-				
+				ErrorList.setErrorList();
 				FirebaseConnect f=new FirebaseConnect();
 				FirestoreOptions options;
 				Systemtime.StartTime();

@@ -1,4 +1,3 @@
-
 package application;
 
 import java.net.URL;
@@ -39,667 +38,574 @@ import gnu.io.CommPortIdentifier;
 
 public class NFirstController implements Initializable {
 
-MyDialoug mydia;
+	MyDialoug mydia;
 
+	@FXML
+	Label lblpg1offset, lblpg2offset, lblconnection;
 
-@FXML
-Label lblpg1offset,lblpg2offset,lblconnection;
+	@FXML
+	StackPane maincontent;
 
-    @FXML StackPane maincontent;
+	SimpleBooleanProperty ispopup = new SimpleBooleanProperty(false);
 
-SimpleBooleanProperty ispopup=new SimpleBooleanProperty(false);	
-
-
-public static StackPane maincontent1;
+	public static StackPane maincontent1;
 	static JFXDialog df;
 	JFXDialogLayout dll;
 
-@FXML
-Button livetest,report,btncloud,btnsetting,txtuname,qtest,btnscada,btnrefresh,btnhelp;
+	@FXML
+	Button livetest, report, btncloud, btnsetting, txtuname, qtest, btnscada,
+			btnrefresh, btnhelp;
 
-@FXML
-Rectangle recmain;
+	@FXML
+	Rectangle recmain;
 
-Database d=new Database();
+	Database d = new Database();
 
-boolean bolConnected;
+	boolean bolConnected;
 
+	void addShortCut() {
 
+		KeyCombination manushortcut = new KeyCodeCombination(KeyCode.M,
+				KeyCombination.CONTROL_ANY);
+		KeyCombination quickshortcut = new KeyCodeCombination(KeyCode.Q,
+				KeyCombination.CONTROL_ANY);
+		KeyCombination startshortcut = new KeyCodeCombination(KeyCode.S,
+				KeyCombination.CONTROL_ANY);
+		KeyCombination confishortcut = new KeyCodeCombination(KeyCode.C,
+				KeyCombination.CONTROL_ANY);
+		KeyCombination refreshshortcut = new KeyCodeCombination(KeyCode.R,
+				KeyCombination.CONTROL_ANY);
+		KeyCombination exitshortcut = new KeyCodeCombination(KeyCode.E,
+				KeyCombination.CONTROL_ANY);
 
-void addShortCut() {
+		KeyCombination hardreset = new KeyCodeCombination(KeyCode.H,
+				KeyCombination.CONTROL_ANY);
 
- KeyCombination manushortcut = new KeyCodeCombination(KeyCode.M, KeyCombination.CONTROL_ANY);
- KeyCombination quickshortcut = new KeyCodeCombination(KeyCode.Q, KeyCombination.CONTROL_ANY);
- KeyCombination startshortcut = new KeyCodeCombination(KeyCode.S, KeyCombination.CONTROL_ANY);
- KeyCombination confishortcut = new KeyCodeCombination(KeyCode.C, KeyCombination.CONTROL_ANY);
- KeyCombination refreshshortcut = new KeyCodeCombination(KeyCode.R, KeyCombination.CONTROL_ANY);
- KeyCombination exitshortcut = new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_ANY);
+		maincontent.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent ke) {
 
- KeyCombination hardreset = new KeyCodeCombination(KeyCode.H, KeyCombination.CONTROL_ANY);
+				if (manushortcut.match(ke)) {
 
-maincontent.setOnKeyPressed(new EventHandler<KeyEvent>() {
-@Override
-public void handle(KeyEvent ke) {
+					Toast.makeText(Main.mainstage, "Opening Manualcontrol..",
+							1000, 200, 200);
 
+					Openscreen.open("/userinput/manualcontrol.fxml");
 
-if (manushortcut.match(ke)) 
-{
+				}
 
-Toast.makeText(Main.mainstage, "Opening Manualcontrol..", 1000, 200, 200);
+				else if (refreshshortcut.match(ke)) {
 
-Openscreen.open("/userinput/manualcontrol.fxml");
+					if (DataStore.connect_hardware.get()) {
+						sendStop();
+						Toast.makeText(Main.mainstage, "Refresing...", 1000,
+								200, 200);
 
-}
-
-else if(refreshshortcut.match(ke))
-{
-
-if(DataStore.connect_hardware.get())
-{
-sendStop();
-Toast.makeText(Main.mainstage, "Refresing...", 1000, 200, 200);
-
-}
-else
-{
-connectHardware(DataStore.getCom());
-
-setHardwareStatus();
-
-if(DataStore.connect_hardware.get())
-{
-sendStop();
-}
-else
-{
-Toast.makeText(Main.mainstage, "Hardware Problem...", 1000, 200, 200);
-
-}
-
-}
-
-}
-
-
-else if(hardreset.match(ke))
-{
-
-if(DataStore.connect_hardware.get())
-{
-DataStore.hardReset();
-Toast.makeText(Main.mainstage, "Hard reset...", 1000, 200, 200);
-
-}
-else
-{
-connectHardware(DataStore.getCom());
-setHardwareStatus();
-if(DataStore.connect_hardware.get())
-{
-sendStop();
-}
-else
-{
-Toast.makeText(Main.mainstage, "Hardware Problem...", 1000, 200, 200);	
-}
-}
-
-}
-
-else if(confishortcut.match(ke))
-{
+					} else {
+						connectHardware(DataStore.getCom());
 
-Toast.makeText(Main.mainstage, "Opening Configuration..", 1000, 200, 200);
+						setHardwareStatus();
 
-Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
-}
-else if(quickshortcut.match(ke))
-{
-quicktest();
-}
-else if(startshortcut.match(ke))
-{
-
-Toast.makeText(Main.mainstage, "Opening Test..", 1000, 200, 200);
-
-Openscreen.open("/userinput/Nselectproject1.fxml");
-
-}
-else if(exitshortcut.match(ke)) {
-
-exitpopup();
-
-
-
-}
-
-}
-});
-
-
-
-
-
-}
-@Override
-public void initialize(URL arg0, ResourceBundle arg1) {
-DataStore.isconfigure.set(true);
-DataStore.sc=new SerialCommunicator();
-
-addShortCut();
-
-connectHardware(DataStore.getCom());
+						if (DataStore.connect_hardware.get()) {
+							sendStop();
+							Toast.makeText(Main.mainstage, "Refresing...", 1000,
+									200, 200);
+						} else {
+						MyDialoug.showError(102);
 
-setHardwareStatus();
+						}
 
+					}
 
+				}
 
+				else if (hardreset.match(ke)) {
 
+					if (DataStore.connect_hardware.get()) {
+						DataStore.hardReset();
+						Toast.makeText(Main.mainstage, "Hard reset...", 1000,
+								200, 200);
 
-txtuname.setText("Welcome, "+Myapp.username);
-System.out.println("usename--:"+Myapp.username);
+					} else {
+						connectHardware(DataStore.getCom());
+						setHardwareStatus();
+						if (DataStore.connect_hardware.get()) {
+							DataStore.hardReset();
+							Toast.makeText(Main.mainstage, "Hard reset...", 1000,
+									200, 200);
+						} else {
 
-Myfont f=new Myfont(15);
-txtuname.setFont(f.getM_M());
+							MyDialoug.showError(102);
+						}
+					}
 
-setMainBtns();
-setAllThings();
-setBtnClicks();
+				}
 
+				else if (confishortcut.match(ke)) {
 
-DataStore.isconfigure.set(true);    
-setOffset();
-if(DataStore.connect_hardware.get())
-{
-sendStop();
+					Toast.makeText(Main.mainstage, "Opening Configuration..",
+							1000, 200, 200);
 
-}
+					Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
+				} else if (quickshortcut.match(ke)) {
+					quicktest();
+				} else if (startshortcut.match(ke)) {
 
+					Toast.makeText(Main.mainstage, "Opening Test..", 1000, 200,
+							200);
 
-}
+					Openscreen.open("/userinput/Nselectproject1.fxml");
 
+				} else if (exitshortcut.match(ke)) {
 
-void setOffset()
-{
+					exitpopup();
 
-lblpg1offset.setText(Myapp.pg1offset.get()+"");
-lblpg2offset.setText(Myapp.pg2offset.get()+"");
+				}
 
-Myapp.pg1offset.addListener(new ChangeListener<Number>() {
+			}
+		});
 
-@Override
-public void changed(ObservableValue<? extends Number> observable,
-Number oldValue, Number newValue) {
+	}
 
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		DataStore.isconfigure.set(true);
+		DataStore.sc = new SerialCommunicator();
 
-Platform.runLater(new Runnable() {
+		addShortCut();
 
-@Override
-public void run() {
+		connectHardware(DataStore.getCom());
 
+		setHardwareStatus();
 
+		txtuname.setText("Welcome, " + Myapp.username);
+		System.out.println("usename--:" + Myapp.username);
 
+		Myfont f = new Myfont(15);
+		txtuname.setFont(f.getM_M());
 
-lblpg1offset.setText(Myapp.getRound((double)newValue, 4));
+		setMainBtns();
+		setAllThings();
+		setBtnClicks();
 
-}
-});
+		DataStore.isconfigure.set(true);
+		setOffset();
+		if (DataStore.connect_hardware.get()) {
+			sendStop();
 
-}
+		}
 
-});
-Myapp.pg2offset.addListener(new ChangeListener<Number>() {
+	}
 
-@Override
-public void changed(ObservableValue<? extends Number> observable,
-Number oldValue, Number newValue) {
+	void setOffset() {
 
+		lblpg1offset.setText(Myapp.pg1offset.get() + "");
+		lblpg2offset.setText(Myapp.pg2offset.get() + "");
 
-Platform.runLater(new Runnable() {
+		Myapp.pg1offset.addListener(new ChangeListener<Number>() {
 
-@Override
-public void run() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable,
+					Number oldValue, Number newValue) {
 
+				Platform.runLater(new Runnable() {
 
-lblpg2offset.setText(Myapp.getRound((double)newValue, 4));
-}
-});
+					@Override
+					public void run() {
 
-}
+						lblpg1offset.setText(Myapp.getRound((double) newValue,
+								4));
 
-});
-}
+					}
+				});
 
-void setHardwareStatus()
-{
-if(DataStore.connect_hardware.get())
-{
+			}
 
+		});
+		Myapp.pg2offset.addListener(new ChangeListener<Number>() {
 
-lblconnection.setText("Connected("+DataStore.getCom()+")");
-}
-else
-{
-lblconnection.setText("Not Connected");
-}
-}
+			@Override
+			public void changed(ObservableValue<? extends Number> observable,
+					Number oldValue, Number newValue) {
 
+				Platform.runLater(new Runnable() {
 
-public void verifyloginc()
-{
+					@Override
+					public void run() {
 
-    AnchorPane popanc=new AnchorPane();
-    
-    //popanc.setStyle("-fx-background-color: rgba(100, 300, 100, 0.5); -fx-background-radius: 10;");
-    
-FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/verifycloudloginpopup.fxml"));
-try {
+						lblpg2offset.setText(Myapp.getRound((double) newValue,
+								4));
+					}
+				});
 
-Pane cmdPane = (Pane) fxmlLoader.load();
+			}
 
-popanc.getChildren().add(cmdPane);
-System.out.println("Load Anchorpane.....");
-} 
-catch (Exception e)
-{
-e.printStackTrace();
-}
+		});
+	}
 
-    
-    dll.setBody(popanc);
-    
-   	df.show();
-}
+	void setHardwareStatus() {
+		if (DataStore.connect_hardware.get()) {
+			lblconnection.setText("Connected(" + DataStore.getCom() + ")");
+		} else {
+			lblconnection.setText("Not Connected");
+			
+		}
+	}
 
-void setBtnClicks()
-{
+	public void verifyloginc() {
 
-btnrefresh.setOnAction(new EventHandler<ActionEvent>() {
+		AnchorPane popanc = new AnchorPane();
 
-@Override
-public void handle(ActionEvent event) {
-// TODO Auto-generated method stub
-if(DataStore.connect_hardware.get())
-{
-sendStop();
-}
-else
-{
-connectHardware(DataStore.getCom());
-
-setHardwareStatus();
-
-if(DataStore.connect_hardware.get())
-{
-sendStop();
-}
+		// popanc.setStyle("-fx-background-color: rgba(100, 300, 100, 0.5); -fx-background-radius: 10;");
 
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+				"/application/verifycloudloginpopup.fxml"));
+		try {
 
-}
+			Pane cmdPane = (Pane) fxmlLoader.load();
 
+			popanc.getChildren().add(cmdPane);
+			System.out.println("Load Anchorpane.....");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-}
-});
+		dll.setBody(popanc);
 
+		df.show();
+	}
 
+	void setBtnClicks() {
 
-btncloud.setOnAction(new EventHandler<ActionEvent>() {
+		btnrefresh.setOnAction(new EventHandler<ActionEvent>() {
 
-@Override
-public void handle(ActionEvent event) {
-System.out.println("Open Cloud-------------->>>>");
-//Openscreen.open("/cloud/cloudfirst.fxml");
-try{
-if(Myapp.uid.equals(""))
-{
-verifyloginc();
-}
-else
-{
-Openscreen.open("/cloud/cloudfirst.fxml");
-}
-}
-catch(Exception e)
-{
-verifyloginc();
-}
-}
-});
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				if (DataStore.connect_hardware.get()) {
+					sendStop();
+				} else {
+					connectHardware(DataStore.getCom());
 
+					setHardwareStatus();
 
+					if (DataStore.connect_hardware.get()) {
+						sendStop();
+					}
 
+				}
 
+			}
+		});
 
-btnsetting.setOnAction(new EventHandler<ActionEvent>() {
+		btncloud.setOnAction(new EventHandler<ActionEvent>() {
 
-@Override
-public void handle(ActionEvent event) {
-System.out.println("Open Setting-------------->>>>");
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Open Cloud-------------->>>>");
+				// Openscreen.open("/cloud/cloudfirst.fxml");
+				try {
+					if (Myapp.uid.equals("")) {
+						verifyloginc();
+					} else {
+						Openscreen.open("/cloud/cloudfirst.fxml");
+					}
+				} catch (Exception e) {
+					verifyloginc();
+				}
+			}
+		});
 
-Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
-//	Openscreen.open("/application/xx.fxml");
+		btnsetting.setOnAction(new EventHandler<ActionEvent>() {
 
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Open Setting-------------->>>>");
 
-}
-});
+				Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
+				// Openscreen.open("/application/xx.fxml");
 
+			}
+		});
 
+		txtuname.setOnAction(new EventHandler<ActionEvent>() {
 
+			@Override
+			public void handle(ActionEvent event) {
+				viewprofile();
 
+			}
+		});
 
-txtuname.setOnAction(new EventHandler<ActionEvent>() {
+		qtest.setOnAction(new EventHandler<ActionEvent>() {
 
-@Override
-public void handle(ActionEvent event) {
-viewprofile();
+			@Override
+			public void handle(ActionEvent arg0) {
+				quicktest();
 
-}
-});
- 	
-qtest.setOnAction(new EventHandler<ActionEvent>() {
+			}
+		});
 
-@Override
-public void handle(ActionEvent arg0) {
-quicktest();
+		livetest.setOnAction(new EventHandler<ActionEvent>() {
 
-}
-});
+			@Override
+			public void handle(ActionEvent arg0) {
+				Platform.runLater(new Runnable() {
 
-livetest.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
 
-@Override
-public void handle(ActionEvent arg0) {
-Platform.runLater(new Runnable() {
+						Openscreen.open("/userinput/Nselectproject1.fxml");
 
-@Override
-public void run() {
-// TODO Auto-generated method stub
+					}
+				});
 
+			}
+		});
 
-Openscreen.open("/userinput/Nselectproject1.fxml");
+		report.setOnAction(new EventHandler<ActionEvent>() {
 
+			@Override
+			public void handle(ActionEvent arg0) {
 
-}
-});
+				Openscreen.open("/report/first.fxml");
+				// TODO Auto-generated method stub
+			}
+		});
 
-}
-});
+		btnscada.setOnAction(new EventHandler<ActionEvent>() {
 
-report.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
 
-@Override
-public void handle(ActionEvent arg0) {
+				Openscreen.open("/userinput/manualcontrol.fxml");
+				// TODO Auto-generated method stub
+			}
+		});
 
-Openscreen.open("/report/first.fxml");
-// TODO Auto-generated method stub
-}
-});
+		btnsetting.setOnAction(new EventHandler<ActionEvent>() {
 
-btnscada.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				System.out.println("Open Setting-------------->>>>");
 
-@Override
-public void handle(ActionEvent arg0) {
+				Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
+				// Openscreen.open("/userinput/scada.fxml");
 
-Openscreen.open("/userinput/manualcontrol.fxml");
-// TODO Auto-generated method stub
-}
-});
+			}
+		});
 
+		btnhelp.setOnAction(new EventHandler<ActionEvent>() {
 
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
 
-btnsetting.setOnAction(new EventHandler<ActionEvent>() {
+				exitpopup();
+				/*
+				 * try { System.exit(0); Platform.exit();
+				 * 
+				 * } catch(Exception e) {
+				 * 
+				 * } Main.mainstage.close();
+				 */
+			}
+		});
 
-@Override
-public void handle(ActionEvent event) {
-System.out.println("Open Setting-------------->>>>");
+	}
 
-Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
-//	Openscreen.open("/userinput/scada.fxml");
+	public void quicktest() {
+		Database db = new Database();
 
-}
-});
+		if (db.isExist("select * from lastprojects where lid='" + Myapp.email
+				+ "' ")) {
+			System.out.println("1 Last project.");
+			// AnchorPane popanc=new AnchorPane();
 
+			// popanc.setStyle("-fx-background-color: rgba(100, 300, 100, 0.5); -fx-background-radius: 10;");
 
-btnhelp.setOnAction(new EventHandler<ActionEvent>() {
+			// mydia=new MyDialoug(Main.mainstage,
+			// "/userinput/popupresult.fxml");
 
-@Override
-public void handle(ActionEvent event) {
-// TODO Auto-generated method stub
+			mydia = new MyDialoug(Main.mainstage, "/application/popfxml.fxml");
 
-	exitpopup();
-	/*	
-try
-{
-System.exit(0);
-Platform.exit();
+			mydia.showDialoug();
 
-}
-catch(Exception e)
-{
+			/*
+			 * FXMLLoader fxmlLoader = new
+			 * FXMLLoader(getClass().getResource("/application/popfxml.fxml"));
+			 * try {
+			 * 
+			 * Pane cmdPane = (Pane) fxmlLoader.load();
+			 * 
+			 * popanc.getChildren().add(cmdPane);
+			 * System.out.println("Load Anchorpane....."); } catch (Exception e)
+			 * { e.printStackTrace(); }
+			 */
 
-}
-Main.mainstage.close();
+			// dll.setBody(popanc);
 
-*/
-}	
-});
+			// df.show();
+		} else {
+			System.out.println("No Last project.");
+			Toast.makeText(Main.mainstage, "You Don't have any previous test",
+					2000, 300, 300);
+		}
+	}
 
-}
+	void setAllThings() {
+		maincontent1 = maincontent;
+		// h.visibleProperty().bind(Myapp.hb);
 
+		recmain.visibleProperty().bind(ispopup);
 
+		dll = new JFXDialogLayout();
+		df = new JFXDialog(NFirstController.maincontent1, dll,
+				DialogTransition.CENTER);
 
-public void quicktest()
-{
-Database db=new Database();
+		df.visibleProperty().addListener(new ChangeListener<Boolean>() {
 
-if(db.isExist("select * from lastprojects where lid='"+Myapp.email+"' "))
-{
-System.out.println("1 Last project.");
-    //AnchorPane popanc=new AnchorPane();
-    
-    //popanc.setStyle("-fx-background-color: rgba(100, 300, 100, 0.5); -fx-background-radius: 10;");
-    
-    
-//mydia=new MyDialoug(Main.mainstage, "/userinput/popupresult.fxml");
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable,
+					Boolean oldValue, Boolean newValue) {
+				// TODO Auto-generated method stub
+				ispopup.set(newValue);
+				System.out.println(newValue + "");
+			}
+		});
 
-mydia=new MyDialoug(Main.mainstage, "/application/popfxml.fxml");
+	}
 
-mydia.showDialoug();
+	public void exitpopup() {
 
-    /*
-FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/application/popfxml.fxml"));
-try {
+		mydia = new MyDialoug(Main.mainstage, "/application/Nexitpopup.fxml");
+		mydia.showDialoug();
+	}
 
-Pane cmdPane = (Pane) fxmlLoader.load();
+	public void viewprofile() {
 
-popanc.getChildren().add(cmdPane);
-System.out.println("Load Anchorpane.....");
-} 
-catch (Exception e)
-{
-e.printStackTrace();
-}
-*/
-    
-    //	dll.setBody(popanc);
-    
- //  	df.show();
-}
-else {
-System.out.println("No Last project.");
-Toast.makeText(Main.mainstage, "You Don't have any previous test", 2000, 300, 300);
-}
-}
+		Openscreen.open("/application/editeprofile.fxml");
+	}
 
+	void sendStop() {
+		writeFormat wrD = new writeFormat();
+		wrD.stopTN();
+		wrD.addLast();
 
-void setAllThings()
-{
-maincontent1=maincontent;
-//	h.visibleProperty().bind(Myapp.hb);
-
-recmain.visibleProperty().bind(ispopup);
-
-dll=new JFXDialogLayout();
-df =new JFXDialog(NFirstController.maincontent1,dll,DialogTransition.CENTER);
-    
-df.visibleProperty().addListener(new ChangeListener<Boolean>() {
-
-@Override
-public void changed(
-ObservableValue<? extends Boolean> observable,
-Boolean oldValue, Boolean newValue) {
-// TODO Auto-generated method stub
-ispopup.set(newValue);
-System.out.println(newValue+"");
-}
-});
+		sendData(wrD);
+	}
 
+	void sendData(writeFormat w, int slp) {
+		System.out.println("Sending Data......");
+		w.showData();
+		Thread t = new Thread(new SerialWriter(DataStore.out, w, slp));
+		try {
 
+			t.start();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
-}
-public void exitpopup()
-{
-
-mydia=new MyDialoug(Main.mainstage, "/application/Nexitpopup.fxml");
-mydia.showDialoug();
-}
+	}
 
+	public void sendData(writeFormat w) {
+		System.out.println("Sending Data......");
+		w.showData();
+		Thread t = new Thread(new SerialWriter(DataStore.out, w));
+		t.start();
+	}
 
+	public boolean connectHardware(String st) {
 
-public void viewprofile()
-{
+		boolean bol = false;
 
-Openscreen.open("/application/editeprofile.fxml");
-}
+		// sendDataToWeb();
+		Enumeration pList = CommPortIdentifier.getPortIdentifiers();
 
+		int count = 0;
 
-void sendStop()
-{
-writeFormat wrD=new writeFormat();
-        wrD.stopTN();
-        wrD.addLast();
-       
-        sendData(wrD);
-}
-void sendData(writeFormat w, int slp) {
-System.out.println("Sending Data......");
-w.showData();
-Thread t = new Thread(new SerialWriter(DataStore.out, w, slp));
-try {
-
-t.start();
-} catch (Exception e) {
-e.printStackTrace();
-}
+		while (pList.hasMoreElements()) {
 
-}
+			CommPortIdentifier cpi = (CommPortIdentifier) pList.nextElement();
+			System.out.print("Port " + cpi.getName() + " " + cpi.getPortType());
+			if (cpi.getName().equals(st)) {
+				DataStore.connect_hardware.set(true);
+				try {
 
-public void sendData(writeFormat w)
-{
-System.out.println("Sending Data......");
-w.showData();
-Thread t=new Thread(new SerialWriter(DataStore.out, w));
-t.start();
-}
-public boolean connectHardware(String st)
-{
+					DataStore.sc.connect(st);
+					bol = true;
+					Myapp.hb.set(false);
 
-boolean bol=false;
+				} catch (Exception e) {
 
-  // sendDataToWeb();
-Enumeration pList = CommPortIdentifier.getPortIdentifiers();
+					e.printStackTrace();
+				}
 
-int count = 0;
+				break;
+			}
 
-while (pList.hasMoreElements()) {
+			System.out.println("PORT :" + cpi.getName());
+			count++;
+		}
 
-CommPortIdentifier cpi = (CommPortIdentifier) pList.nextElement();
-   System.out.print("Port " + cpi.getName() +" "+cpi.getPortType());
-   if(cpi.getName().equals(st))
-   {
-   	DataStore.connect_hardware.set(true);
-   	try {
-   	
-DataStore.sc.connect(st);
-bol=true;
-   Myapp.hb.set(false);
+		if (bol == false) {
+			// Toast.makeText(Main.mainstage,
+			// "Hardware not connected please plugout and plugin", 200, 200,
+			// 3000);
+		} else {
+			// Toast.makeText(Main.mainstage, "Successfully Connected", 200,
+			// 200, 3000);
 
+		}
 
-} catch (Exception e) {
+		return bol;
+	}
 
-e.printStackTrace();
-}
-   	
-   	break;
-   }
-
-   System.out.println("PORT :"+cpi.getName());
-   count++; 
-}
+	void setMainBtns() {
 
-if(bol==false)
-{
-//Toast.makeText(Main.mainstage, "Hardware not connected please plugout and plugin", 200, 200, 3000);
-}
-else
-{
-//Toast.makeText(Main.mainstage, "Successfully Connected", 200, 200, 3000);
+		Image image = new Image(this.getClass().getResourceAsStream(
+				"/application/quickimg.png"));
+		ImageView imageView = new ImageView(image);
+		imageView.setFitWidth(100);
+		imageView.setFitHeight(110);
+		qtest.setGraphic(imageView);
 
-}
+		Image image1 = new Image(this.getClass().getResourceAsStream(
+				"/application/reportimg.png"));
+		ImageView imageView1 = new ImageView(image1);
+		imageView1.setFitWidth(100);
+		imageView1.setFitHeight(110);
+		report.setGraphic(imageView1);
+		Image image2 = new Image(this.getClass().getResourceAsStream(
+				"/application/startimg.png"));
+		ImageView imageView2 = new ImageView(image2);
+		imageView2.setFitWidth(100);
+		imageView2.setFitHeight(110);
+		livetest.setGraphic(imageView2);
 
-return bol;
-}
+		Image image4 = new Image(this.getClass().getResourceAsStream(
+				"/application/scada.png"));
+		ImageView imageView4 = new ImageView(image4);
+		imageView4.setFitWidth(100);
+		imageView4.setFitHeight(100);
+		btnscada.setGraphic(imageView4);
 
+		Image image5 = new Image(this.getClass().getResourceAsStream(
+				"/application/setting.png"));
+		ImageView imageView5 = new ImageView(image5);
+		imageView5.setFitWidth(100);
+		imageView5.setFitHeight(100);
+		btnsetting.setGraphic(imageView5);
 
+		Image image6 = new Image(this.getClass().getResourceAsStream(
+				"/application/exiticon.png"));
+		ImageView imageView6 = new ImageView(image6);
+		imageView6.setFitWidth(100);
+		imageView6.setFitHeight(100);
+		btnhelp.setGraphic(imageView6);
 
-void setMainBtns()
-{
-
-Image image = new Image(this.getClass().getResourceAsStream("/application/quickimg.png"));
-ImageView imageView = new ImageView(image);
-imageView.setFitWidth(100);
-imageView.setFitHeight(110);
-       qtest.setGraphic(imageView);
-       
-    
-       Image image1 = new Image(this.getClass().getResourceAsStream("/application/reportimg.png"));
-  ImageView imageView1 = new ImageView(image1);
-imageView1.setFitWidth(100);
-imageView1.setFitHeight(110);
-       report.setGraphic(imageView1);
-       Image image2 = new Image(this.getClass().getResourceAsStream("/application/startimg.png"));
-  ImageView imageView2 = new ImageView(image2);
-imageView2.setFitWidth(100);
-imageView2.setFitHeight(110);
-       livetest.setGraphic(imageView2);
-
-       
-       Image image4 = new Image(this.getClass().getResourceAsStream("/application/scada.png"));
-ImageView imageView4 = new ImageView(image4);
-imageView4.setFitWidth(100);
-imageView4.setFitHeight(100);
-      btnscada.setGraphic(imageView4);
-      
-      
-      Image image5 = new Image(this.getClass().getResourceAsStream("/application/setting.png"));
-ImageView imageView5 = new ImageView(image5);
-imageView5.setFitWidth(100);
-imageView5.setFitHeight(100);
-     btnsetting.setGraphic(imageView5);
-     
-     
-     Image image6 = new Image(this.getClass().getResourceAsStream("/application/exiticon.png"));
-ImageView imageView6 = new ImageView(image6);
-imageView6.setFitWidth(100);
-imageView6.setFitHeight(100);
-    btnhelp.setGraphic(imageView6);
-    
-       
-       
-   
-   
-btncloud.getStyleClass().add("transperant_comm");
-}	
+		btncloud.getStyleClass().add("transperant_comm");
+	}
 
 }
-

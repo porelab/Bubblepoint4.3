@@ -15,6 +15,8 @@ public class infoController implements Initializable {
 	@FXML
 	Label errorname, errordescri, errorcode;
 
+	
+	
 	@FXML
 	Button btnclose, btnhelp, btnok;
 	

@@ -54,7 +54,6 @@ public class RetestpopupControll implements Initializable {
 						200);
 				//NLivetestController.isBubbleStart.set(false);
 				MyDialoug.closeDialoug();
-				Openscreen.open("/application/first.fxml");
 				
 
 

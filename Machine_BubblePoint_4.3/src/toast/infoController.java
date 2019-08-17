@@ -26,7 +26,7 @@ public class infoController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 
-		
+		btnclose.getStyleClass().add("transperant_comm");
 			errorname.setText(errname);
 			errordescri.setText(errdes);
 			errorcode.setText(errcode);

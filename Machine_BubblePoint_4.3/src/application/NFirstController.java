@@ -104,7 +104,6 @@ public class NFirstController implements Initializable {
 					} else {
 						connectHardware(DataStore.getCom());
 
-						setHardwareStatus();
 
 						if (DataStore.connect_hardware.get()) {
 							sendStop();
@@ -128,7 +127,7 @@ public class NFirstController implements Initializable {
 
 					} else {
 						connectHardware(DataStore.getCom());
-						setHardwareStatus();
+					
 						if (DataStore.connect_hardware.get()) {
 							DataStore.hardReset();
 							Toast.makeText(Main.mainstage, "Hard reset...", 1000,
@@ -173,10 +172,25 @@ public class NFirstController implements Initializable {
 		DataStore.sc = new SerialCommunicator();
 
 		addShortCut();
+		lblconnection.setText("Not Connected");
+		DataStore.connect_hardware.addListener(new ChangeListener<Boolean>() {
 
+			@Override
+			public void changed(ObservableValue<? extends Boolean> arg0,
+					Boolean arg1, Boolean arg2) {
+				// TODO Auto-generated method stub
+				System.out.println("Connection listener : "+arg2);
+				
+				if (arg2) {
+
+					lblconnection.setText("Connected(" + DataStore.getCom() + ")");
+				} else {
+					lblconnection.setText("Not Connected");
+				}
+			}
+		});
+		
 		connectHardware(DataStore.getCom());
-
-		setHardwareStatus();
 
 		txtuname.setText("Welcome, " + Myapp.username);
 		System.out.println("usename--:" + Myapp.username);
@@ -243,14 +257,6 @@ public class NFirstController implements Initializable {
 		});
 	}
 
-	void setHardwareStatus() {
-		if (DataStore.connect_hardware.get()) {
-			lblconnection.setText("Connected(" + DataStore.getCom() + ")");
-		} else {
-			lblconnection.setText("Not Connected");
-			
-		}
-	}
 
 	public void verifyloginc() {
 
@@ -287,7 +293,6 @@ public class NFirstController implements Initializable {
 				} else {
 					connectHardware(DataStore.getCom());
 
-					setHardwareStatus();
 
 					if (DataStore.connect_hardware.get()) {
 						sendStop();

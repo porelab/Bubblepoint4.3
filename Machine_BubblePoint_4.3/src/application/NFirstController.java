@@ -54,7 +54,7 @@ public class NFirstController implements Initializable {
 
 	@FXML
 	Button livetest, report, btncloud, btnsetting, txtuname, qtest, btnscada,
-			btnrefresh, btnhelp;
+			btnrefresh, btnhelp,btnclose;
 
 	@FXML
 	Rectangle recmain;
@@ -396,20 +396,24 @@ public class NFirstController implements Initializable {
 			}
 		});
 
+	btnclose.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				
+				exitpopup();
+			}
+		});
+
 		btnhelp.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-
-				exitpopup();
-				/*
-				 * try { System.exit(0); Platform.exit();
-				 * 
-				 * } catch(Exception e) {
-				 * 
-				 * } Main.mainstage.close();
-				 */
+				
+			mydia = new MyDialoug(Main.mainstage, "/application/info.fxml");
+			mydia.showDialoug();
+				
+				
 			}
 		});
 
@@ -599,7 +603,7 @@ public class NFirstController implements Initializable {
 		btnsetting.setGraphic(imageView5);
 
 		Image image6 = new Image(this.getClass().getResourceAsStream(
-				"/application/exiticon.png"));
+				"/application/about.png"));
 		ImageView imageView6 = new ImageView(image6);
 		imageView6.setFitWidth(100);
 		imageView6.setFitHeight(100);

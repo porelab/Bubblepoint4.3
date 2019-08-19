@@ -1625,7 +1625,7 @@ public class NLivetestController implements Initializable {
 										String bubblepoint = getBubbledia(bbp);
 										bbd = Double.parseDouble(bubblepoint);
 
-										lblbpc.setText("Bubble Point : " + bbd);
+										lblbpc.setText("Bubble Point : " + bbd+" µ");
 
 										Myapp.bps.put("" + bbp, ""
 												+ bubblepoint);

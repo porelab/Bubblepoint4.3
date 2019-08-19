@@ -120,7 +120,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="1223.0" layoutY="580.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="126.0" styleClass="font-montserrat-semiBold" text="EXIT" textFill="WHITE" AnchorPane.topAnchor="580.0">
+            <Label layoutX="1223.0" layoutY="580.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="126.0" styleClass="font-montserrat-semiBold" text="Help" textFill="WHITE" AnchorPane.topAnchor="580.0">
                <font>
                   <Font name="Tahoma" size="20.0" />
                </font>
@@ -174,6 +174,12 @@
                   <Font name="Calibri" size="15.0" />
                </font>
             </Label>
+            <Rectangle arcHeight="10.0" arcWidth="2.0" fill="#1f93ff00" height="32.0" layoutX="1325.0" layoutY="11.0" stroke="WHITE" strokeMiterLimit="0.0" strokeType="INSIDE" width="32.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+            <Button fx:id="btnclose" layoutX="1326.0" layoutY="12.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" styleClass="btnCss" text="X" textFill="WHITE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
     
          
          </children>

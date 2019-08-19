@@ -593,6 +593,7 @@ public class NFirstController implements Initializable {
 		ImageView imageView4 = new ImageView(image4);
 		imageView4.setFitWidth(100);
 		imageView4.setFitHeight(100);
+		
 		btnscada.setGraphic(imageView4);
 
 		Image image5 = new Image(this.getClass().getResourceAsStream(

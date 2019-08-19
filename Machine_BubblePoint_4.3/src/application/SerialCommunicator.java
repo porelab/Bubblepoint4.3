@@ -14,6 +14,7 @@ import java.util.List;
 
 import toast.MyDialoug;
 import userinput.manualcontroller;
+
 import ConfigurationPart.SkadaController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;

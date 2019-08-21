@@ -172,6 +172,7 @@ public class NFirstController implements Initializable {
 		DataStore.sc = new SerialCommunicator();
 
 		addShortCut();
+		lblconnection.setText("Not Connected");
 		DataStore.connect_hardware.addListener(new ChangeListener<Boolean>() {
 
 			@Override

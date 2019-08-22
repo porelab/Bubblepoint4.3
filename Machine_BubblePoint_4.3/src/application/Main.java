@@ -1,6 +1,16 @@
 package application;
 	
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
 
 import toast.Systemtime;
 
@@ -12,6 +22,7 @@ import com.google.firebase.auth.FirebaseCredentials;
 import errorcodes.ErrorList;
 import firebase.FirebaseConnect;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
@@ -78,7 +89,72 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	 private static final int SINGLE_INSTANCE_LISTENER_PORT = 9999;
+	    private static final String SINGLE_INSTANCE_FOCUS_MESSAGE = "focus";
+
+	    private static final String instanceId = UUID.randomUUID().toString();
+	    private static final int FOCUS_REQUEST_PAUSE_MILLIS = 500;
 	
+ public void init() {
+     CountDownLatch instanceCheckLatch = new CountDownLatch(1);
+
+     
+     Thread instanceListener = new Thread(() -> {
+         try (ServerSocket serverSocket = new ServerSocket(SINGLE_INSTANCE_LISTENER_PORT, 10)) {
+             instanceCheckLatch.countDown();
+
+             while (true) {
+                 try (
+                         Socket clientSocket = serverSocket.accept();
+                         BufferedReader in = new BufferedReader(
+                                 new InputStreamReader(clientSocket.getInputStream()))
+                 ) {
+                     String input = in.readLine();
+                     System.out.println("Received single instance listener message: " + input);
+                     if (input.startsWith(SINGLE_INSTANCE_FOCUS_MESSAGE) && mainstage != null) {
+                         Thread.sleep(FOCUS_REQUEST_PAUSE_MILLIS);
+                         Platform.runLater(() -> {
+                             System.out.println("To front " + instanceId);
+                             mainstage.setIconified(false);
+                             mainstage.show();
+                             mainstage.toFront();
+                         });
+                     }
+                 } catch (IOException e) {
+                     System.out.println("Single instance listener unable to process focus message from client");
+                     e.printStackTrace();
+                 }
+             }
+         } catch(java.net.BindException b) {
+             System.out.println("SingleInstanceApp already running");
+
+             try (
+                     Socket clientSocket = new Socket(InetAddress.getLocalHost(), SINGLE_INSTANCE_LISTENER_PORT);
+                     PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()))
+             ) {
+                 System.out.println("Requesting existing app to focus");
+                 out.println(SINGLE_INSTANCE_FOCUS_MESSAGE + " requested by " + instanceId);
+             } catch (IOException e) {
+                 e.printStackTrace();
+             }
+
+             System.out.println("Aborting execution for instance " + instanceId);
+             Platform.exit();
+         } catch(Exception e) {
+             System.out.println(e.toString());
+         } finally {
+             instanceCheckLatch.countDown();
+         }
+     }, "instance-listener");
+     instanceListener.setDaemon(true);
+     instanceListener.start();
+
+     try {
+         instanceCheckLatch.await();
+     } catch (InterruptedException e) {
+         Thread.interrupted();
+     }
+ }
 	
 	static void shortCut()
 	{

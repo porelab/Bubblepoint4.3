@@ -103,6 +103,7 @@ public class Splashscreen implements Initializable {
 
 										}
 									});
+							
 
 							//Main.shortCut();
 							// primaryStage.show();

@@ -35,6 +35,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -97,11 +98,12 @@ public class Main extends Application {
 			}
 			else
 			{
-				Parent root = FXMLLoader.load(getClass().getResource("/application/splashscreen.fxml"));
+				Parent root = FXMLLoader.load(getClass().getResource("/newstageerror/splashscreen.fxml"));
 				 Scene scene = new Scene(root,600,400);
 				 primaryStage.initStyle(StageStyle.UNDECORATED);
-				scene.getStylesheets().add(getClass().getResource("new_application.css").toExternalForm());
-			
+				 Image image = new Image(this.getClass().getResourceAsStream(
+							"/application/shorticon.png"));
+					primaryStage.getIcons().add(image);
 				primaryStage.setScene(scene);
 				primaryStage.setTitle("NewYork-Instruments");
 				primaryStage.show(); 

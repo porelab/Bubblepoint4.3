@@ -35,6 +35,7 @@ public class SkadaController implements Initializable{
 	@FXML
 	Button back;
 	
+	
 	@FXML
 	Label fm1value,fm2value,pg2value,pg1value;
 	

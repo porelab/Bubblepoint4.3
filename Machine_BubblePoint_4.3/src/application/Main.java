@@ -59,9 +59,8 @@ public class Main extends Application {
 				
 				
 				FirebaseConnect f=new FirebaseConnect();
-				FirestoreOptions options;				Systemtime.StartTime();
-				
-				
+				FirestoreOptions options;				
+				Systemtime.StartTime();
 				InputStream ii=(InputStream) this.getClass().getResourceAsStream("/application/serviceAccountKey.json");
 				InputStream ii1=(InputStream) this.getClass().getResourceAsStream("/firebase/serviceAccountKey.json");
 				

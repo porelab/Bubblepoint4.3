@@ -16,6 +16,7 @@ import javafx.collections.ObservableMap;
 //this class is for accessing local database 
 public class Database {
 	
+	
 	 String sDriverName = "org.sqlite.JDBC";
      String sTempDb = "information//mydb.db";
      String sJdbc = "jdbc:sqlite";

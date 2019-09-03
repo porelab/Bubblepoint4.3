@@ -134,17 +134,17 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="GAINSBORO" height="48.0" stroke="TRANSPARENT" strokeType="INSIDE" width="194.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d0d0d0" height="48.0" layoutX="193.0" stroke="TRANSPARENT" strokeType="INSIDE" width="337.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="SILVER" height="48.0" layoutX="530.0" stroke="TRANSPARENT" strokeType="INSIDE" width="361.0" />
-            <ImageView fx:id="micropic" fitHeight="50.0" fitWidth="50.0" layoutX="67.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="micropic" fitHeight="50.0" fitWidth="50.0" layoutX="67.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@micro.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="mizopic" fitHeight="50.0" fitWidth="50.0" layoutX="337.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="mizopic" fitHeight="50.0" fitWidth="50.0" layoutX="337.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@micro.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="macropic" fitHeight="50.0" fitWidth="50.0" layoutX="699.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="macropic" fitHeight="50.0" fitWidth="50.0" layoutX="699.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@micro.png" />
                </image>
@@ -184,17 +184,17 @@
                   <Font name="Calibri" size="14.0" />
                </font>
             </Text>
-            <Text fx:id="microlab" fill="#0000009c" layoutX="57.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="70.00000062212348">
+            <Text fx:id="microlab" fill="#0000009c" layoutX="57.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="70.00000062212348">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="mizolab" fill="#0000009c" layoutX="327.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="70.00000062212348">
+            <Text fx:id="mizolab" fill="#0000009c" layoutX="327.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="70.00000062212348">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="macrolab" fill="#0000009c" layoutX="689.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="70.00000062212348">
+            <Text fx:id="macrolab" fill="#0000009c" layoutX="689.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="70.00000062212348">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

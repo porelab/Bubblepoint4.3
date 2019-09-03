@@ -154,7 +154,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Text>
-            <Text fill="GREY" layoutX="314.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Miso-Pore">
+            <Text fill="GREY" layoutX="314.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meso-Pore">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

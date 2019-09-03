@@ -152,7 +152,7 @@ public class manualcontroller implements Initializable {
 			}
 
 		} else {
-			//valveonoff.setDisable(true);
+			valveonoff.setDisable(true);
 			lblconnection.setText("Not Connected");
 			lblconnection.setTextFill(Paint.valueOf("#939598"));
 			concircle.setStyle("-fx-fill: #939598;");

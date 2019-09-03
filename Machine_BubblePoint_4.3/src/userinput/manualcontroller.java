@@ -3,41 +3,27 @@ package userinput;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.text.Format;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.TooManyListenersException;
 
-import org.apache.poi.hssf.util.HSSFColor.WHITE;
-
 import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -49,11 +35,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.TextAlignment;
-import javafx.util.Callback;
+import javafx.scene.shape.Rectangle;
 import toast.MyDialoug;
 import toast.Openscreen;
-import userinput.NLivetestController.SerialReader;
 import application.DataStore;
 import application.Myapp;
 import application.SerialWriter;
@@ -115,6 +99,11 @@ public class manualcontroller implements Initializable {
 	@FXML
 	private Label lblpg1c, lblpg2c, lblfm1c, lblfm2c, lblpg1o, lblpg2o,
 			lblfm1o, lblfm2o;
+	
+
+    @FXML
+    private Rectangle rectmain;
+	
 
 	final BooleanProperty spacePressed = new SimpleBooleanProperty(false);
 	final BooleanProperty rightPressed = new SimpleBooleanProperty(false);
@@ -163,7 +152,7 @@ public class manualcontroller implements Initializable {
 			}
 
 		} else {
-			valveonoff.setDisable(true);
+			//valveonoff.setDisable(true);
 			lblconnection.setText("Not Connected");
 			lblconnection.setTextFill(Paint.valueOf("#939598"));
 			concircle.setStyle("-fx-fill: #939598;");
@@ -623,9 +612,9 @@ public class manualcontroller implements Initializable {
 
 				if (valveonoff.isSelected()) {
 
+					rectmain.setVisible(false);
 					valveonoff.setText("STOP");
-
-					valveonoff.setStyle("-fx-background-color: #2A91D8;");
+					valveonoff.setStyle("-fx-background-color: #939598;");
 					Image image = new Image(this.getClass()
 							.getResourceAsStream("/userinput/stopicon.png"));
 
@@ -640,8 +629,9 @@ public class manualcontroller implements Initializable {
 					sendData(wrD);
 
 				} else {
+					rectmain.setVisible(true);
 					valveonoff.setText("START");
-					valveonoff.setStyle("-fx-background-color: #939598");
+					valveonoff.setStyle("-fx-background-color:#2A91D8");
 					Image image = new Image(this.getClass()
 							.getResourceAsStream("/userinput/starticon.png"));
 					valveonoff.setGraphic(new ImageView(image));

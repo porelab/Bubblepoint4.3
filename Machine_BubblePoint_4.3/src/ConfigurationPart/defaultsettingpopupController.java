@@ -71,8 +71,8 @@ public class defaultsettingpopupController implements Initializable {
 				Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");				
 			
 				MyDialoug.closeDialoug();
-				Toast.makeText(Main.mainstage, "Please wait...", 1000, 200,
-						200);
+				/*Toast.makeText(Main.mainstage, "Please wait...", 1000, 200,
+						200);*/
 			}
 		});
 

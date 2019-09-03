@@ -192,7 +192,7 @@
                </styleClass>
             </Label>
             <Label fx:id="lblrealeas" layoutX="1199.0" layoutY="325.0" text="Vent to atmosphere" visible="false" />
-            <ToggleButton fx:id="recordbtn" layoutX="1252.0" layoutY="470.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="99.0" styleClass="toggle-buttonm" text="Record" textFill="WHITE" AnchorPane.leftAnchor="1245.0" AnchorPane.topAnchor="483.0">
+            <ToggleButton fx:id="recordbtn" layoutX="1252.0" layoutY="470.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="99.0" styleClass="toggle-buttonm" text="Record" textFill="WHITE" visible="false" AnchorPane.leftAnchor="1245.0" AnchorPane.topAnchor="483.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></ToggleButton>

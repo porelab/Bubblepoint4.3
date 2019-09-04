@@ -73,7 +73,7 @@ public class SerialCommunicator {
 				DataStore.serialPort.addEventListener(DataStore.sr);
 				DataStore.serialPort.notifyOnDataAvailable(true);
 				
-				DataStore.hardReset();
+				//DataStore.hardReset();
 
 			} else {
 				System.out

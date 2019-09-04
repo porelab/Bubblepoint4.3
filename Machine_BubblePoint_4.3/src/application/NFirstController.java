@@ -215,7 +215,9 @@ public class NFirstController implements Initializable {
 		DataStore.isconfigure.set(true);
 		setOffset();
 		if (DataStore.connect_hardware.get()) {
-			sendStop();
+			
+			DataStore.hardReset();
+			sendStop(1500);
 
 		}
 
@@ -523,6 +525,13 @@ public class NFirstController implements Initializable {
 		wrD.addLast();
 
 		sendData(wrD);
+	}
+	void sendStop(int delay) {
+		writeFormat wrD = new writeFormat();
+		wrD.stopTN();
+		wrD.addLast();
+
+		sendData(wrD,delay);
 	}
 
 	void sendData(writeFormat w, int slp) {

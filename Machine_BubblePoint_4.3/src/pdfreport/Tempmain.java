@@ -56,7 +56,7 @@ public class Tempmain {
 		  
 		    
 			Multiplepororeport mp=new Multiplepororeport();
-			mp.Report("C:/Users/Jayesh/Desktop/bpmulti.pdf", ds,"Sun Pharmaceutical","ddddd",null,false);
+//			mp.Report("C:/Users/Jayesh/Desktop/bpmulti.pdf", ds,"Sun Pharmaceutical","ddddd",null,false,"",false);
 		
 				
 			File ff=new File("C:/Users/Jayesh/Desktop/bpmulti.pdf");

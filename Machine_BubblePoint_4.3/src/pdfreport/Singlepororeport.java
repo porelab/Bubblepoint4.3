@@ -50,7 +50,7 @@ public class Singlepororeport {
 
 	String notes;
 	String companyname;
-	String imgpath;
+	String imgpath,imgpath1;
 	List<String> graphs;
 	DatareadN d;
 
@@ -171,11 +171,12 @@ public class Singlepororeport {
 	}
 	/* Main Function Create Report */
 	public void Report(String path, DatareadN d, String notes, String comname,
-			String imgpath, List<String> graphs, Boolean btabledata) {
+			String imgpath, List<String> graphs, Boolean btabledata, Boolean bcoverpage,String imgpath1) {
 
 		this.companyname = comname;
 		this.notes = notes;
 		this.imgpath = imgpath;
+		this.imgpath1 = imgpath1;
 		this.graphs = graphs;
 		this.d = d;
 

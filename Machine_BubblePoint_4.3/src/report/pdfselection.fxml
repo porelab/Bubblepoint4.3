@@ -87,7 +87,7 @@
       </Label>
       <ImageView fx:id="pic" fitHeight="64.0" fitWidth="116.0" layoutX="362.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true" />
       <CheckBox fx:id="flowvspre" layoutX="222.0" layoutY="331.0" mnemonicParsing="false" selected="true" text="Flow vs Pressure" />
-      <CheckBox fx:id="chkrow" layoutX="79.0" layoutY="389.0" mnemonicParsing="false" styleClass="col-gray70" text="Row Data">
+      <CheckBox fx:id="chkrow" layoutX="79.0" layoutY="389.0" mnemonicParsing="false" selected="true" styleClass="col-gray70" text="Row Data">
          <font>
             <Font name="System Bold" size="17.0" />
          </font>
@@ -100,5 +100,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <CheckBox fx:id="chkcoverpage" layoutX="216.0" layoutY="390.0" mnemonicParsing="false" selected="true" styleClass="col-gray70" text="Cover Page">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </CheckBox>
+      <Button fx:id="btnbrows1" layoutX="354.0" layoutY="392.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="Browse Cover image" />
+      <ImageView fx:id="pic1" fitHeight="91.0" fitWidth="116.0" layoutX="512.0" layoutY="351.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

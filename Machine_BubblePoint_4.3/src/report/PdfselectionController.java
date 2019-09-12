@@ -18,6 +18,8 @@ import pdfreport.Multiplepororeport;
 import pdfreport.Singlepororeport;
 import toast.MyDialoug;
 import toast.Toast;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,7 +37,7 @@ import javafx.stage.Stage;
 public class PdfselectionController implements Initializable {
 
 	@FXML
-	Button btncancel, pdfsave, btnbrows,excelsave;
+	Button btncancel, pdfsave, btnbrows,excelsave,btnbrows1;
 
 	@FXML
 	TextField txtcomname;
@@ -44,22 +46,49 @@ public class PdfselectionController implements Initializable {
 	TextArea txtnotes;
 
 	@FXML
-	CheckBox chkrow, flowvspre;
+	CheckBox chkrow, flowvspre,chkcoverpage;
 
 	@FXML
-	ImageView pic;
+	ImageView pic,pic1;
 
-	String imgpath = "";
+	String imgpath = "", imgpath1 = "";
 
 	@FXML
 	javafx.scene.control.Label lblbrowse;
 
 	List<String> graphs;
+	
+	boolean bchkcoverpage, bchkrowdata, bflowvspre;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 
+
+		bchkcoverpage = true;
+		chkcoverpage.selectedProperty().addListener(
+				new ChangeListener<Boolean>() {
+
+					@Override
+					public void changed(
+							ObservableValue<? extends Boolean> arg0,
+							Boolean arg1, Boolean arg2) {
+						if (arg2) {
+							bchkcoverpage = true;
+							pic1.setVisible(true);
+							btnbrows1.setVisible(true);
+
+						} else {
+							bchkcoverpage = false;
+							btnbrows1.setVisible(false);
+							pic1.setVisible(false);
+
+						}
+
+					}
+				});
+
+		
 		graphs = new ArrayList<String>();
 		
 		if(ReportController.list_d.size()>1)
@@ -145,6 +174,15 @@ public class PdfselectionController implements Initializable {
 			}
 		});
 
+		btnbrows1.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				handleUpload1();
+			}
+		});
+
 	}
 
 	void saveReport(String path) {
@@ -165,12 +203,12 @@ public class PdfselectionController implements Initializable {
 
 			Singlepororeport sp = new Singlepororeport();
 			sp.Report(path, ReportController.list_d.get(0), txtnotes.getText(),
-					txtcomname.getText(), imgpath, graphs, bchkrowdata);
+					txtcomname.getText(), imgpath, graphs, bchkrowdata, bchkcoverpage, imgpath1);
 
 		} else {
 			Multiplepororeport mp = new Multiplepororeport();
 			mp.Report(path, ReportController.list_d, txtnotes.getText(), txtcomname.getText(),
-					graphs, bchkrowdata);
+					graphs, bchkrowdata,bchkcoverpage, imgpath1);
 		}
 	}
 
@@ -194,4 +232,24 @@ public class PdfselectionController implements Initializable {
 		}
 	}
 
+	public void handleUpload1() {
+		FileChooser fileChooser = new FileChooser();
+
+		// Set extension filter
+
+		// Show open file dialog
+		File file = fileChooser.showOpenDialog(MyDialoug.dialog);
+
+		try {
+
+			BufferedImage bufferedImage = ImageIO.read(file);
+			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
+			pic1.setImage(image);
+			imgpath1 = file.getPath();
+		} catch (IOException ex) {
+			System.out.println(ex);
+		}
+	}
+
+	
 }

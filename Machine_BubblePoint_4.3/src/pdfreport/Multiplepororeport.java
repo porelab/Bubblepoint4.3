@@ -43,6 +43,8 @@ public class Multiplepororeport {
 	PdfWriter writer;
 	List<DatareadN> allfiles;
 	DatareadN d;
+	
+	String imgpath1;
 
 	List<String> flow, dt, p1, p2, dp, ans;
 
@@ -124,11 +126,12 @@ public class Multiplepororeport {
 	}
 	/* Main Function Create Report */
 	public void Report(String path, List<DatareadN> d, String notes,
-			String comname, List<String> graphs, Boolean btabledata) {
+			String comname, List<String> graphs, Boolean btabledata, Boolean bcoverpage,String imgpath1) {
 		allfiles = d;
 
 		this.companyname = comname;
 		this.notes = notes;
+		this.imgpath1 = imgpath1;
 
 		try {
 			writer = PdfWriter

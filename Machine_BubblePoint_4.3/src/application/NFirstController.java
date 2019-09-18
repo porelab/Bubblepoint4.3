@@ -54,7 +54,7 @@ public class NFirstController implements Initializable {
 
 	@FXML
 	Button livetest, report, btncloud, btnsetting, txtuname, qtest, btnscada,
-			btnrefresh, btnhelp, btnclose, btnport;
+			btnrefresh, btnhelp, btnclose, btnport,btnzoom;
 
 	@FXML
 	Rectangle recmain;
@@ -352,6 +352,18 @@ public class NFirstController implements Initializable {
 
 				Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
 				// Openscreen.open("/application/xx.fxml");
+
+			}
+		});
+		
+		btnzoom.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+
+				Main.mainstage.setMaximized(true);
+				Main.mainstage.setFullScreen(true);
 
 			}
 		});

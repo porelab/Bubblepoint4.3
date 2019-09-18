@@ -55,33 +55,6 @@ public class Main extends Application {
 			clsObj=getClass();
 			if(lockInstance("temp.log"))
 			{
-			try {	
-				
-				
-				FirebaseConnect f=new FirebaseConnect();
-				FirestoreOptions options;				
-				Systemtime.StartTime();
-				InputStream ii=(InputStream) this.getClass().getResourceAsStream("/application/serviceAccountKey.json");
-				InputStream ii1=(InputStream) this.getClass().getResourceAsStream("/firebase/serviceAccountKey.json");
-				
-				 
-			 
-/*				FileInputStream serviceAccount =
-						  new FileInputStream("src/firebase/serviceAccountKey.json");*/
-				options =
-					    FirestoreOptions.getDefaultInstance().toBuilder()
-					        .setProjectId("nyiapp-3a612")
-					        .setCredentials(GoogleCredentials.fromStream(ii))
-					        .setTimestampsInSnapshotsEnabled(true)
-					        .setDatabaseId("(default)")
-					        .build();					
-							FirebaseConnect.InitApp(options,ii1);
-						
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
-			}
-			
 			
 		    Myapp.initNotifier();
 		    Myapp.setColor();

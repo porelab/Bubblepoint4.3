@@ -278,16 +278,16 @@ public class Myapp {
 				}
 			} );
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
-	public static void showTooltip( Control control, String tooltipText,
+	public static void showTooltip(Control control, String tooltipText,
 		    ImageView tooltipGraphic,int x,int y)
 		{
 		
 		
-		Stage owner=Main.mainstage;
+			Stage owner=Main.mainstage;
 		    Point2D p = control.localToScene(x,y);
 
 		    final Tooltip customTooltip = new Tooltip();

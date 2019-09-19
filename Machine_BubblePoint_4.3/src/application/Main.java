@@ -46,8 +46,17 @@ import javafx.scene.text.Font;
 public class Main extends Application {
 	public static Stage mainstage;
 	public static Class<? extends Main> clsObj;
+	public static FileLock fileLock;
+	public static RandomAccessFile randomAccessFile;
+	public static Stage splashstage;
+
 	@Override
 	public void start(Stage primaryStage) {
+	repoen(primaryStage);
+	}
+
+	void repoen(Stage primaryStage)
+	{
 		try {
 			mainstage=primaryStage;
 			ErrorList.setErrorList();
@@ -85,12 +94,11 @@ public class Main extends Application {
 		}
 	}
 
-
 	private static boolean lockInstance(final String lockFile) {
 	    try {
 	        final File file = new File(lockFile);
-	        final RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
-	        final FileLock fileLock = randomAccessFile.getChannel().tryLock();
+	         randomAccessFile = new RandomAccessFile(file, "rw");
+	       fileLock = randomAccessFile.getChannel().tryLock();
 	        if (fileLock != null) {
 	            Runtime.getRuntime().addShutdownHook(new Thread() {
 	                public void run() {

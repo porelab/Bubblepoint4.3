@@ -55,8 +55,7 @@ public class PortlistpopupController implements Initializable {
 				// TODO Auto-generated method stub
 				
 				comsave();
-				Openscreen.open("/application/first.fxml");
-
+			
 			}
 		});
 
@@ -120,6 +119,7 @@ public class PortlistpopupController implements Initializable {
 						+ cmbcom.getSelectionModel().getSelectedItem());
 				mydia.closeDialoug();
 
+				Myapp.restartApp();
 			}
 		} catch (Exception e) {
 

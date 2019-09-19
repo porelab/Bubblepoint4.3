@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import toast.MyDialoug;
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -246,6 +248,39 @@ public class Myapp {
 		    System.err.println("Listener was cancelled");
 		  }
 		});
+	}
+	public static void restartApp()
+	{
+		try {
+			 Main.mainstage.close();
+				
+			
+			DataStore.isconfigure.set(false);    
+		
+
+	          Platform.runLater( new Runnable() {
+				
+				@Override
+				public void run() {
+					try{
+						Thread.sleep(1000);
+						Main.fileLock.release();
+						Main.randomAccessFile.close();
+						MyDialoug.dialog=null;
+						
+					}catch(Exception e)
+					{
+						
+					}
+			
+					new Main().start( new Stage() );
+					
+				}
+			} );
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public static void showTooltip( Control control, String tooltipText,
 		    ImageView tooltipGraphic,int x,int y)

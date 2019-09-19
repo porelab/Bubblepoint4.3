@@ -14,7 +14,6 @@ import java.util.List;
 
 import toast.MyDialoug;
 import userinput.manualcontroller;
-
 import ConfigurationPart.SkadaController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -433,18 +432,24 @@ public class SerialCommunicator {
 	            }
 	            catch ( IOException e )
 	            {
-					DataStore.serialPort.removeEventListener();
-					DataStore.serialPort.close();
-					MyDialoug.showError(103);
-					Platform.runLater(new Runnable() {
-						
-						@Override
-						public void run() {
-							// TODO Auto-generated method stub
+	            	try{
+						DataStore.serialPort.removeEventListener();
+						DataStore.serialPort.close();
+		            	}
+		            	catch(Exception es)
+		            	{
+		            		System.out.println("serial error : "+es.getMessage());
+		            	}
+						MyDialoug.showError(103);
+						Platform.runLater(new Runnable() {
+							
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
 
-							DataStore.connect_hardware.set(false);
-						}
-					});
+								DataStore.connect_hardware.set(false);
+							}
+						});
 			    }             
 	
 	}

@@ -59,6 +59,7 @@ public class Main extends Application {
 	{
 		try {
 			mainstage=primaryStage;
+			splashstage=primaryStage;
 			ErrorList.setErrorList();
 
 			clsObj=getClass();

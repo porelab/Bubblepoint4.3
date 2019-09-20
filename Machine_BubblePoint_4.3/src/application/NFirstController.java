@@ -54,7 +54,7 @@ public class NFirstController implements Initializable {
 
 	@FXML
 	Button livetest, report, btncloud, btnsetting, txtuname, qtest, btnscada,
-			btnrefresh, btnhelp, btnclose, btnport,btnzoom;
+			btnrefresh, btnhelp, btnclose, btnport,btnzoom,btnrestart;
 
 	@FXML
 	Rectangle recmain;
@@ -176,7 +176,7 @@ public class NFirstController implements Initializable {
 			lblconnection.setText("Connected(" + DataStore.getCom() + ")");
 			btnport.setVisible(false);
 		} else {
-			lblconnection.setText("Not Connected");
+			lblconnection.setText("");
 			btnport.setVisible(true);
 		}
 
@@ -194,7 +194,7 @@ public class NFirstController implements Initializable {
 							+ ")");
 					btnport.setVisible(false);
 				} else {
-					lblconnection.setText("Not Connected");
+					lblconnection.setText("");
 					btnport.setVisible(true);
 				}
 			}
@@ -307,6 +307,16 @@ public class NFirstController implements Initializable {
 			}
 		});
 
+		btnrestart.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				mydia = new MyDialoug(Main.mainstage, "/application/restartapplication.fxml");
+				mydia.showDialoug();
+			}
+		});
+		
 		btnrefresh.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override

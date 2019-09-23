@@ -152,7 +152,10 @@ public class writeFormat {
 		wData.add((int)'1');
 		wData.add((int)'0');
 	}
-
+	public void addInt(int c)
+	{
+		wData.add(c);
+	}
 	public void addChar(char c)
 	{
 		wData.add((int)c);

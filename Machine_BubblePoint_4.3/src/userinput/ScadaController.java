@@ -29,6 +29,7 @@ import eu.hansolo.medusa.Section;
 public class ScadaController implements Initializable{
 
 	
+	
 	@FXML
 	Label fm1value,fm2value,pg2value,pg1value;
 	

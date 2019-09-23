@@ -589,6 +589,7 @@ public class manualcontroller implements Initializable {
 					Image image = new Image(this.getClass()
 							.getResourceAsStream("/userinput/starticon.png"));
 					valveonoff.setGraphic(new ImageView(image));
+					
 
 					liveimg.setVisible(false);
 					imgreg1.setVisible(false);

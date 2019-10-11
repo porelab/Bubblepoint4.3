@@ -401,7 +401,7 @@ public class PopfxmlController implements Initializable {
 				// TODO Auto-generated method stub
 				if (valbpt != 100) {
 			
-					valbpt = valbpt + 10;
+					valbpt = valbpt + 5;
 					pbptacc.setText("" + valbpt);
 					Myapp.accbpt = ""+valbpt;
 					
@@ -417,7 +417,7 @@ public class PopfxmlController implements Initializable {
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				if (valbpt != 10) {
-					valbpt = valbpt - 10;
+					valbpt = valbpt - 5;
 
 					pbptacc.setText(""+valbpt);
 					Myapp.accbpt = ""+valbpt;

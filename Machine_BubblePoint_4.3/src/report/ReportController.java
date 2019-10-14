@@ -818,7 +818,7 @@ public class ReportController implements Initializable
 		 		gauge1.setPrefSize(150, 150);
 				gauge1.setValue(d);
 				
-				if ( d >= 0.1 && d <= 2 ) {
+				if ( d >= 0.00001 && d <= 2 ) {
 
 					lblmporetype.setText("( Micro Pore )");
 					gauge1.setMaxValue(2);

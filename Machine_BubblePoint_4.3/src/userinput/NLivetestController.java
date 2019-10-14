@@ -378,7 +378,7 @@ public class NLivetestController implements Initializable {
 		trails = Integer.parseInt(Myapp.testtrial);
 
 		DataStore.getconfigdata();
-		conditionflow = (double) Double.parseDouble(DataStore.getFm2()) * 0.80;
+		conditionflow = (double) Double.parseDouble(DataStore.getFc()) * 0.80;
 		conditionpressure = Double.parseDouble(Myapp.endpress);
 
 		isBubbleStart = new SimpleBooleanProperty(false);

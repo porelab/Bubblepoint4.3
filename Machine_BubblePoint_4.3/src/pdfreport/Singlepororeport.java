@@ -233,7 +233,7 @@ public class Singlepororeport {
 			Image imgs = Image.getInstance(sclaeimg.toURI().toString());
 			imgs.scaleAbsolute(500, 70);
 			imgs.setAbsolutePosition(60f, 300f);
-			document.add(imgs);
+		//	document.add(imgs);
 			
 			if (btabledata == true) {
 				document.newPage();
@@ -1274,8 +1274,8 @@ public class Singlepororeport {
 	
 		PdfPCell cell6 = new PdfPCell(new Paragraph("F/PT", rowhed));
 		cell6.setBackgroundColor(backcellcoltable);
-		cell6.setBorder(0);
-		// cell6.setBorder(cell6.TOP | cell6.BOTTOM | cell6.LEFT);
+		cell6.setBorder(1);
+		 cell6.setBorder(cell6.RIGHT);
 		cell6.setBorderColor(getColor(6));
 		cell6.setPaddingLeft(0);
 		cell6.setPaddingTop(0);
@@ -1286,7 +1286,7 @@ public class Singlepororeport {
 		
 		// Units
 
-		PdfPCell ucell1 = new PdfPCell(new Paragraph("(scc)", unitlabrow));
+		PdfPCell ucell1 = new PdfPCell(new Paragraph("(sccm)", unitlabrow));
 		ucell1.setBackgroundColor(backcellcoltable);
 		ucell1.setBorder(1);
 		ucell1.setBorder(ucell1.LEFT);
@@ -1335,7 +1335,7 @@ public class Singlepororeport {
 		tablem.addCell(cell1);
 	
 		tablem.addCell(cell2);
-		tablem.addCell(cell3);
+		//tablem.addCell(cell3);
 		
 		tablem.addCell(cell6);
 	
@@ -1344,7 +1344,7 @@ public class Singlepororeport {
 		tablem.addCell(ucell1);
 	
 		tablem.addCell(ucell2);
-		tablem.addCell(ucell3);
+		//tablem.addCell(ucell3);
 		
 		tablem.addCell(ucell9);
 		
@@ -1366,13 +1366,13 @@ public class Singlepororeport {
 		Font sampleinfoa = FontFactory.getFont(FontFactory.HELVETICA, 11,
 				Font.NORMAL, new BaseColor(90, 90, 92));
 
-		PdfPTable tablem = new PdfPTable(4); // 3 columns.
+		PdfPTable tablem = new PdfPTable(3); // 3 columns.
 		tablem.setWidthPercentage(100); // Width 100%
 		tablem.setSpacingBefore(0f); // Space before table
 		tablem.setSpacingAfter(0f); // Space after table
 
 		// Set Column widths
-		float[] columnWidths = { 1f,1f, 1f, 1f };
+		float[] columnWidths = { 1f,1f, 1f };
 
 		try {
 			tablem.setWidths(columnWidths);
@@ -1431,7 +1431,7 @@ public class Singlepororeport {
 				r22.setFixedHeight(14f);
 				r22.setHorizontalAlignment(Element.ALIGN_CENTER);
 				r22.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tablem.addCell(r22);
+			//	tablem.addCell(r22);
 				
 				PdfPCell r99 = new PdfPCell(new Paragraph(Myapp.getRound(
 						Double.parseDouble("" + ans.get(j)), 2), tabledata));
@@ -1513,7 +1513,7 @@ public class Singlepororeport {
 				r2.setFixedHeight(14f);
 				r2.setHorizontalAlignment(Element.ALIGN_CENTER);
 				r2.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tablem.addCell(r2);
+			//	tablem.addCell(r2);
 
 
 				
@@ -1573,7 +1573,7 @@ public class Singlepororeport {
 				r2.setFixedHeight(14f);
 				r2.setHorizontalAlignment(Element.ALIGN_CENTER);
 				r2.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tablem.addCell(r2);
+			//	tablem.addCell(r2);
 
 
 				PdfPCell r9 = new PdfPCell(new Paragraph(Myapp.getRound(
@@ -1638,7 +1638,7 @@ public class Singlepororeport {
 				r22.setFixedHeight(14f);
 				r22.setHorizontalAlignment(Element.ALIGN_CENTER);
 				r22.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tablem.addCell(r22);
+				//tablem.addCell(r22);
 
 				
 
@@ -1794,7 +1794,7 @@ public class Singlepororeport {
 				headertestname.setColor(getColor(14));
 
 				PdfPCell cell;
-				cell = new PdfPCell(new Phrase("ASTM D6767", headertestname));
+				cell = new PdfPCell(new Phrase("ASTM F316", headertestname));
 				cell.setBorder(1);
 				cell.setBorder(cell.BOTTOM);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);

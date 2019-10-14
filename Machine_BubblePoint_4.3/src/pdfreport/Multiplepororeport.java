@@ -142,7 +142,7 @@ public class Multiplepororeport {
 			// write to document
 			document.open();
 
-			coverpage();
+			//coverpage();
 
 			document.newPage();
 			HeaderFooterPageEvent event = new HeaderFooterPageEvent();
@@ -176,7 +176,7 @@ public class Multiplepororeport {
 			Image imgs = Image.getInstance(sclaeimg.toURI().toString());
 			imgs.scaleAbsolute(500, 70);
 			imgs.setAbsolutePosition(60f, 300f);
-			document.add(imgs);
+			//document.add(imgs);
 
 			if (btabledata == true) {
 				document.newPage();
@@ -1372,7 +1372,7 @@ public class Multiplepororeport {
 
 		// Units
 
-		PdfPCell ucell1 = new PdfPCell(new Paragraph("(psi)", unitlabrow));
+		PdfPCell ucell1 = new PdfPCell(new Paragraph("(sccm)", unitlabrow));
 		ucell1.setBackgroundColor(backcellcoltable);
 		ucell1.setBorder(1);
 		ucell1.setBorder(ucell1.LEFT);
@@ -1418,13 +1418,13 @@ public class Multiplepororeport {
 
 		tablem.addCell(cell1);
 		tablem.addCell(cell5);
-		tablem.addCell(cell2);
+		//tablem.addCell(cell2);
 		tablem.addCell(cell6);
 
 		// unite
 		tablem.addCell(ucell1);
 		tablem.addCell(ucell3);
-		tablem.addCell(ucell2);
+		//tablem.addCell(ucell2);
 		tablem.addCell(ucell9);
 
 	}
@@ -1464,7 +1464,7 @@ public class Multiplepororeport {
 			dp = dr1.getValuesOf("" + dr1.data.get("Dp"));
 			ans = dr1.getValuesOf("" + dr1.data.get("ans"));
 
-			PdfPTable tablem = new PdfPTable(4); // 3 columns.
+			PdfPTable tablem = new PdfPTable(3); // 3 columns.
 			tablem.setWidthPercentage(100); // Width 100%
 			tablem.setSpacingBefore(10f); // Space before table
 			tablem.setSpacingAfter(0f); // Space after table
@@ -1474,7 +1474,7 @@ public class Multiplepororeport {
 			tabledata.setColor(new BaseColor(98, 98, 98));
 
 			// Set Column widths
-			float[] columnWidths = { 1f, 1f, 1f, 1f };
+			float[] columnWidths = { 1f, 1f, 1f };
 
 			try {
 				tablem.setWidths(columnWidths);
@@ -1532,7 +1532,7 @@ public class Multiplepororeport {
 					r22.setFixedHeight(14f);
 					r22.setHorizontalAlignment(Element.ALIGN_CENTER);
 					r22.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					tablem.addCell(r22);
+					//tablem.addCell(r22);
 
 					PdfPCell r99 = new PdfPCell(new Paragraph(Myapp.getRound(
 							Double.parseDouble("" + ans.get(j)), 2), tabledata));
@@ -1556,7 +1556,7 @@ public class Multiplepororeport {
 					}
 
 					document.newPage();
-					tablem = new PdfPTable(4); // 3 columns.
+					tablem = new PdfPTable(3); // 3 columns.
 					tablem.setWidthPercentage(100); // Width 100%
 					tablem.setSpacingBefore(0f); // Space before table
 					tablem.setSpacingAfter(0f); // Space after table
@@ -1613,7 +1613,7 @@ public class Multiplepororeport {
 					r2.setFixedHeight(14f);
 					r2.setHorizontalAlignment(Element.ALIGN_CENTER);
 					r2.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					tablem.addCell(r2);
+					//tablem.addCell(r2);
 
 					PdfPCell r9 = new PdfPCell(new Paragraph(Myapp.getRound(
 							Double.parseDouble("" + ans.get(j)), 2), tabledata));
@@ -1668,7 +1668,7 @@ public class Multiplepororeport {
 					r2.setFixedHeight(14f);
 					r2.setHorizontalAlignment(Element.ALIGN_CENTER);
 					r2.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					tablem.addCell(r2);
+					//tablem.addCell(r2);
 
 					PdfPCell r9 = new PdfPCell(new Paragraph(Myapp.getRound(
 							Double.parseDouble("" + ans.get(j)), 2), tabledata));
@@ -1728,7 +1728,7 @@ public class Multiplepororeport {
 					r22.setFixedHeight(14f);
 					r22.setHorizontalAlignment(Element.ALIGN_CENTER);
 					r22.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					tablem.addCell(r22);
+					//tablem.addCell(r22);
 
 					PdfPCell r99 = new PdfPCell(new Paragraph(Myapp.getRound(
 							Double.parseDouble("" + ans.get(j)), 2), tabledata));
@@ -1833,7 +1833,7 @@ public class Multiplepororeport {
 				headertestname.setColor(getColor(14));
 
 				PdfPCell cell;
-				cell = new PdfPCell(new Phrase("ASTM D6767", headertestname));
+				cell = new PdfPCell(new Phrase("ASTM F316", headertestname));
 				cell.setBorder(1);
 				cell.setBorder(cell.BOTTOM);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);

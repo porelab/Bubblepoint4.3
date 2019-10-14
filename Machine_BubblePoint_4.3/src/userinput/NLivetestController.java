@@ -380,6 +380,7 @@ public class NLivetestController implements Initializable {
 		DataStore.getconfigdata();
 		conditionflow = (double) Double.parseDouble(DataStore.getFc()) * 0.80;
 		conditionpressure = Double.parseDouble(Myapp.endpress);
+		
 
 		isBubbleStart = new SimpleBooleanProperty(false);
 		isDryStart = new SimpleBooleanProperty(false);

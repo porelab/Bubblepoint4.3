@@ -225,7 +225,7 @@ public class ReportController implements Initializable
     
        if(i==1)
        {
-    	   Pane p=c.drawLinechart(pagination1.getPrefWidth(),pagination1.getPrefHeight(),"1FPT vs Time", "Time (Second)", "FPT",list_d,false,11,12,"(3) Incremental Filter-Flow % vs Diameter");
+    	   Pane p=c.drawLinechart(pagination1.getPrefWidth(),pagination1.getPrefHeight(),"1F/PT vs Time", "Time (Second)", "F/PT",list_d,false,11,12,"(3) Incremental Filter-Flow % vs Diameter");
     	   charts.put(p);
     	   listofchart.add(p);
     	 
@@ -400,7 +400,7 @@ public class ReportController implements Initializable
 	 String name="";
 	 if(chartNumber == 0)
 	 {
-		 name="1FPT vs Time";
+		 name="1F-PT vs Time";
 	 }
 
    return new File(WORKING_DIR,""+ name + ".png").getPath();

@@ -188,7 +188,9 @@ public class Singlepororeport {
 			// write to document
 			document.open();
 
-			coverpage(d);
+			if (bcoverpage == true) {
+				coverpage(d);
+			}
 
 			document.newPage();
 			HeaderFooterPageEvent event = new HeaderFooterPageEvent();

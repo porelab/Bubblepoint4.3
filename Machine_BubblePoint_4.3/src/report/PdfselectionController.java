@@ -41,6 +41,7 @@ public class PdfselectionController implements Initializable {
 
 	@FXML
 	TextField txtcomname;
+	
 
 	@FXML
 	TextArea txtnotes;
@@ -99,7 +100,7 @@ public class PdfselectionController implements Initializable {
 			excelsave.setVisible(false);
 		}
 
-		txtnotes.setText("The following test Procedure is based on ASTM D6767 (Standard Test Method for Pore Size Characterization.)");
+		txtnotes.setText("The following test Procedure is based on ASTM F316 (Standard Test Method for Pore Size Characterization.)");
 
 		/*Close Popup*/
 		btncancel.setOnAction(new EventHandler<ActionEvent>() {

@@ -1571,14 +1571,7 @@ public class NLivetestController implements Initializable {
 					System.out.println("Record Number : " + ind);
 					ans = (fl * deltat) / deltap;
 
-					p1list.add("" + p1);
-					p2list.add("" + p2);
-					daltaplist.add("" + deltap);
-					daltatlist.add("" + deltat);
-					flowlist.add("" + fl);
-					bans.add("" + ans);
-
-					tlist.add("" + getTime());
+					
 
 					System.out.println("Flow : " + fl + "\nP1 : " + p1
 							+ "\nP2 : " + p2 + "\nT1 :" + t1 + "\n T2 : " + t2);
@@ -1588,7 +1581,14 @@ public class NLivetestController implements Initializable {
 
 					if (ans > 0) {
 						// if(ans<Double.parseDouble(DataStore.thresoldvalue))
+						p1list.add("" + p1);
+						p2list.add("" + p2);
+						daltaplist.add("" + deltap);
+						daltatlist.add("" + deltat);
+						flowlist.add("" + fl);
+						bans.add("" + ans);
 
+						tlist.add("" + getTime());
 						if (ans < thval) {
 							Platform.runLater(new Runnable() {
 

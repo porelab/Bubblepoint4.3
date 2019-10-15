@@ -142,6 +142,13 @@ public class writeFormat {
 		wData.add((int)v6);
 		wData.add((int)v7);
 		wData.add((int)v8);
+		wData.add((int)'1');
+		wData.add((int)'1');
+		wData.add((int)'1');
+		wData.add((int)'1');
+		wData.add((int)'1');
+		wData.add((int)'1');
+		
 	}
 	
 	public void setCrossOver()

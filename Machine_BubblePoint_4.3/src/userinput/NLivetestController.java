@@ -378,8 +378,9 @@ public class NLivetestController implements Initializable {
 		trails = Integer.parseInt(Myapp.testtrial);
 
 		DataStore.getconfigdata();
-		conditionflow = (double) Double.parseDouble(DataStore.getFm2()) * 0.80;
+		conditionflow = (double) Double.parseDouble(DataStore.getFc()) * 0.80;
 		conditionpressure = Double.parseDouble(Myapp.endpress);
+		
 
 		isBubbleStart = new SimpleBooleanProperty(false);
 		isDryStart = new SimpleBooleanProperty(false);
@@ -1111,7 +1112,7 @@ public class NLivetestController implements Initializable {
 
 	// set flow accuricy
 	List<Integer> getFlowAccuricy() {
-		int fl = Integer.parseInt(Myapp.accbpt);
+		/*int fl = Integer.parseInt(Myapp.accbpt);
 		fl = fl - 100;
 		int fc = Integer.parseInt(DataStore.getFc());
 		int s1 = (int) fl * fc / 100;
@@ -1119,7 +1120,13 @@ public class NLivetestController implements Initializable {
 		int fla = (int) s1 * 65535 / fc;
 		System.out.println("Flow Accuracy : " + s1 + " : " + fla);
 		List<Integer> data = getValueList(fla);
-
+		*/
+		
+		int fl = Integer.parseInt(Myapp.accbpt);
+		int max=65535;
+		int c=fl*max/100;
+		System.out.println("Count set flow controller:"+c );
+		List<Integer> data = getValueList(c);
 		return data;
 	}
 
@@ -1296,6 +1303,7 @@ public class NLivetestController implements Initializable {
 										.getPg1());
 								pr = (double) a * maxpre / 65535;
 
+								pr=pr-14.7;
 								// b1 = b1 - Myapp.pg1offset.get();
 								System.out
 										.println(" Pressure guage1 original..... : "
@@ -1543,8 +1551,17 @@ public class NLivetestController implements Initializable {
 				if (p2 != 0 && p1 != p2) {
 					System.out.println("IN if p2!=0 and  " + p1 + " - " + p2);
 
-					double deltap = (double) p2 - p1;
+					double deltap;// = (double) p2 - p1;
 					double deltat = (double) (t2 - t1) / 1000;
+					
+					if(p2>p1)
+					{
+						deltap = (double) p2 - p1;
+					}
+					else
+					{
+						deltap = (double) p1 - p2;
+					}
 
 					/*
 					 * if(deltat>2) { deltat=1.001; }

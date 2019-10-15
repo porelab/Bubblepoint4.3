@@ -578,7 +578,7 @@ public class Multiplepororeport {
 		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		c1.setVerticalAlignment(Element.ALIGN_BOTTOM);
 
-		PdfPCell c2 = new PdfPCell(new Paragraph("Diamter", whitecol));
+		PdfPCell c2 = new PdfPCell(new Paragraph("Diameter", whitecol));
 		c2.setBackgroundColor(backcellcoltable);
 		c2.setBorder(0);
 		// c2.setBorder(c2.TOP | c2.BOTTOM | c2.LEFT);
@@ -688,13 +688,14 @@ public class Multiplepororeport {
 		c44.setHorizontalAlignment(Element.ALIGN_CENTER);
 		c44.setVerticalAlignment(Element.ALIGN_TOP);
 
-		PdfPCell c55 = new PdfPCell(new Paragraph("", whitecolu));
+		PdfPCell c55 = new PdfPCell(new Paragraph("(dyne/cm)", whitecolu));
 		c55.setBackgroundColor(backcellcoltable);
 		c55.setBorder(1);
 		c55.setBorder(c55.RIGHT);
 		c55.setBorderColor(new BaseColor(130, 130, 130));
 		c55.setPaddingLeft(10);
 		c55.setPaddingTop(0);
+		c55.setHorizontalAlignment(Element.ALIGN_CENTER);
 		c55.setVerticalAlignment(Element.ALIGN_TOP);
 
 
@@ -976,7 +977,7 @@ public class Multiplepororeport {
 		tablem.addCell(cell5);
 		
 		
-		PdfPCell cell11 = new PdfPCell(new Paragraph("(trial)", whitecolu));
+		PdfPCell cell11 = new PdfPCell(new Paragraph("", whitecolu));
 		cell11.setBackgroundColor(getColor(14));
 		cell11.setBorder(0);
 		// cell11.setBorder(cell11.TOP | cell11.BOTTOM);
@@ -1208,7 +1209,7 @@ public class Multiplepororeport {
 
 		PdfPCell d2 = new PdfPCell(
 				new Paragraph(
-						"Sample specimen are not drawn by M19 Lab. Result relates to the sample tested. The report shall not be reproduced except in full, without the written approval of the laboratory. The report is strically confidential and technical inforamtion of client only. Not for advertisement, promotion, publicity or Litigation.",
+						"Sample specimen are not drawn by M19 Lab. Result relates to the sample tested. The report shall not be reproduced except in full, without the written approval of the laboratory. The report is strically confidential and technical inforamtion of client only. Not for advertisement, promotion, publicity or litigation.",
 						addresslab));
 		d2.setPaddingLeft(0);
 		d2.setPaddingTop(1);

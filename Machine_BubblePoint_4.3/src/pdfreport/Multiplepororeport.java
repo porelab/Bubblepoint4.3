@@ -151,7 +151,19 @@ public class Multiplepororeport {
 			HeaderFooterPageEvent event = new HeaderFooterPageEvent();
 			writer.setPageEvent(event);
 
-			resulttable(d);
+			boolean isSame=true;
+			String sid=d.get(0).data.get("sample").toString();
+			for(int i=1;i<d.size();i++)
+			{
+				if(!sid.equals(d.get(i).data.get("sample").toString()))
+				{
+					isSame=false;
+					break;
+				}
+			}
+			
+			
+			resulttable(d,isSame);
 
 			document.newPage();
 
@@ -430,10 +442,9 @@ public class Multiplepororeport {
 
 	}
 	/* Set Result Data in Table */
-	void resulttable(List<DatareadN> d) {
+	void resulttable(List<DatareadN> d,boolean isSame) {
 
-		BaseColor backcellcol = new BaseColor(230, 230, 230);
-
+		
 		BaseColor backcellcoltable = new BaseColor(130, 130, 130);
 
 		Font tablehed = FontFactory.getFont(FontFactory.HELVETICA, 10,
@@ -708,199 +719,127 @@ public class Multiplepororeport {
 		infotable.addCell(c55);
 
 		
-		
+		Font tabledata = FontFactory.getFont("./font/Roboto-Light.ttf",
+				BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 10);
+		tablehed.setColor(new BaseColor(98, 98, 98));
+
+		Font sampleinfoa = FontFactory.getFont(FontFactory.HELVETICA, 11,
+				Font.NORMAL, new BaseColor(90, 90, 92));
 
 		for (int j = 0; j < d.size(); j++) {
 
-			Font tabledata = FontFactory.getFont("./font/Roboto-Light.ttf",
-					BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 10);
-			tablehed.setColor(new BaseColor(98, 98, 98));
-
-			Font sampleinfoa = FontFactory.getFont(FontFactory.HELVETICA, 11,
-					Font.NORMAL, new BaseColor(90, 90, 92));
+		
 
 			DatareadN dr1 = d.get(j);
 			// first column
 			String st = "" + dr1.data.get("sample");
 
+			String sampledia = Myapp
+					.getRound(
+							Double.parseDouble(""
+									+ dr1.data.get("samplediameter")), 2);
+			String samplethik = Myapp.getRound(
+					Double.parseDouble("" + dr1.data.get("thikness")), 2);
+			String testfluid = "" + dr1.data.get("fluidname");
+			String surfacet = Myapp.getRound(
+					Double.parseDouble("" + dr1.data.get("fluidvalue")), 2);
+			String testdate = "" + dr1.data.get("testdate");
+			
+        BaseColor backcellcol;
+
+			
 			if (j % 2 == 0) {
-
-				String sampledia = Myapp
-						.getRound(
-								Double.parseDouble(""
-										+ dr1.data.get("samplediameter")), 2);
-				String samplethik = Myapp.getRound(
-						Double.parseDouble("" + dr1.data.get("thikness")), 2);
-				String testfluid = "" + dr1.data.get("fluidname");
-				String surfacet = Myapp.getRound(
-						Double.parseDouble("" + dr1.data.get("fluidvalue")), 2);
-				String testdate = "" + dr1.data.get("testdate");
-				
-				
-				PdfPCell record6 = new PdfPCell(new Paragraph("" + testdate,
-						tabledata));
-				record6.setBorder(1);
-				record6.setBorder(record6.LEFT);
-				record6.setBorderColor(new BaseColor(130, 130, 130));
-				record6.setPaddingTop(0);
-				record6.setFixedHeight(30f);
-				record6.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record6.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record6);
-
-				
-				
-				PdfPCell record1 = new PdfPCell(new Paragraph(st, tabledata));
-				record1.setBorder(0);
-				//record1.setBorder(c5.LEFT);
-				record1.setBorderColor(new BaseColor(130, 130, 130));
-				record1.setPaddingTop(0);
-				record1.setFixedHeight(30f);
-				record1.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record1);
-
 			
+				
+				backcellcol = new BaseColor(255, 255, 255);
+				
+				
 
-				// second column
-				PdfPCell record2 = new PdfPCell(new Paragraph(
-						sampledia + " ", tabledata));
-				record2.setBorder(0);
-				// record2.setBorder(record2.LEFT);
-				record2.setBorderColor(getColor(6));
-				record2.setPaddingTop(0);
-				record2.setFixedHeight(30f);
-				record2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record2.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record2);
-
-				// second column
-				PdfPCell record3 = new PdfPCell(new Paragraph(samplethik
-						+ " ", tabledata));
-				record3.setBorder(0);
-				// record3.setBorder(record3.LEFT);
-				record3.setBorderColor(getColor(6));
-				record3.setPaddingTop(0);
-				record3.setFixedHeight(30f);
-				record3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record3.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record3);
-
-				PdfPCell record4 = new PdfPCell(new Paragraph("" + testfluid,
-						tabledata));
-				record4.setBorder(0);
-				// record4.setBorder(record4.LEFT);
-				record4.setBorderColor(getColor(6));
-				record4.setPaddingTop(0);
-				record4.setFixedHeight(30f);
-				record4.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record4.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record4);
-
-				PdfPCell record5 = new PdfPCell(new Paragraph("" + surfacet,
-						tabledata));
-				record5.setBorder(1);
-			    record5.setBorder(record5.RIGHT);
-				record5.setBorderColor(new BaseColor(130, 130, 130));
-				record5.setPaddingTop(0);
-				record5.setFixedHeight(30f);
-				record5.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record5.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record5);
-
-			
 			} else {
 
 				
-
-				String sampledia = Myapp
-						.getRound(
-								Double.parseDouble(""
-										+ dr1.data.get("samplediameter")), 2);
-				String samplethik = Myapp.getRound(
-						Double.parseDouble("" + dr1.data.get("thikness")), 2);
-				String testfluid = "" + dr1.data.get("fluidname");
-				String surfacet = Myapp.getRound(
-						Double.parseDouble("" + dr1.data.get("fluidvalue")), 2);
-				String testdate = "" + dr1.data.get("testdate");
+				backcellcol = new BaseColor(230, 230, 230);
 				
-				PdfPCell record6 = new PdfPCell(new Paragraph("" + testdate,
-						tabledata));
-				record6.setBorder(1);
-				record6.setBorder(record6.LEFT);
-				record6.setBorderColor(new BaseColor(130, 130, 130));
-				record6.setBackgroundColor(backcellcol);
-				record6.setPaddingTop(0);
-				record6.setFixedHeight(30f);
-				record6.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record6.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record6);
 
-				
-				PdfPCell record1 = new PdfPCell(new Paragraph(st, tabledata));
-				record1.setBorder(0);
-				//record1.setBorder(record1.LEFT);
-				record1.setBorderColor(new BaseColor(130, 130, 130));
-				record1.setBackgroundColor(backcellcol);
-				record1.setPaddingTop(0);
-				record1.setFixedHeight(30f);
-				record1.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record1);
-
-
-				// second column
-				PdfPCell record2 = new PdfPCell(new Paragraph(
-						sampledia + " ", tabledata));
-				record2.setBorder(0);
-				// record2.setBorder(record2.LEFT);
-				record2.setBorderColor(getColor(6));
-				record2.setBackgroundColor(backcellcol);
-				record2.setPaddingTop(0);
-				record2.setFixedHeight(30f);
-				record2.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record2.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record2);
-
-				// second column
-				PdfPCell record3 = new PdfPCell(new Paragraph(samplethik
-						+ "", tabledata));
-				record3.setBorder(0);
-				// record3.setBorder(record3.LEFT);
-				record3.setBorderColor(getColor(6));
-				record3.setBackgroundColor(backcellcol);
-				record3.setPaddingTop(0);
-				record3.setFixedHeight(30f);
-				record3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record3.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record3);
-
-				PdfPCell record4 = new PdfPCell(new Paragraph("" + testfluid,
-						tabledata));
-				record4.setBorder(0);
-				// record4.setBorder(record4.LEFT);
-				record4.setBorderColor(getColor(6));
-				record4.setBackgroundColor(backcellcol);
-				record4.setPaddingTop(0);
-				record4.setFixedHeight(30f);
-				record4.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record4.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record4);
-
-				PdfPCell record5 = new PdfPCell(new Paragraph("" + surfacet,
-						tabledata));
-				record5.setBorder(0);
-				record5.setBorder(record5.RIGHT);
-				record5.setBorderColor(new BaseColor(130, 130, 130));
-				record5.setBackgroundColor(backcellcol);
-				record5.setPaddingTop(0);
-				record5.setFixedHeight(30f);
-				record5.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record5.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				infotable.addCell(record5);
-
-				
 			}
+			
+			
+			
+			
+			PdfPCell record6 = new PdfPCell(new Paragraph("" + testdate,
+					tabledata));
+			record6.setBorder(1);
+			record6.setBorder(record6.LEFT);
+			record6.setBorderColor(new BaseColor(130, 130, 130));
+			record6.setBackgroundColor(backcellcol);
+			record6.setPaddingTop(0);
+			record6.setFixedHeight(30f);
+			record6.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record6.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			infotable.addCell(record6);
+
+			
+			PdfPCell record1 = new PdfPCell(new Paragraph(st, tabledata));
+			record1.setBorder(0);
+			//record1.setBorder(record1.LEFT);
+			record1.setBorderColor(new BaseColor(130, 130, 130));
+			record1.setBackgroundColor(backcellcol);
+			record1.setPaddingTop(0);
+			record1.setFixedHeight(30f);
+			record1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			infotable.addCell(record1);
+
+
+			// second column
+			PdfPCell record2 = new PdfPCell(new Paragraph(
+					sampledia + " ", tabledata));
+			record2.setBorder(0);
+			// record2.setBorder(record2.LEFT);
+			record2.setBorderColor(getColor(6));
+			record2.setBackgroundColor(backcellcol);
+			record2.setPaddingTop(0);
+			record2.setFixedHeight(30f);
+			record2.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record2.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			infotable.addCell(record2);
+
+			// second column
+			PdfPCell record3 = new PdfPCell(new Paragraph(samplethik
+					+ "", tabledata));
+			record3.setBorder(0);
+			// record3.setBorder(record3.LEFT);
+			record3.setBorderColor(getColor(6));
+			record3.setBackgroundColor(backcellcol);
+			record3.setPaddingTop(0);
+			record3.setFixedHeight(30f);
+			record3.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record3.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			infotable.addCell(record3);
+
+			PdfPCell record4 = new PdfPCell(new Paragraph("" + testfluid,
+					tabledata));
+			record4.setBorder(0);
+			// record4.setBorder(record4.LEFT);
+			record4.setBorderColor(getColor(6));
+			record4.setBackgroundColor(backcellcol);
+			record4.setPaddingTop(0);
+			record4.setFixedHeight(30f);
+			record4.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record4.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			infotable.addCell(record4);
+
+			PdfPCell record5 = new PdfPCell(new Paragraph("" + surfacet,
+					tabledata));
+			record5.setBorder(0);
+			record5.setBorder(record5.RIGHT);
+			record5.setBorderColor(new BaseColor(130, 130, 130));
+			record5.setBackgroundColor(backcellcol);
+			record5.setPaddingTop(0);
+			record5.setFixedHeight(30f);
+			record5.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record5.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			infotable.addCell(record5);
 		}
 
 		PdfPCell bootom = new PdfPCell(new Paragraph("", tablemean));
@@ -1016,100 +955,85 @@ public class Multiplepororeport {
 		tablem.addCell(cell44);
 		tablem.addCell(cell55);
 		
-		
+
+		List<Double> bubbplist=new ArrayList<Double>();
+		List<Double> bubbdlist=new ArrayList<Double>();
 
 		for (int j = 0; j < d.size(); j++) {
 
-			Font tabledata = FontFactory.getFont("./font/Roboto-Light.ttf",
-					BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 10);
 			tablehed.setColor(new BaseColor(98, 98, 98));
 
 			DatareadN dr = d.get(j);
 			// first column
 			String st = "" + dr.data.get("sample");
 			// st = st.substring(0, st.indexOf('.'));
+			String bpp = Myapp.getRound(
+					Double.parseDouble("" + dr.data.get("bpressure")), 2);
+			String bpd = Myapp.getRound(
+					Double.parseDouble("" + dr.data.get("bdiameter")), 2);
+			BaseColor backcellcol;
 
+			
+			
+			if(isSame)
+			{
+				bubbplist.add(Double.parseDouble(bpp));
+				bubbdlist.add(Double.parseDouble(bpd));
+				
+			}
+
+			
 			if (j % 2 == 0) {
+			
+				
+				backcellcol = new BaseColor(255, 255, 255);
+				
+				
 
-				PdfPCell record1 = new PdfPCell(new Paragraph(st, tabledata));
-				record1.setBorder(1);
-				record1.setBorder(record1.LEFT);
-				record1.setBorderColor(new BaseColor(130, 130, 130));
-				record1.setPaddingTop(0);
-				record1.setFixedHeight(30f);
-				record1.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tablem.addCell(record1);
-
-				String bpp = Myapp.getRound(
-						Double.parseDouble("" + dr.data.get("bpressure")), 2);
-				String bpd = Myapp.getRound(
-						Double.parseDouble("" + dr.data.get("bdiameter")), 2);
-
-				PdfPCell record4 = new PdfPCell(new Paragraph(bpp + " psi",
-						tabledata));
-				record4.setBorder(0);
-				// record4.setBorder(record4.LEFT);
-				record4.setBorderColor(getColor(6));
-				record4.setPaddingTop(0);
-				record4.setFixedHeight(30f);
-				record4.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record4.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tablem.addCell(record4);
-
-				PdfPCell record5 = new PdfPCell(new Paragraph(bpd + " micron",
-						tabledata));
-				record5.setBorder(1);
-				record5.setBorder(record5.RIGHT);
-				record5.setBorderColor(new BaseColor(130, 130, 130));
-				record5.setPaddingTop(0);
-				record5.setFixedHeight(30f);
-				record5.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record5.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tablem.addCell(record5);
 			} else {
 
-				PdfPCell record1 = new PdfPCell(new Paragraph(st, tabledata));
-				record1.setBorder(1);
-				record1.setBorder(record1.LEFT);
-				record1.setBorderColor(new BaseColor(130, 130, 130));
-				record1.setBackgroundColor(backcellcol);
-				record1.setPaddingTop(0);
-				record1.setFixedHeight(30f);
-				record1.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tablem.addCell(record1);
-
-				String bpp = Myapp.getRound(
-						Double.parseDouble("" + dr.data.get("bpressure")), 2);
-				String bpd = Myapp.getRound(
-						Double.parseDouble("" + dr.data.get("bdiameter")), 2);
-
-				PdfPCell record4 = new PdfPCell(new Paragraph(bpp + " psi",
-						tabledata));
-				record4.setBorder(0);
-				// record4.setBorder(record4.LEFT);
-				record4.setBorderColor(getColor(6));
-				record4.setBackgroundColor(backcellcol);
-				record4.setPaddingTop(0);
-				record4.setFixedHeight(30f);
-				record4.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record4.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tablem.addCell(record4);
-
-				PdfPCell record5 = new PdfPCell(new Paragraph(bpd + " micron",
-						tabledata));
-				record5.setBorder(1);
-				record5.setBorder(record5.RIGHT);
-				record5.setBorderColor(new BaseColor(130, 130, 130));
-				record5.setBackgroundColor(backcellcol);
-				record5.setPaddingTop(0);
-				record5.setFixedHeight(30f);
-				record5.setHorizontalAlignment(Element.ALIGN_CENTER);
-				record5.setVerticalAlignment(Element.ALIGN_MIDDLE);
-				tablem.addCell(record5);
+				
+				backcellcol = new BaseColor(230, 230, 230);
+				
 
 			}
+			
+			
+			PdfPCell record1 = new PdfPCell(new Paragraph(st, tabledata));
+			record1.setBorder(1);
+			record1.setBorder(record1.LEFT);
+			record1.setBorderColor(new BaseColor(130, 130, 130));
+			record1.setBackgroundColor(backcellcol);
+			record1.setPaddingTop(0);
+			record1.setFixedHeight(30f);
+			record1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			tablem.addCell(record1);
+
+
+			PdfPCell record4 = new PdfPCell(new Paragraph(bpp + " psi",
+					tabledata));
+			record4.setBorder(0);
+			// record4.setBorder(record4.LEFT);
+			record4.setBorderColor(getColor(6));
+			record4.setBackgroundColor(backcellcol);
+			record4.setPaddingTop(0);
+			record4.setFixedHeight(30f);
+			record4.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record4.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			tablem.addCell(record4);
+
+			PdfPCell record5 = new PdfPCell(new Paragraph(bpd + " micron",
+					tabledata));
+			record5.setBorder(1);
+			record5.setBorder(record5.RIGHT);
+			record5.setBorderColor(new BaseColor(130, 130, 130));
+			record5.setBackgroundColor(backcellcol);
+			record5.setPaddingTop(0);
+			record5.setFixedHeight(30f);
+			record5.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record5.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			tablem.addCell(record5);
 		}
 
 		PdfPCell bootom1 = new PdfPCell(new Paragraph("", tablemean));
@@ -1123,6 +1047,57 @@ public class Multiplepororeport {
 		bootom1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 		tablem.addCell(bootom1);
 
+		if(isSame)
+		{
+	
+			Double bpd = bubbdlist.stream().mapToDouble(val -> val).average().orElse(0.0);
+			double bpdstd=getSd(bubbdlist, bpd);	
+			
+			Double bpp = bubbplist.stream().mapToDouble(val -> val).average().orElse(0.0);
+			double bppstd=getSd(bubbplist, bpp);	
+			
+			PdfPCell record1 = new PdfPCell(new Paragraph("Average +- SD", tabledata));
+			record1.setBorder(1);
+			record1.setBorder(record1.LEFT);
+			record1.setBorderColor(new BaseColor(130, 130, 130));
+			record1.setBackgroundColor(backcellcol);
+			record1.setPaddingTop(0);
+			record1.setFixedHeight(30f);
+			record1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			tablem.addCell(record1);
+
+	
+
+			PdfPCell record4 = new PdfPCell(new Paragraph(bpp + " +- "+bppstd,
+					tabledata));
+			record4.setBorder(0);
+			// record4.setBorder(record4.LEFT);
+			record4.setBorderColor(getColor(6));
+			record4.setBackgroundColor(backcellcol);
+			record4.setPaddingTop(0);
+			record4.setFixedHeight(30f);
+			record4.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record4.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			tablem.addCell(record4);
+
+			PdfPCell record5 = new PdfPCell(new Paragraph(bpd + " +- "+bpdstd,
+					tabledata));
+			record5.setBorder(1);
+			record5.setBorder(record5.RIGHT);
+			record5.setBorderColor(new BaseColor(130, 130, 130));
+			record5.setBackgroundColor(backcellcol);
+			record5.setPaddingTop(0);
+			record5.setFixedHeight(30f);
+			record5.setHorizontalAlignment(Element.ALIGN_CENTER);
+			record5.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			tablem.addCell(record5);
+
+			
+		}
+		
+		
+		
 		try {
 			document.add(tablem);
 

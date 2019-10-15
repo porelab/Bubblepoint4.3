@@ -51,6 +51,7 @@ public class Multiplepororeport {
 	// Row Data
 	BaseColor backcellcoltable = new BaseColor(130, 130, 130);
 	BaseColor backcellcol = new BaseColor(230, 230, 230);
+	BaseColor backcellcoldark = new BaseColor(122, 122, 122);
 	Font tablemean = FontFactory.getFont(FontFactory.HELVETICA, 15, Font.BOLD,
 			new BaseColor(100, 100, 100));
 
@@ -568,7 +569,7 @@ public class Multiplepororeport {
 
 		
 		PdfPCell c6 = new PdfPCell(new Paragraph("Test Date", whitecol));
-		c6.setBackgroundColor(backcellcoltable);
+		c6.setBackgroundColor(getColor(14));
 		c6.setBorder(1);
 		c6.setBorder(c6.LEFT);
 		c6.setBorderColor(new BaseColor(130, 130, 130));
@@ -579,7 +580,7 @@ public class Multiplepororeport {
 		c6.setVerticalAlignment(Element.ALIGN_BOTTOM);
 		
 		PdfPCell c1 = new PdfPCell(new Paragraph("Sample ID", whitecol));
-		c1.setBackgroundColor(backcellcoltable);
+		c1.setBackgroundColor(getColor(14));
 		c1.setBorder(0);
 //		c1.setBorder(c1.LEFT);
 		c1.setBorderColor(new BaseColor(130, 130, 130));
@@ -590,7 +591,7 @@ public class Multiplepororeport {
 		c1.setVerticalAlignment(Element.ALIGN_BOTTOM);
 
 		PdfPCell c2 = new PdfPCell(new Paragraph("Diameter", whitecol));
-		c2.setBackgroundColor(backcellcoltable);
+		c2.setBackgroundColor(getColor(14));
 		c2.setBorder(0);
 		// c2.setBorder(c2.TOP | c2.BOTTOM | c2.LEFT);
 		c2.setBorderColor(getColor(6));
@@ -601,7 +602,7 @@ public class Multiplepororeport {
 		c2.setVerticalAlignment(Element.ALIGN_BOTTOM);
 
 		PdfPCell c3 = new PdfPCell(new Paragraph("Thickness", whitecol));
-		c3.setBackgroundColor(backcellcoltable);
+		c3.setBackgroundColor(getColor(14));
 		c3.setBorder(0);
 		// c3.setBorder(c3.TOP | c3.BOTTOM | c3.LEFT);
 		c3.setBorderColor(getColor(6));
@@ -612,7 +613,7 @@ public class Multiplepororeport {
 		c3.setVerticalAlignment(Element.ALIGN_BOTTOM);
 
 		PdfPCell c4 = new PdfPCell(new Paragraph("Wetting Fluid", whitecol));
-		c4.setBackgroundColor(backcellcoltable);
+		c4.setBackgroundColor(getColor(14));
 		c4.setBorder(0);
 		// c4.setBorder(c4.TOP | c4.BOTTOM | c4.LEFT);
 		c4.setBorderColor(getColor(6));
@@ -623,7 +624,7 @@ public class Multiplepororeport {
 		c4.setVerticalAlignment(Element.ALIGN_BOTTOM);
 
 		PdfPCell c5 = new PdfPCell(new Paragraph("Surface Tension", whitecol));
-		c5.setBackgroundColor(backcellcoltable);
+		c5.setBackgroundColor(getColor(14));
 		c5.setBorder(1);
 		c5.setBorder(c5.RIGHT);
 		c5.setBorderColor(new BaseColor(130, 130, 130));
@@ -645,7 +646,7 @@ public class Multiplepororeport {
 		/*Add Unite*/
 		
 		PdfPCell c66 = new PdfPCell(new Paragraph("", whitecolu));
-		c66.setBackgroundColor(backcellcoltable);
+		c66.setBackgroundColor(getColor(14));
 		c66.setBorder(1);
 		c66.setBorder(c66.LEFT);
 		c66.setBorderColor(new BaseColor(130, 130, 130));
@@ -656,7 +657,7 @@ public class Multiplepororeport {
 		c66.setVerticalAlignment(Element.ALIGN_TOP);
 		
 		PdfPCell c11 = new PdfPCell(new Paragraph("", whitecolu));
-		c11.setBackgroundColor(backcellcoltable);
+		c11.setBackgroundColor(getColor(14));
 		c11.setBorder(0);
 //		c11.setBorder(c11.LEFT);
 		c11.setBorderColor(new BaseColor(130, 130, 130));
@@ -667,7 +668,7 @@ public class Multiplepororeport {
 		c11.setVerticalAlignment(Element.ALIGN_TOP);
 
 		PdfPCell c22 = new PdfPCell(new Paragraph(" (cm)", whitecolu));
-		c22.setBackgroundColor(backcellcoltable);
+		c22.setBackgroundColor(getColor(14));
 		c22.setBorder(0);
 		// c22.setBorder(c22.TOP | c22.BOTTOM | c22.LEFT);
 		c22.setBorderColor(getColor(6));
@@ -678,7 +679,7 @@ public class Multiplepororeport {
 		c22.setVerticalAlignment(Element.ALIGN_TOP);
 
 		PdfPCell c33 = new PdfPCell(new Paragraph("(cm)", whitecolu));
-		c33.setBackgroundColor(backcellcoltable);
+		c33.setBackgroundColor(getColor(14));
 		c33.setBorder(0);
 		// c33.setBorder(c33.TOP | c33.BOTTOM | c33.LEFT);
 		c33.setBorderColor(getColor(6));
@@ -689,7 +690,7 @@ public class Multiplepororeport {
 		c33.setVerticalAlignment(Element.ALIGN_TOP);
 
 		PdfPCell c44 = new PdfPCell(new Paragraph("", whitecolu));
-		c44.setBackgroundColor(backcellcoltable);
+		c44.setBackgroundColor(getColor(14));
 		c44.setBorder(0);
 		// c44.setBorder(c44.TOP | c44.BOTTOM | c44.LEFT);
 		c44.setBorderColor(getColor(6));
@@ -700,7 +701,7 @@ public class Multiplepororeport {
 		c44.setVerticalAlignment(Element.ALIGN_TOP);
 
 		PdfPCell c55 = new PdfPCell(new Paragraph("(dyne/cm)", whitecolu));
-		c55.setBackgroundColor(backcellcoltable);
+		c55.setBackgroundColor(getColor(14));
 		c55.setBorder(1);
 		c55.setBorder(c55.RIGHT);
 		c55.setBorderColor(new BaseColor(130, 130, 130));
@@ -1041,7 +1042,7 @@ public class Multiplepororeport {
 		bootom1.setBorder(bootom1.TOP);
 		bootom1.setBorderColor(new BaseColor(130, 130, 130));
 		bootom1.setPaddingTop(0);
-		bootom1.setFixedHeight(25f);
+		bootom1.setFixedHeight(5f);
 		bootom1.setColspan(6);
 		bootom1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		bootom1.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -1056,11 +1057,11 @@ public class Multiplepororeport {
 			Double bpp = bubbplist.stream().mapToDouble(val -> val).average().orElse(0.0);
 			double bppstd=getSd(bubbplist, bpp);	
 			
-			PdfPCell record1 = new PdfPCell(new Paragraph("Average +- SD", tabledata));
+			PdfPCell record1 = new PdfPCell(new Paragraph("Average +- SD", whitecol));
 			record1.setBorder(1);
-			record1.setBorder(record1.LEFT);
+			record1.setBorder(record1.LEFT | record1.TOP |record1.BOTTOM);
 			record1.setBorderColor(new BaseColor(130, 130, 130));
-			record1.setBackgroundColor(backcellcol);
+			record1.setBackgroundColor(backcellcoldark);
 			record1.setPaddingTop(0);
 			record1.setFixedHeight(30f);
 			record1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -1070,11 +1071,11 @@ public class Multiplepororeport {
 	
 
 			PdfPCell record4 = new PdfPCell(new Paragraph(bpp + " +- "+bppstd,
-					tabledata));
+					whitecol));
 			record4.setBorder(0);
-			// record4.setBorder(record4.LEFT);
-			record4.setBorderColor(getColor(6));
-			record4.setBackgroundColor(backcellcol);
+			record4.setBorder(record4.TOP | record4.BOTTOM);
+			record4.setBorderColor(new BaseColor(130, 130, 130));
+			record4.setBackgroundColor(backcellcoldark);
 			record4.setPaddingTop(0);
 			record4.setFixedHeight(30f);
 			record4.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -1082,17 +1083,20 @@ public class Multiplepororeport {
 			tablem.addCell(record4);
 
 			PdfPCell record5 = new PdfPCell(new Paragraph(bpd + " +- "+bpdstd,
-					tabledata));
+					whitecol));
 			record5.setBorder(1);
-			record5.setBorder(record5.RIGHT);
+			record5.setBorder(record5.TOP | record5.BOTTOM| record5.RIGHT);
 			record5.setBorderColor(new BaseColor(130, 130, 130));
-			record5.setBackgroundColor(backcellcol);
+			record5.setBackgroundColor(backcellcoldark);
 			record5.setPaddingTop(0);
 			record5.setFixedHeight(30f);
 			record5.setHorizontalAlignment(Element.ALIGN_CENTER);
 			record5.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			tablem.addCell(record5);
-
+			
+			
+			
+		
 			
 		}
 		

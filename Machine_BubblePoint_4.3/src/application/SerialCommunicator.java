@@ -71,9 +71,6 @@ public class SerialCommunicator {
 		try {
 			DataStore.commPort = portIdentifier.open(this.getClass().getName(),
 					10000);
-		
-
-		
 		if (DataStore.commPort instanceof SerialPort) {
 			DataStore.serialPort = (SerialPort) DataStore.commPort;
 			DataStore.serialPort.setSerialPortParams(9600, SerialPort.DATABITS_8,

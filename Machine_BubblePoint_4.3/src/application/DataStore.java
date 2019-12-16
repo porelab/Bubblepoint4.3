@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import application.SerialCommunicator.SerialReader;
+import communicationProtocol.Mycommand;
 import toast.Toast;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -347,13 +348,24 @@ public class DataStore
 					}
 					DataStore.serialPort.setDTR(false);
 					
-					writeFormat	wrd = new writeFormat();
-					List<String> dd=getAdmin_screen1();
-					wrd.setLatching(dd.get(0).charAt(0),dd.get(1).charAt(0),dd.get(2).charAt(0),dd.get(3).charAt(0),dd.get(4).charAt(0),dd.get(5).charAt(0),dd.get(6).charAt(0),dd.get(7).charAt(0));
+					List<String> data=getAdmin_screen1();
+					String temp="";
+					for(int i=0;i<14;i++)
+					{
+						
+						if(i<8)
+						{
+						temp=temp+data.get(i);
+						}
+						else
+						{
+							temp=temp+"0";
+						}
+					}
 					
-					//wrd.setLatching('1', '0', '0', '1', '0', '1', '1', '1');
-					wrd.addLast();
-					sendData(wrd,500);
+					
+					Mycommand.setLacthing(temp, 500);
+					
 					
 					
 					

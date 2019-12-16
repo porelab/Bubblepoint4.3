@@ -16,6 +16,34 @@ import application.writeFormat;
 
 public class Mycommand {
 
+	
+	public static void setLacthing(String ss,int slp)
+    {
+    	writeFormat wr=new writeFormat();
+		wr.addChar('L');
+		wr.addChar('V');
+		
+		for(int i=0;i<14;i++)
+		{
+			wr.addChar(ss.charAt(i));
+		}
+		wr.addLast();
+		sendData(wr, slp);
+		
+    }
+	
+	
+	public static void setStability(int no,int val,int delay)
+	{
+		writeFormat wr=new writeFormat();
+		wr.addChar('F');
+		wr.addChar('M');
+		wr.addChar('T');
+		wr.addInt(no);
+		wr.addInt(val);
+		wr.addLast();
+		sendData(wr, delay);
+	}
 	public static  void systemReset()
 	{
     	writeFormat wr=new writeFormat();
@@ -249,9 +277,15 @@ public class Mycommand {
 		wr.addChar('M');
 		wr.addChar('A');
 		wr.addChar('E');
-		for(int i=0;i<bit.length();i++)
+		for(int i=0;i<15;i++)
 		{
+			try {
 			wr.addChar(bit.charAt(i));
+			}
+			catch(Exception e)
+			{
+				wr.addChar('0');
+			}
 		}
 	
 		wr.addLast();

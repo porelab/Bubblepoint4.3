@@ -562,6 +562,13 @@ public class NLivetestController implements Initializable {
 				} catch (Exception e) {
 
 				}
+				Mycommand.valveOff('4', 0);
+				try {
+
+					Thread.sleep(minde);
+				} catch (Exception e) {
+
+				}
 				Mycommand.valveOn('2', 0);
 				try {
 
@@ -593,7 +600,7 @@ public class NLivetestController implements Initializable {
 
 				}
 				
-				Mycommand.sendAdcEnableBits("11", 0);
+				Mycommand.sendAdcEnableBits("101", 0);
 				Mycommand.startADC(1500);
 				
 				
@@ -1319,8 +1326,8 @@ public class NLivetestController implements Initializable {
 						List<Integer> reading=getAdcData(readData);
 						
 						
-						int maxpre = Integer.parseInt(DataStore.getPg1());
-						pr = (double) reading.get(1) * maxpre / 65535;
+						int maxpre = Integer.parseInt(DataStore.getPg2());
+						pr = (double) reading.get(2) * maxpre / 65535;
 
 						
 						
@@ -1675,6 +1682,10 @@ public class NLivetestController implements Initializable {
 										Myapp.bps.put("" + bbp, "" + bubblepoint);
 										
 										Mycommand.stopADC(0);
+										Mycommand.valveOn('5', 500);
+										Mycommand.setDACValue('1', 0, 1000);
+										Mycommand.setDACValue('2', 0, 1800);
+										
 										
 										createCsvTableBubble();
 

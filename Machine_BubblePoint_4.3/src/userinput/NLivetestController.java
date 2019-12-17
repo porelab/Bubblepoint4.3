@@ -600,8 +600,9 @@ public class NLivetestController implements Initializable {
 
 				}
 				
-				Mycommand.sendAdcEnableBits("101", 0);
-				Mycommand.startADC(1500);
+				Mycommand.setDelay(400, 0);
+				Mycommand.sendAdcEnableBits("101", 1000);
+				Mycommand.startADC(2500);
 				
 				
 			}

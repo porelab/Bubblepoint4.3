@@ -47,6 +47,7 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Popup;
+import toast.LoadAnchor;
 import toast.MyDialoug;
 import toast.Toast;
 import Notification.Notification.Notifier;
@@ -2045,6 +2046,8 @@ public class NLivetestController implements Initializable {
 			e.printStackTrace();
 		}
 
+		LoadAnchor.LoadCreateTestPage();
+		LoadAnchor.LoadReportPage();
 	}
 
 	// show result popup

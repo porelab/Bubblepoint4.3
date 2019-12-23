@@ -25,6 +25,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
+import toast.LoadAnchor;
 import toast.MyDialoug;
 import toast.Openscreen;
 import toast.Toast;
@@ -359,9 +360,9 @@ public class NFirstController implements Initializable {
 			@Override
 			public void handle(ActionEvent event) {
 				System.out.println("Open Setting-------------->>>>");
-
-				Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
-				// Openscreen.open("/application/xx.fxml");
+				MainancController.mainanc1.getChildren().setAll(LoadAnchor.configurationfxml);
+				
+				//Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
 
 			}
 		});
@@ -405,8 +406,10 @@ public class NFirstController implements Initializable {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-
-						Openscreen.open("/userinput/Nselectproject1.fxml");
+						MainancController.mainanc1.getChildren().setAll(LoadAnchor.createtestfxml);
+						
+						
+					//	Openscreen.open("/userinput/Nselectproject1.fxml");
 
 					}
 				});
@@ -419,8 +422,9 @@ public class NFirstController implements Initializable {
 			@Override
 			public void handle(ActionEvent arg0) {
 
-				Openscreen.open("/report/first.fxml");
-				// TODO Auto-generated method stub
+				//Openscreen.open("/report/first.fxml");
+				MainancController.mainanc1.getChildren().setAll(LoadAnchor.reportfxml);
+				
 			}
 		});
 
@@ -434,17 +438,7 @@ public class NFirstController implements Initializable {
 			}
 		});
 
-		btnsetting.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				System.out.println("Open Setting-------------->>>>");
-
-				Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
-				// Openscreen.open("/userinput/scada.fxml");
-
-			}
-		});
+	
 
 		btnclose.setOnAction(new EventHandler<ActionEvent>() {
 

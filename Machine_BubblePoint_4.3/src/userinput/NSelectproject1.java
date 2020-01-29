@@ -276,7 +276,7 @@ public class NSelectproject1 implements Initializable {
 		cmboproject.requestFocus();
 		setMainbtns();
 		setAllThings();
-
+		setTestConfiguration2();
 		setLabels();
 		fontload();
 		setNextanBackBtn();
@@ -288,7 +288,7 @@ public class NSelectproject1 implements Initializable {
 		setDataStability();
 		setTfactor();
 		setTestConfiguration1();
-		setTestConfiguration2();
+		
 
 		LoadProject();
 		cmboproject.valueProperty().addListener(new ChangeListener<String>() {
@@ -1432,6 +1432,7 @@ public class NSelectproject1 implements Initializable {
 		String testsequance = "" + alldata.get(0).get(19);
 		String stabilitytype = "" + alldata.get(0).get(20);
 
+		System.out.println("BP Thresol--->"+thresold);
 		// Material Specification
 
 		if (classificati.equals("Fibrous")) {
@@ -1496,16 +1497,19 @@ public class NSelectproject1 implements Initializable {
 
 		/* Thresold */
 
-		// System.out.println("First Bu------------>"+thresold);
-		if (thresold.equals("First bubble")) {
-			t1group.selectToggle(tc_11);
-			Myapp.thresold = "First bubble";
+		System.out.println("First Bu------------>"+thresold);
+		if (thresold.equals("First Bubble")) {
+			t2group.selectToggle(tc_11);
+			Myapp.thresold = "First Bubble";
+			System.out.println("1----First Bu------------>"+thresold);
 		} else if (thresold.equals("Moderate")) {
-			t1group.selectToggle(tc_12);
+			t2group.selectToggle(tc_12);
 			Myapp.thresold = "Moderate";
+			System.out.println("2----First Bu------------>"+thresold);
 		} else if (thresold.equals("Continous")) {
-			t1group.selectToggle(tc_13);
+			t2group.selectToggle(tc_13);
 			Myapp.thresold = "Continous";
+			System.out.println("3----First Bu------------>"+thresold);
 		}
 
 		// Material tyep hydro
@@ -1530,14 +1534,14 @@ public class NSelectproject1 implements Initializable {
 
 		/* splate */
 		if (splate.equals("small")) {
-			t2group.selectToggle(tc_21);
+			t1group.selectToggle(tc_21);
 			Myapp.splate = "small";
 		} else if (splate.equals("medium")) {
-			t2group.selectToggle(tc_22);
+			t1group.selectToggle(tc_22);
 			Myapp.splate = "medium";
 
 		} else if (splate.equals("large")) {
-			t2group.selectToggle(tc_23);
+			t1group.selectToggle(tc_23);
 			Myapp.thresold = "large";
 
 		}

@@ -65,10 +65,13 @@ public class NConfigurePageController implements Initializable {
     private JFXToggleButton tgb215,tgb2111;
 
     @FXML
-    private Button btndefaultsetting,comsave,back,btncalibration,testconfig;
+    private Button btndefaultsetting,comsave,back,btncalibration,testconfig,btnprefrance;
 
     @FXML
     ComboBox cmbcom;
+    
+    @FXML
+    ComboBox<String> cmbpg1,cmbpg2,cmbpress, cmbflow, cmblenghth, cmbroundoff;
 
 	String propg1="low",profm1="low",propg2="low",profm2="low";
 	
@@ -137,7 +140,17 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 	
 		DataStore.getthfirstbp();
 		// cmbcom.getItems().addAll("Test", "Test2", "Test3");
-		 
+		cmbpress.getItems().addAll("psi", "bar", "torr");
+		cmbflow.getItems().addAll("sccm", "sccs","cfm");
+		cmblenghth.getItems().addAll("nm", "mm");
+		cmbroundoff.getItems().addAll("1", "2", "3","4","5");
+		
+		
+		/*Test Config Unite and Pg Absolute or relative*/
+		
+		cmbpg1.getItems().addAll("psi", "bar", "torr");
+		cmbpg2.getItems().addAll("psi", "bar", "torr");
+		
 			 setkeyboardmode();
 		
 		 }
@@ -156,6 +169,15 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 			}
 	
 			void setBtnClicks() {
+				
+				/* selected unite save in database */
+				btnprefrance.setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent arg0) {
+						unitesave();
+					}
+				});
+
 		
 				back.setOnAction(new EventHandler<ActionEvent>() {
 					
@@ -380,7 +402,53 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 					   
 					
 				}
+				
+				void unitesave() {
 
+					String upress, uflow, roundoff, ulenghth;
+
+					upress = cmbpress.getSelectionModel().getSelectedItem();
+					uflow = cmbflow.getSelectionModel().getSelectedItem();
+					ulenghth = cmblenghth.getSelectionModel().getSelectedItem();
+					roundoff = cmbroundoff.getSelectionModel().getSelectedItem();
+
+					String unites = "update unite set pressure='" + upress + "',  flow='" + uflow + "',  length='" + ulenghth
+							+ "',  roundoff='" + roundoff + "'";
+
+					Database dd = new Database();
+
+					if (dd.Insert(unites)) {
+						Toast.makeText(Main.mainstage, "Successfully saved selected Unites", 1000, 200, 200);
+
+					}
+
+				}
+
+				
+				
+
+				void Testunitesave() {
+
+					String pg1s, pg2s;
+
+					pg1s = cmbpg1.getSelectionModel().getSelectedItem();
+					pg2s = cmbpg2.getSelectionModel().getSelectedItem();
+					
+
+					String testunites = "update testunite set pg1='" + pg1s + "',  pg2='" + pg2s + "'";
+
+					Database dd = new Database();
+
+					if (dd.Insert(testunites)) {
+						
+
+						//Toast.makeText(Main.mainstage, "Successfully Saved Selected Test Unites", 1000, 200, 200);
+
+					}
+
+				}
+
+				
 				
 		void comsave()
 		{
@@ -463,29 +531,9 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 					}
 
 				
-					String propg1temp,propg2temp,profm1temp,profm2temp,pp1scaletypet,pp2scaletypet;
 					
-				//pscale type
-					
-					
-					
-					if(pp1scaletype.equals("absolute"))
-					{
-						pp1scaletypet="0";	
-					}
-					else
-					{
-						pp1scaletypet="1";
-					}
-					
-					if(pp2scaletype.equals("absolute"))
-					{
-						pp2scaletypet="0";	
-					}
-					else
-					{
-						pp2scaletypet="1";
-					}
+				
+					Testunitesave();
 					
 				}
 			});

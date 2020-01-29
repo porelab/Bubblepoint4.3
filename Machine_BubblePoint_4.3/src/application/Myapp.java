@@ -310,5 +310,21 @@ public class Myapp {
 
 			control.setTooltip(null);
 		}
+	public static void PrintAll() {
+		System.out.println("sample id--"+Myapp.sampleid);
+		System.out.println("Lot no --"+Myapp.lotnumber);
+		System.out.println("Test trial--"+Myapp.testtrial);
+		System.out.println("Wetting fluid -"+Myapp.fluidname+"-----Wetting value"+Myapp.fluidvalue);
+		System.out.println("Toutchocity Factor--"+Myapp.tfactore);
+		System.out.println("BPT Thresold--"+Myapp.thresold);
+		System.out.println("BPT ACC--"+Myapp.accbpt);
+		System.out.println("Test ACC--"+Myapp.accstep);
+		System.out.println("Data stability---Typr----"+Myapp.stabilitytype+"--Value"+Myapp.accstability);
+		System.out.println("Test Press start and and---->"+Myapp.startpress+"---End Press---"+Myapp.endpress);
+		System.out.println("Test Medthod--"+Myapp.testsequence);
+		System.out.println("Sample Plate--"+Myapp.splate);
+		
+	}
+	
 	
 }

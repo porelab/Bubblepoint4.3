@@ -329,7 +329,9 @@ public class NLivetestController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-
+		
+		Myapp.PrintAll();
+	
 		tones = new AudioClip(NLivetestController.class.getResource("stoptone.mp3").toString());
 
 		if (DataStore.getchambertype().equals("Autometed")) {

@@ -45,6 +45,7 @@ public class NFirstController implements Initializable {
 	Label lblpg1offset, lblpg2offset, lblconnection;
 
 	@FXML
+	
 	StackPane maincontent;
 
 	SimpleBooleanProperty ispopup = new SimpleBooleanProperty(false);
@@ -168,6 +169,8 @@ public class NFirstController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		
 		DataStore.isconfigure.set(true);
 		DataStore.sc = new SerialCommunicator();
 

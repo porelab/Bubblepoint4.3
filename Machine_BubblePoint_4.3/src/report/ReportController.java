@@ -78,6 +78,7 @@ import javax.imageio.ImageIO;
 
 import toast.MyDialoug;
 import toast.Openscreen;
+import application.DataStore;
 import application.Main;
 import application.Myapp;
 import data_read_write.DatareadN;
@@ -569,20 +570,12 @@ public class ReportController implements Initializable
 		
 		
 	
-	
+		double b=(double)avgbd/list_d.size();
+		avgbub.setText("" +Myapp.getRound(b, DataStore.getRoundOff())+ " ("+DataStore.getUnitediameter()+")");
+
+		setgaugeBubb(Myapp.getRound(b+"", DataStore.getRoundOff()));
 		
 		
-		BigDecimal b=BigDecimal.valueOf(avgbp/list_d.size());
-		b = b.setScale(2, BigDecimal.ROUND_HALF_UP);
-		//avgbppress.setText(""+b);
-		
-		b=BigDecimal.valueOf(avgbd/list_d.size());
-		
-		b = b.setScale(2, BigDecimal.ROUND_HALF_UP);
-		//avgbpdia.setText(""+b);
-		avgbub.setText(""+b);
-		
-		setgaugeBubb(Double.parseDouble(""+b));
 		
 		
 		
@@ -803,7 +796,7 @@ public class ReportController implements Initializable
 		 gauge1=GaugeBuilder.create()
 		         .skinType(SkinType.SIMPLE_SECTION)
 		         .title("BP Diameter")
-		         .unit("\u03BC")
+		         .unit(""+DataStore.getUnitediameter())
 		         .titleColor(Color.web("#727376"))
 		         .unitColor(Color.web("#727376"))
 		         .valueColor(Color.web("#727376"))
@@ -826,7 +819,8 @@ public class ReportController implements Initializable
 					
 					microlab.setVisible(true);
 					micropic.setVisible(true);
-					microlab.setText(Myapp.getRound(d, 2));
+					microlab.setText("" +Myapp.getRound(d, DataStore.getRoundOff())+ "");
+
 					
 				}
 				else if (d >= 2 && d <= 50) {
@@ -836,7 +830,8 @@ public class ReportController implements Initializable
 					mizolab.setVisible(true);
 					mizopic.setVisible(true);
 
-					mizolab.setText(Myapp.getRound(d, 2));
+					mizolab.setText("" +Myapp.getRound(d, DataStore.getRoundOff())+ "");
+
 				}
 				else {
 					lblmporetype.setText("( Macro Pore )");
@@ -844,8 +839,7 @@ public class ReportController implements Initializable
 					
 					macrolab.setVisible(true);
 					macropic.setVisible(true);
-
-					macrolab.setText(Myapp.getRound(d, 2));
+					macrolab.setText("" +Myapp.getRound(d, DataStore.getRoundOff())+ "");
 				}
 
 

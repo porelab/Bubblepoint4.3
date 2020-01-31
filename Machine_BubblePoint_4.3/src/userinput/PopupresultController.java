@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import application.DataStore;
 import application.Myapp;
 import toast.MyDialoug;
 import toast.Openscreen;
@@ -89,9 +90,10 @@ public class PopupresultController implements Initializable {
 		
 		
 		lblsamplename.setText(""+dr.data.get("sample"));
-		lblbpdiamter.setText(""+Myapp.getRound(Double.parseDouble(""+dr.data.get("bdiameter")), 2));
-	   
-	     lblbpp.setText(""+Myapp.getRound(Double.parseDouble(""+dr.data.get("bpressure")), 2));
+		lblbpdiamter.setText(""+DataStore.ConvertPressure("" + dr.data.get("bdiameter")));
+		
+		lblbpp.setText(""+DataStore.ConvertPressure("" + dr.data.get("bpressure")));
+
 
 	}
 }

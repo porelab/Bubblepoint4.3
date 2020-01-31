@@ -129,6 +129,8 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 			addShortCut();
 	     setMainBtns();
 	     setulastdata();
+	     setTestLastunite();
+			setLastunite();
 		 setBtnClicks();
 	
 		setPortList();
@@ -538,6 +540,37 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 				}
 			});
 		}
+		
+		void setTestLastunite() {
+			List<List<String>> ll = db.getData("select * from testunite");
+
+			String pg1 = (ll.get(0).get(0));
+			String pg2 = (ll.get(0).get(1));
+		
+		
+
+				
+			cmbpg1.setValue(pg1);
+			cmbpg2.setValue(pg2);
+			
+		
+		
+		}
+		
+		void setLastunite() {
+			List<List<String>> ll = db.getData("select * from unite");
+			String upres = (ll.get(0).get(0));
+			String uflow = (ll.get(0).get(1));
+			String ulength = (ll.get(0).get(2));
+			String uthicknes = (ll.get(0).get(3));
+
+			cmbpress.setValue(upres);
+			cmbflow.setValue(uflow);
+			cmblenghth.setValue(ulength);
+			cmbroundoff.setValue(uthicknes);
+
+		}
+
 		
 		public void setulastdata()
 		{	

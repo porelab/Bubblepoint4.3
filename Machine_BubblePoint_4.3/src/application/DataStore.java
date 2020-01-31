@@ -528,5 +528,240 @@ public class DataStore
 		}
 	}
 	
+	/*Get Unite*/
+	
+	public static String getUnitepg1() {
+		String pg1;
+		Database db = new Database();
+		List<List<String>> ll = db.getData("select pg1 from testunite");
+		pg1 = (ll.get(0).get(0));
+		return pg1 + "";
+	}
+
+	public static String getUnitepg2() {
+		String pg2;
+		Database db = new Database();
+		List<List<String>> ll = db.getData("select pg2 from testunite");
+		pg2 = (ll.get(0).get(0));
+		return pg2 + "";
+	}
+
+	public static String getPrunite() {
+		String pr;
+		Database db = new Database();
+		List<List<String>> ll = db.getData("select pr from testunite");
+		pr = (ll.get(0).get(0));
+		return pr + "";
+	}
+
+	/*Absolute or Relative*/
+	
+	public static boolean isabsolutepg1() {
+		Database db = new Database();
+		List<List<String>> ll = db.getData("select p1scaletype from configdata");
+		String pgisabsolute = (ll.get(0).get(0));
+
+		if (pgisabsolute.equals("absolute")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static boolean isabsolutepg2() {
+		Database db = new Database();
+		List<List<String>> ll = db.getData("select p2scaletype from configdata");
+		String prisabsolute = (ll.get(0).get(0));
+
+		if (prisabsolute.equals("absolute")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	/* Prefrance Unite */
+
+	public static String getUnitepressure() {
+		String pressure;
+		Database db = new Database();
+		List<List<String>> ll = db.getData("select pressure from unite");
+		pressure = (ll.get(0).get(0));
+		return pressure + "";
+	}
+
+	public static String getUniteflow() {
+		String flow;
+		Database db = new Database();
+		List<List<String>> ll = db.getData("select flow from unite");
+		flow = (ll.get(0).get(0));
+		return flow + "";
+	}
+
+	public static String getUnitediameter() {
+		String dia;
+		Database db = new Database();
+		List<List<String>> ll = db.getData("select length from unite");
+		dia = (ll.get(0).get(0));
+		return dia + "";
+	}
+	public static int getRoundOff()
+	{
+		int roundoff;
+		Database db = new Database();
+		List<List<String>> ll = db.getData("select roundoff from unite");
+		roundoff = Integer.parseInt(ll.get(0).get(0));
+		return roundoff;
+		
+		
+	}
+
+	/*Unite Convert*/
+	public static double toSccs(double sccm) {
+		double ans = sccm / 60;
+		return ans;
+
+	}
+
+	public static double toSccs(String sccm) {
+		double ans = Double.parseDouble(sccm) / 60;
+		return ans;
+	}
+	
+	public static double toCfm(double sccm) {
+		double ans = sccm / 60;
+		return ans;
+
+	}
+
+	public static double toCfm(String sccm) {
+		double ans = Double.parseDouble(sccm) / 60;
+		return ans;
+	}
+
+	public static double toBar(double psi) {
+		return psi * 0.0689476;
+
+	}
+
+	public static double toBar(String psi) {
+		return Double.parseDouble(psi) * 0.0689476;
+	}
+
+	public static double toTorr(double psi) {
+
+		return psi * 51.7149;
+
+	}
+
+	public static double toTorr(String psi) {
+
+		return Double.parseDouble(psi) * 51.7149;
+	}
+
+	public static double toNm(double mm) {
+
+		return mm / 1000;
+
+	}
+
+	public static double toNm(String mm) {
+
+		return Double.parseDouble(mm) / 1000;
+	}
+
+	public static double ConvertFlow(String flow) {
+		double ans;
+		if (DataStore.getUniteflow().equals("sccs")) {
+
+			ans = toSccs(flow);
+
+		} 
+		else if (DataStore.getUniteflow().equals("cfm")) {
+			ans = DataStore.toCfm(flow);
+		}
+		else {
+			ans = Double.parseDouble(flow);
+		}
+		return Myapp.getRoundDouble(ans, getRoundOff());
+	}
+
+	public static double ConvertFlow(Double flow) {
+
+		if (DataStore.getUniteflow().equals("sccs")) {
+
+			flow = toSccs(flow);
+
+		}
+		else if (DataStore.getUniteflow().equals("cfm")) {
+			flow = toCfm(flow);
+		}
+
+		return Myapp.getRoundDouble(flow, getRoundOff());
+	}
+
+	public static double ConvertDiameter(String diameter) {
+		double ans;
+		if (DataStore.getUnitediameter().equals("nm")) {
+
+			ans = Double.parseDouble(diameter) / 1000;
+
+		} else {
+			ans = Double.parseDouble(diameter);
+		}
+		return Myapp.getRoundDouble(ans, getRoundOff());
+	}
+
+	public static double ConvertDiameter(Double diameter) {
+		if (DataStore.getUnitediameter().equals("nm")) {
+
+			diameter = diameter / 1000;
+
+		}
+
+		return Myapp.getRoundDouble(diameter, getRoundOff());
+	}
+
+	public static double ConvertPressure(String pressure) {
+		double ans;
+		if (DataStore.getUnitepressure().equals("bar")) {
+			ans = DataStore.toBar(pressure);
+		} else if (DataStore.getUnitepressure().equals("torr")) {
+			ans = DataStore.toTorr(pressure);
+		} else {
+			ans = Double.parseDouble(pressure);
+		}
+		return Myapp.getRoundDouble(ans, getRoundOff());
+	}
+
+	public static double ConvertPressure(Double pressure) {
+
+		if (DataStore.getUnitepressure().equals("bar")) {
+			pressure = DataStore.toBar(pressure);
+		} else if (DataStore.getUnitepressure().equals("torr")) {
+			pressure = DataStore.toTorr(pressure);
+		}
+		return Myapp.getRoundDouble(pressure, getRoundOff());
+	}
+
+	public static double barToPsi(double bar)
+	{
+
+		System.out.println("bar to psi");
+		return bar*14.5038;
+	}
+	public static double torrToPsi(double torr)
+	{
+		System.out.println("torr to psi");
+		return torr*0.0193368;
+	}
+	public static double sccsToSccm(double sccs)
+	{
+		System.out.println("sccs to sccm");
+		return 60*sccs;
+		
+	}
+	
+	
 	
 }

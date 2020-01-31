@@ -151,6 +151,29 @@ public class Myapp {
 		notifier.notify(NotificationBuilder.create().title(title).message(msg).image(Notification.INFO_ICON).build());
 
 	}
+	
+	public static double getRoundDouble(double r, int round) {
+		
+		if (round == 2) {
+			r = (double) Math.round(r * 100) / 100;
+		} else if (round == 3) {
+			r = (double) Math.round(r * 1000) / 1000;
+
+		}
+		 else if(round==4) {
+				r = (double) Math.round(r * 10000) / 10000;
+
+			}
+		else {
+			r = (double) Math.round(r * 100000) / 100000;
+
+		}
+
+		return r ;
+
+	}
+
+	
 	public static String getRound(Double r, int round) {
 
 		if (round == 2) {

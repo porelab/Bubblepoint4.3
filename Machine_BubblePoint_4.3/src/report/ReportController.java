@@ -551,9 +551,9 @@ public class ReportController implements Initializable
 		for(int i=0;i<list_d.size();i++)
 		{	
 			fff=""+list_d.get(i).filename;
-		
-			wff=""+list_d.get(i).data.get("bpressure");
-			wpp=""+list_d.get(i).data.get("bdiameter");
+	
+			wff = "" + DataStore.ConvertPressure(list_d.get(i).data.get("bpressure").toString());
+			wpp = "" + DataStore.ConvertDiameter(list_d.get(i).data.get("bdiameter").toString());
 			
 			bb.add(BigDecimal.valueOf(Double.parseDouble(wff)));
 			

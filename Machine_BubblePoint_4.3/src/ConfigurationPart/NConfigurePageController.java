@@ -648,25 +648,21 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 				
 						//absolute and relative pscaletype
 					
-					if(pscaletype4p.equals("absolute"))
-					{
-						ab1.setSelected(true);	
-						pp1scaletype="absolute";
+					if (pscaletype4p.equals("relative")) {
+						pp1scaletype = "relative";
+						ab1.setSelected(true);
+					} else {
+						pp1scaletype = "absolute";
 					}
-					else
-					{
-						pp1scaletype="relative";
+
+					if (pscaletype5p.equals("relative")) {
+						ab2.setSelected(true);
+						pp2scaletype = "relative";
+					} else {
+						pp2scaletype = "absolute";
 					}
 					
-					if(pscaletype5p.equals("absolute"))
-					{
-						ab2.setSelected(true);	
-						pp2scaletype="absolute";
-					}
-					else
-					{
-						pp2scaletype="relative";
-					}
+				
 					
 					
 					/* chamber */

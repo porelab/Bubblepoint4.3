@@ -626,7 +626,7 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 						profm1="high";
 					}
 			
-					if(type3p.equals("low"))
+					if(type3p.equals("low")) 
 					{
 						fm1.setSelected(true);
 						propg2="low";

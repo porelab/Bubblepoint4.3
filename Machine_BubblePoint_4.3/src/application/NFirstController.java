@@ -363,9 +363,9 @@ public class NFirstController implements Initializable {
 			@Override
 			public void handle(ActionEvent event) {
 				System.out.println("Open Setting-------------->>>>");
-				MainancController.mainanc1.getChildren().setAll(LoadAnchor.configurationfxml);
+				//MainancController.mainanc1.getChildren().setAll(LoadAnchor.configurationfxml);
 				
-				//Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
+				Openscreen.open("/ConfigurationPart/Nconfigurepage.fxml");
 
 			}
 		});

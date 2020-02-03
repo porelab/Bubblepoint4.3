@@ -760,7 +760,7 @@ public class manualcontroller implements Initializable {
 		gauge5.setMaxValue(Integer.parseInt(DataStore.getPg2()));
 		gauge5.valueProperty().bind(DataStore.spg2);
 		lblpg2max.setText("PG2" + "\n" + Integer.parseInt(DataStore.getPg2())
-				+ " (psi)");
+				+ " ("+DataStore.getUnitepg2()+")");
 
 		gauge5.setPrefSize(ap6.getPrefWidth(), ap6.getPrefHeight());
 		ap6.getChildren().add(gauge5);
@@ -787,7 +787,7 @@ public class manualcontroller implements Initializable {
 
 		gauge6.setMaxValue(Integer.parseInt(DataStore.getPg1()));
 		lblpg1max.setText("PG1" + "\n" + Integer.parseInt(DataStore.getPg1())
-				+ " (psi)");
+				+ " ("+DataStore.getUnitepg1()+")");
 		gauge6.setPrefSize(ap5.getPrefWidth(), ap5.getPrefHeight());
 		gauge6.valueProperty().bind(DataStore.spg1);
 		// pg2value.textProperty().bind(DataStore.sspg2);
@@ -1089,6 +1089,17 @@ public class manualcontroller implements Initializable {
 
 						b = (double) a * Integer.parseInt(DataStore.getPg1())
 								/ 65535;
+						
+
+						if(DataStore.isabsolutepg1())
+						{
+							b=b-14.6;
+							if(b<0)
+							{
+								b=0;
+							}
+						}
+						
 						System.out.println("Pressure Gauge 1 :  ... :" + b);
 						DataStore.spg1.set(b);
 					    pg1count.set("" + a);
@@ -1099,6 +1110,8 @@ public class manualcontroller implements Initializable {
 							System.out.println("Max pressure reach to PG1");
 						}
 
+						
+						
 						// .... for pg2
 
 						a = 0;
@@ -1114,6 +1127,17 @@ public class manualcontroller implements Initializable {
 						a = a | a3;
 						b = (double) a * Integer.parseInt(DataStore.getPg2())
 								/ 65535;
+						
+						if(DataStore.isabsolutepg2())
+						{
+							b=b-14.6;
+							if(b<0)
+							{
+								b=0;
+							}
+						}
+						
+						
 						System.out
 								.println("Pressure Gauge 2 :  original   reading  : "
 										+ a + "... :" + b);

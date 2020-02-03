@@ -329,9 +329,9 @@ public class NLivetestController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+
 		Myapp.PrintAll();
-	
+
 		tones = new AudioClip(NLivetestController.class.getResource("stoptone.mp3").toString());
 
 		if (DataStore.getchambertype().equals("Autometed")) {
@@ -557,7 +557,7 @@ public class NLivetestController implements Initializable {
 			public void run() {
 				// TODO Auto-generated method stub
 
-				int minde=1500;
+				int minde = 1500;
 				Mycommand.setDACValue('2', 30000, 0);
 				try {
 
@@ -590,24 +590,23 @@ public class NLivetestController implements Initializable {
 
 				try {
 
-					Thread.sleep(minde+5000);
+					Thread.sleep(minde + 5000);
 				} catch (Exception e) {
 
 				}
 				Mycommand.valveOff('5', 0);
-				
+
 				try {
 
 					Thread.sleep(minde);
 				} catch (Exception e) {
 
 				}
-				
+
 				Mycommand.setDelay(400, 0);
 				Mycommand.sendAdcEnableBits("101", 1000);
 				Mycommand.startADC(2500);
-				
-				
+
 			}
 		}).start();
 
@@ -770,7 +769,7 @@ public class NLivetestController implements Initializable {
 
 		return a;
 	}
-	
+
 	int findInt1(String[] s) {
 		try {
 			Date d1 = new Date();
@@ -888,9 +887,9 @@ public class NLivetestController implements Initializable {
 		sc1.getStylesheets().add(getClass().getResource("dynamicgraph2.css").toExternalForm());
 		// sc1.setTitle("Flow Vs Time");
 
-		yAxis1.setLabel("Flow");
+		yAxis1.setLabel("Flow +("+DataStore.getUniteflow()+")");
 		xAxis1.setLabel("Time");
-		yAxis2.setLabel("Pressure");
+		yAxis2.setLabel("Pressure +("+DataStore.getUnitepressure()+")");
 		xAxis2.setLabel("Time");
 
 		sc1.prefWidthProperty().bind(root1.widthProperty());
@@ -1323,37 +1322,41 @@ public class NLivetestController implements Initializable {
 
 				for (int i = 1; i < readData.size(); i++) {
 
-					
 					if (readData.get(i) == 'F' && readData.get(i + 1) == (int) 'M'
 							&& readData.get(i + 2) == (int) 'A') {
 						double pr = 0, fl = 0;
-						List<Integer> reading=getAdcData(readData);
-						
-						
+						List<Integer> reading = getAdcData(readData);
+
 						int maxpre = Integer.parseInt(DataStore.getPg2());
 						pr = (double) reading.get(2) * maxpre / 65535;
 
-						
-						
-						
+						if (DataStore.getUnitepg2().equals("bar")) {
+							pr = DataStore.barToPsi(pr);
+						} else if (DataStore.getUnitepg2().equals("torr")) {
+							pr = DataStore.torrToPsi(pr);
+						}
+
+						if (DataStore.isabsolutepg2()) {
+							pr = pr - 14.6;
+							if (pr < 0) {
+								pr = 0;
+							}
+						}
+
 						fl = (double) reading.get(0) * Integer.parseInt(DataStore.getFc()) / 65535;
-						
 
 						System.out.println("" + reading);
 
-						System.out.println("Pr1 : "+pr+"\nFc : "+fl);
-						
+						System.out.println("Pr2 : " + pr + "\nFc : " + fl);
+
 						DataStore.liveflow.set(fl);
 
 						DataStore.livepressure.set(pr);
 
-			
-							setBubblePoints(pr, fl);
-						
+						setBubblePoints(pr, fl);
 
-						
 					}
-					
+
 					else if (readData.get(i) == (int) 'T' && readData.get(i + 1) == (int) 'D') {
 						int prd, fld;
 						double pr = 0, fl = 0;
@@ -1386,9 +1389,23 @@ public class NLivetestController implements Initializable {
 								int maxpre = Integer.parseInt(DataStore.getPg1());
 								pr = (double) a * maxpre / 65535;
 
-								//pr = pr - 14.7;
+								if (DataStore.getUnitepg1().equals("bar")) {
+									pr = DataStore.barToPsi(pr);
+								} else if (DataStore.getUnitepg1().equals("torr")) {
+									pr = DataStore.torrToPsi(pr);
+								}
+
+								if (DataStore.isabsolutepg1()) {
+									pr = pr - 14.6;
+									if (pr < 0) {
+										pr = 0;
+									}
+								}
+
+								// pr=pr-14.7;
 								// b1 = b1 - Myapp.pg1offset.get();
 								System.out.println(" Pressure guage1 original..... : " + a);
+
 
 								System.out.println(" Pressure guage1 ..... : " + pr);
 
@@ -1396,6 +1413,19 @@ public class NLivetestController implements Initializable {
 								int maxpre = Integer.parseInt(DataStore.getPg2());
 								System.out.println("Pressure Gauge2 Org Data " + a);
 								pr = (double) a * maxpre / 65535;
+
+								if (DataStore.getUnitepg2().equals("bar")) {
+									pr = DataStore.barToPsi(pr);
+								} else if (DataStore.getUnitepg2().equals("torr")) {
+									pr = DataStore.torrToPsi(pr);
+								}
+
+								if (DataStore.isabsolutepg2()) {
+									pr = pr - 14.6;
+									if (pr < 0) {
+										pr = 0;
+									}
+								}
 
 								// b1 = b1 - Myapp.pg2offset.get();
 
@@ -1423,24 +1453,14 @@ public class NLivetestController implements Initializable {
 							if (readData.get(i + 10) == (int) '1') {
 								fl = (double) a * Integer.parseInt(DataStore.getFc()) / 65535;
 
+								Myapp.ftype.set(3);
+
 								System.out.println("Flow Controller :  ... :" + fl);
 
 							}
 
 						} else if (readData.get(i + 8) == (int) 'F' && readData.get(i + 9) == (int) 'M') {
-							if (readData.get(i + 10) == (int) '1') {
-								fl = (double) a * Integer.parseInt(DataStore.getFm1()) / 65535;
-								System.out.println(" Flow meter 1.... : " + a);
-
-								// b=(double)a*8000/65535;
-								System.out.println("Flow Meter 1 : ... :" + fl);
-
-							} else if (readData.get(i + 10) == (int) '2') {
-								fl = (double) a * Integer.parseInt(DataStore.getFm2()) / 65535;
-								// b=(double)a*8000/65535;
-								System.out.println("Flow Meter 2 : ... :" + fl);
-
-							}
+							System.out.println("flow meter reading not important in bubble point");
 						}
 
 						// setdata
@@ -1451,6 +1471,7 @@ public class NLivetestController implements Initializable {
 
 						if (testtype == 0) {
 							setBubblePoints(pr, fl);
+
 						}
 
 					}
@@ -1581,8 +1602,7 @@ public class NLivetestController implements Initializable {
 
 	}
 
-	void setBubblePoints(double pr, double fl) 
-	{
+	void setBubblePoints(double pr, double fl) {
 		Platform.runLater(new Runnable() {
 
 			@Override
@@ -1594,173 +1614,170 @@ public class NLivetestController implements Initializable {
 			}
 		});
 
-		
+		p2 = pr;
+		t2 = System.currentTimeMillis();
 
-			p2 = pr;
-			t2 = System.currentTimeMillis();
+		if (p2 < conditionpressure) {
+			if (p2 != 0 && p1 != p2) {
+				System.out.println("IN if p2!=0 and  " + p1 + " - " + p2);
 
-			if (p2 < conditionpressure) {
-				if (p2 != 0 && p1 != p2) {
-					System.out.println("IN if p2!=0 and  " + p1 + " - " + p2);
+				double deltap;// = (double) p2 - p1;
+				double deltat = (double) (t2 - t1) / 1000;
 
-					double deltap;// = (double) p2 - p1;
-					double deltat = (double) (t2 - t1) / 1000;
+				if (p2 > p1) {
+					deltap = (double) p2 - p1;
+				} else {
+					deltap = (double) p1 - p2;
+				}
 
-					if (p2 > p1) {
-						deltap = (double) p2 - p1;
+				double ans;
+
+				System.out.println("Record Number : " + ind);
+				ans = (fl * deltat) / deltap;
+
+				System.out.println("Flow : " + fl + "\nP1 : " + p1 + "\nP2 : " + p2 + "\nT1 :" + t1 + "\n T2 : " + t2);
+				System.out.println("Delta P : " + deltap + " \nDelta T : " + (deltat));
+				System.out.println("Answer F/PT : " + ans);
+
+				if (ans > 0) {
+					// if(ans<Double.parseDouble(DataStore.thresoldvalue))
+					p1list.add("" + p1);
+					p2list.add("" + p2);
+					daltaplist.add("" + deltap);
+					daltatlist.add("" + deltat);
+					flowlist.add("" + fl);
+					bans.add("" + ans);
+					tlist.add("" + getTime());
+					if (ans < thval) {
+						Platform.runLater(new Runnable() {
+
+							@Override
+							public void run() {
+								// TODO Auto-generated method stub
+								// System.out.println("Size of list is : "+DataStore.intList.get(80).size()+"
+								// .... INDEX : "+ind);
+								series2.getData().add(new XYChart.Data(
+
+										getTime(), ans));
+
+								series1.getData().remove(1);
+								series1.getData().add(new XYChart.Data(getTime() + 10, thval));
+
+								ind++;
+								countbp = 0;
+
+							}
+						});
+
 					} else {
-						deltap = (double) p1 - p2;
-					}
 
-					
-					double ans;
+						countbp++;
 
-					System.out.println("Record Number : " + ind);
-					ans = (fl * deltat) / deltap;
-
-					System.out.println(
-							"Flow : " + fl + "\nP1 : " + p1 + "\nP2 : " + p2 + "\nT1 :" + t1 + "\n T2 : " + t2);
-					System.out.println("Delta P : " + deltap + " \nDelta T : " + (deltat));
-					System.out.println("Answer F/PT : " + ans);
-
-					if (ans > 0) {
-						// if(ans<Double.parseDouble(DataStore.thresoldvalue))
-						p1list.add("" + p1);
-						p2list.add("" + p2);
-						daltaplist.add("" + deltap);
-						daltatlist.add("" + deltat);
-						flowlist.add("" + fl);
-						bans.add("" + ans);
-						tlist.add("" + getTime());
-						if (ans < thval) {
+						if (countbp > 2) {
 							Platform.runLater(new Runnable() {
 
 								@Override
 								public void run() {
-									// TODO Auto-generated method stub
-									// System.out.println("Size of list is : "+DataStore.intList.get(80).size()+"
-									// .... INDEX : "+ind);
-									series2.getData().add(new XYChart.Data(
 
-											getTime(), ans));
+									series2.getData().add(new XYChart.Data(getTime(), ans));
+									series1.getData().remove(1);
+									series1.getData().add(new XYChart.Data(getTime() + 10, thval));
 
+									// bbp=(double)DataStore.intList.get("80").get(DataStore.intList.get("80").size()-4);
+									// bbf=(double)DataStore.intList.get("70").get(DataStore.intList.get("70").size()-4);
+
+									bbp = Double.parseDouble(p2list.get(p2list.size() - 3));
+
+									System.out.println("Pressure points : " + p2list);
+									System.out.println("BBBBBBPPPPPPPPPP : " + bbp);
+
+									System.out.println("Completedd test number " + testno + " in "
+											+ ((t2test - t1test) / 1000) + " seconds ");
+									ind++;
+									String bubblepoint = getBubbledia(bbp);
+									bbd = Double.parseDouble(bubblepoint);
+
+									
+									
+									lblbpc.setText("Bubble Point : " + DataStore.ConvertDiameter(bbd)
+									+" "+ DataStore.getUnitediameter());
+
+
+									Myapp.bps.put("" + bbp, "" + bubblepoint);
+
+									Mycommand.stopADC(0);
+									Mycommand.valveOn('5', 500);
+									Mycommand.setDACValue('1', 0, 1000);
+									Mycommand.setDACValue('2', 0, 1800);
+
+									createCsvTableBubble();
+
+									testtype = 5;
+
+								}
+
+							});
+
+						} else {
+							Platform.runLater(new Runnable() {
+
+								@Override
+								public void run() {
+									// TODO Auto-generated method
+									// stub
+
+									series2.getData().add(new XYChart.Data(getTime(), ans));
 									series1.getData().remove(1);
 									series1.getData().add(new XYChart.Data(getTime() + 10, thval));
 
 									ind++;
-									countbp = 0;
-
 								}
 							});
 
-						} else {
-
-							countbp++;
-
-							if (countbp > 2) {
-								Platform.runLater(new Runnable() {
-
-									@Override
-									public void run() {
-
-										series2.getData().add(new XYChart.Data(getTime(), ans));
-										series1.getData().remove(1);
-										series1.getData().add(new XYChart.Data(getTime() + 10, thval));
-
-										// bbp=(double)DataStore.intList.get("80").get(DataStore.intList.get("80").size()-4);
-										// bbf=(double)DataStore.intList.get("70").get(DataStore.intList.get("70").size()-4);
-
-										bbp = Double.parseDouble(p2list.get(p2list.size() - 3));
-
-										System.out.println("Pressure points : " + p2list);
-										System.out.println("BBBBBBPPPPPPPPPP : " + bbp);
-
-										System.out.println("Completedd test number " + testno + " in "
-												+ ((t2test - t1test) / 1000) + " seconds ");
-										ind++;
-										String bubblepoint = getBubbledia(bbp);
-										bbd = Double.parseDouble(bubblepoint);
-
-										lblbpc.setText("Bubble Point : " + bbd + " µ");
-
-										Myapp.bps.put("" + bbp, "" + bubblepoint);
-										
-										Mycommand.stopADC(0);
-										Mycommand.valveOn('5', 500);
-										Mycommand.setDACValue('1', 0, 1000);
-										Mycommand.setDACValue('2', 0, 1800);
-										
-										
-										createCsvTableBubble();
-
-										testtype = 5;
-
-									}
-
-								});
-
-							} else {
-								Platform.runLater(new Runnable() {
-
-									@Override
-									public void run() {
-										// TODO Auto-generated method
-										// stub
-
-										series2.getData().add(new XYChart.Data(getTime(), ans));
-										series1.getData().remove(1);
-										series1.getData().add(new XYChart.Data(getTime() + 10, thval));
-
-										ind++;
-									}
-								});
-
-							}
-							System.out.println("--->>>>> Value of trigger counter :" + countbp);
-
 						}
+						System.out.println("--->>>>> Value of trigger counter :" + countbp);
 
-						// bubble point complete send code
-					} else {
-						ind++;
 					}
-					t1 = t2;
-					p1 = p2;
+
+					// bubble point complete send code
 				} else {
-					t1 = System.currentTimeMillis();
 					ind++;
 				}
+				t1 = t2;
+				p1 = p2;
 			} else {
-
-				// DataStore.serialPort.removeEventListener();
-				wrd = new writeFormat();
-				wrd.stopBpN();
-				wrd.addLast();
-				sendData(wrd);
-
-				writeFormat wrD = new writeFormat();
-				wrD.stopTN();
-				wrD.addLast();
-
-				sendData(wrD, 1000);
-
-				Platform.runLater(new Runnable() {
-
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						lblresult.setText("No Bubble Point found");
-
-					}
-				});
-
-				starttest.setDisable(false);
+				t1 = System.currentTimeMillis();
+				ind++;
 			}
+		} else {
 
+			// DataStore.serialPort.removeEventListener();
+			wrd = new writeFormat();
+			wrd.stopBpN();
+			wrd.addLast();
+			sendData(wrd);
+
+			writeFormat wrD = new writeFormat();
+			wrD.stopTN();
+			wrD.addLast();
+
+			sendData(wrD, 1000);
+
+			Platform.runLater(new Runnable() {
+
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					lblresult.setText("No Bubble Point found");
+
+				}
+			});
+
+			starttest.setDisable(false);
+		}
 
 	}
 
-	
 	// set bubble points from MCU and checking conditions
 	void setBubblePointsold(double pr, double fl) {
 		Platform.runLater(new Runnable() {

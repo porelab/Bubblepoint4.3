@@ -230,7 +230,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label layoutX="800.0" layoutY="34.0" text="Scale Type" textFill="#0e3c87">
+                        <Label layoutX="798.0" layoutY="34.0" text="Scale Type" textFill="#0e3c87">
                            <font>
                               <Font size="20.0" />
                            </font>

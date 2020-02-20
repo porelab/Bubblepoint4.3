@@ -660,7 +660,7 @@ public class NFirstController implements Initializable {
 				"/application/about.png"));
 		ImageView imageView6 = new ImageView(image6);
 		imageView6.setFitWidth(100);
-		imageView6.setFitHeight(100);
+		imageView6.setFitHeight(120);
 		btnhelp.setGraphic(imageView6);
 
 		btncloud.getStyleClass().add("transperant_comm");

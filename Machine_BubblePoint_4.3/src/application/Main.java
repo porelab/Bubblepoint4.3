@@ -43,7 +43,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 
 
-public class Main extends Application {
+	public class Main extends Application {
 	public static Stage mainstage;
 	public static Class<? extends Main> clsObj;
 	public static FileLock fileLock;

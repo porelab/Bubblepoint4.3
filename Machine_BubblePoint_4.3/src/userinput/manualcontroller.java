@@ -865,6 +865,7 @@ public class manualcontroller implements Initializable {
 		pr.setOnMouseClicked(new EventHandler<Event>() {
 
 			@Override
+			
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
 				setVitual

@@ -867,7 +867,8 @@ public class manualcontroller implements Initializable {
 			@Override
 			public void handle(Event event) {
 				// TODO Auto-generated method stub
-				setVitual(pr, null, "Pressure Regulator", null);
+				setVitual
+				(pr, null, "Pressure Regulator", null);
 			}
 		});
 		

@@ -379,7 +379,7 @@ public class NLivetestController implements Initializable {
 		trails = Integer.parseInt(Myapp.testtrial);
 
 		DataStore.getconfigdata();
-		conditionflow = (double) Double.parseDouble(DataStore.getFc()) * 0.80;
+		conditionflow = (double) Double.parseDouble(DataStore.getFc());
 		conditionpressure = Double.parseDouble(Myapp.endpress);
 
 		isBubbleStart = new SimpleBooleanProperty(false);
@@ -510,7 +510,7 @@ public class NLivetestController implements Initializable {
 		});
 	}
 
-	void bubbleClick() {
+	void bubbleClicknew() {
 		stoptest.setDisable(true);
 		status.setText("Bubble-Point running..");
 		lblcurranttest.setText("F/PT vs Time");
@@ -613,7 +613,7 @@ public class NLivetestController implements Initializable {
 	}
 
 	// set event on bubble test
-	void bubbleClickold() {
+	void bubbleClick() {
 		stoptest.setDisable(true);
 		status.setText("Bubble-Point running..");
 		lblcurranttest.setText("F/PT vs Time");
@@ -1203,12 +1203,18 @@ public class NLivetestController implements Initializable {
 		 * " : " + fla); List<Integer> data = getValueList(fla);
 		 */
 
+		int max=65535;
 		int fl = Integer.parseInt(Myapp.accbpt);
-		int max = 65535;
-		int c = fl * max / 100;
-		System.out.println("Count set flow controller:" + c);
-		List<Integer> data = getValueList(c);
+		//fl = 110 - fl;
+
+		int min =  max * fl / 100;
+		
+	
+		System.out.println("Count set flow controller: " + min);
+
+		List<Integer> data = getValueList(min);
 		return data;
+		
 	}
 
 	// set step size
@@ -2084,8 +2090,8 @@ public class NLivetestController implements Initializable {
 			e.printStackTrace();
 		}
 
-		LoadAnchor.LoadCreateTestPage();
-		LoadAnchor.LoadReportPage();
+		//LoadAnchor.LoadCreateTestPage();
+		//LoadAnchor.LoadReportPage();
 	}
 
 	// show result popup

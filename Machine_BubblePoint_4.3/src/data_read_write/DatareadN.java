@@ -22,12 +22,37 @@ public class DatareadN {
 
 	public Map<String, Object> data;
 	public String filename;
+	public File file;
 
 	public DatareadN() {
 
 		data = new HashMap<String, Object>();
 	}
+	public boolean updatetoUploadedFile() {
 
+		try {
+
+			CsvWriter cs = new CsvWriter();
+			cs.wtirefile(file.getAbsolutePath());
+			cs.firstLine(data.get("testname") + "");
+			cs.newLine("upload","yes");
+			List<String> ss = new ArrayList<String>(data.keySet());
+
+			for (int i = 0; i < data.size(); i++) {
+				cs.newLine(ss.get(i), data.get(ss.get(i)) + "");
+			}
+
+			cs.closefile();
+			System.out.println("csv Created");
+
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	}
 	public String getRound(Double r, int round) {
 
 		if (round == 2) {
@@ -76,6 +101,7 @@ public class DatareadN {
 
 	public void fileRead(File file) {
 
+		this.file=file;
 		data.clear();
 		filename = stripExtension(file.getName());
 		String line = "";

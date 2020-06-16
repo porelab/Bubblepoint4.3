@@ -47,7 +47,7 @@ public class PdfselectionController implements Initializable {
 	TextArea txtnotes;
 
 	@FXML
-	CheckBox chkrow, flowvspre,chkcoverpage;
+	CheckBox chkrow, flowvspre,chkcoverpage,chsampleinfo;
 
 	@FXML
 	ImageView pic,pic1;
@@ -59,7 +59,7 @@ public class PdfselectionController implements Initializable {
 
 	List<String> graphs;
 	
-	boolean bchkcoverpage, bchkrowdata, bflowvspre;
+	boolean bchkcoverpage, bchkrowdata, bflowvspre,bolchsampleinfo;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -98,6 +98,7 @@ public class PdfselectionController implements Initializable {
 			lblbrowse.setVisible(false);
 			btnbrows.setVisible(false);
 			excelsave.setVisible(false);
+			chsampleinfo.setVisible(true);
 		}
 
 		txtnotes.setText("The following test Procedure is based on ASTM F316 (Standard Test Method for Pore Size Characterization.)");
@@ -200,6 +201,13 @@ public class PdfselectionController implements Initializable {
 		} else {
 			bchkrowdata = false;
 		}
+		
+		if (chsampleinfo.isSelected()) {
+			bolchsampleinfo = true;
+		} else {
+			bolchsampleinfo = false;
+		}
+		
 		if (ReportController.list_d.size() == 1) {
 
 			Singlepororeport sp = new Singlepororeport();
@@ -209,7 +217,7 @@ public class PdfselectionController implements Initializable {
 		} else {
 			Multiplepororeport mp = new Multiplepororeport();
 			mp.Report(path, ReportController.list_d, txtnotes.getText(), txtcomname.getText(),
-					graphs, bchkrowdata,bchkcoverpage, imgpath1);
+					graphs, bchkrowdata,bchkcoverpage, imgpath1,bolchsampleinfo);
 		}
 	}
 

@@ -296,14 +296,20 @@ public class Singlepororeport {
 
 		try {
 
-			Image img1 = Image.getInstance("f1.jpg");
+			// Image img1 = Image.getInstance("f1.jpg");
+			Image img1;
+		//	System.out.println("ghhghghghg"+imgpath1);
+			if (!imgpath1.equals("")) {
+				img1 = Image.getInstance(imgpath1);
+			} else {
+				img1 = Image.getInstance("f1.jpg");
+			}
 			img1.scaleAbsolute(595, 500);
 			img1.setAbsolutePosition(0f, 200f);
 			document.add(img1);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
 		
 		
 

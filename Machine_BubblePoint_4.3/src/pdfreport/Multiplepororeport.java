@@ -46,6 +46,11 @@ public class Multiplepororeport {
 	DatareadN d;
 	
 	String imgpath1;
+	
+	Boolean sampleinfo;
+	Font resultlab = FontFactory.getFont(FontFactory.HELVETICA, 14, Font.BOLD,
+			new BaseColor(81, 81, 83));
+
 
 	List<String> flow, dt, p1, p2, dp, ans;
 
@@ -128,12 +133,13 @@ public class Multiplepororeport {
 	}
 	/* Main Function Create Report */
 	public void Report(String path, List<DatareadN> d, String notes,
-			String comname, List<String> graphs, Boolean btabledata, Boolean bcoverpage,String imgpath1) {
+			String comname, List<String> graphs, Boolean btabledata, Boolean bcoverpage,String imgpath1,Boolean tablesampleinfo) {
 		allfiles = d;
 
 		this.companyname = comname;
 		this.notes = notes;
 		this.imgpath1 = imgpath1;
+		this.sampleinfo =tablesampleinfo;
 
 		try {
 			writer = PdfWriter
@@ -255,7 +261,14 @@ public class Multiplepororeport {
 
 		try {
 
-			Image img1 = Image.getInstance("f1.jpg");
+			// Image img1 = Image.getInstance("f1.jpg");
+			Image img1;
+			System.out.println("ghhghghghg"+imgpath1);
+			if (!imgpath1.equals("")) {
+				img1 = Image.getInstance(imgpath1);
+			} else {
+				img1 = Image.getInstance("f1.jpg");
+			}
 			img1.scaleAbsolute(595, 500);
 			img1.setAbsolutePosition(0f, 200f);
 			document.add(img1);
@@ -568,6 +581,7 @@ public class Multiplepororeport {
 			e1.printStackTrace();
 		}
 
+		if (sampleinfo == true) {
 		
 		PdfPCell c6 = new PdfPCell(new Paragraph("Test Date", whitecol));
 		c6.setBackgroundColor(getColor(14));
@@ -720,6 +734,7 @@ public class Multiplepororeport {
 		infotable.addCell(c44);
 		infotable.addCell(c55);
 
+
 		
 		Font tabledata = FontFactory.getFont("./font/Roboto-Light.ttf",
 				BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 10);
@@ -862,6 +877,8 @@ public class Multiplepororeport {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		}
 
 		PdfPTable tablem = new PdfPTable(3); // 3 columns.
 		tablem.setWidthPercentage(100); // Width 100%
@@ -877,6 +894,18 @@ public class Multiplepororeport {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		PdfPCell titl4 = new PdfPCell(new Paragraph("Results", resultlab));
+		titl4.setBorder(0);
+		titl4.setBorderColor(new BaseColor(130, 130, 130));
+		titl4.setPaddingLeft(10);
+		titl4.setPaddingTop(1);
+		titl4.setFixedHeight(35f);
+		titl4.setColspan(3);
+		titl4.setHorizontalAlignment(Element.ALIGN_CENTER);
+		titl4.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		tablem.addCell(titl4);
+
 
 		PdfPCell cell1 = new PdfPCell(new Paragraph("Sample ID", whitecol));
 		cell1.setBackgroundColor(getColor(14));
@@ -999,6 +1028,9 @@ public class Multiplepororeport {
 				
 
 			}
+			Font tabledata = FontFactory.getFont("./font/Roboto-Light.ttf",
+					BaseFont.IDENTITY_H, BaseFont.EMBEDDED, 9);
+			tabledata.setColor(new BaseColor(98, 98, 98));
 			
 			
 			PdfPCell record1 = new PdfPCell(new Paragraph(st, tabledata));

@@ -376,7 +376,7 @@ public class DataStore
 					wrd1.addChar('1');
 					wrd1.addChar(getPressureCrossover().charAt(0));
 					wrd1.addLast();
-					sendData(wrd1,700);
+					sendData(wrd1,900);
 					
 					
 					writeFormat	wrd2 = new writeFormat();

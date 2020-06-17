@@ -1445,13 +1445,14 @@ public class NLivetestController implements Initializable {
 									pr = DataStore.torrToPsi(pr);
 								}
 
-								if (DataStore.isabsolutepg2()) {
+							/*	if (DataStore.isabsolutepg2()) {
+									System.out.println("Pg2 is minus 15 psi");
 									pr = pr - 14.6;
 									if (pr < 0) {
 										pr = 0;
 									}
 								}
-
+							*/
 								// b1 = b1 - Myapp.pg2offset.get();
 
 								System.out.println(" Pressure gauge2 ..... : " + pr);

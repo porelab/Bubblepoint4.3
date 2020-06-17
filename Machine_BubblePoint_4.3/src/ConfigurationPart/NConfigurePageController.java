@@ -144,7 +144,7 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 		// cmbcom.getItems().addAll("Test", "Test2", "Test3");
 		cmbpress.getItems().addAll("psi", "bar", "torr");
 		cmbflow.getItems().addAll("sccm", "sccs","cfm");
-		cmblenghth.getItems().addAll("nm", "mm");
+		cmblenghth.getItems().addAll("nm", "µm");
 		cmbroundoff.getItems().addAll("1", "2", "3","4","5");
 		
 		

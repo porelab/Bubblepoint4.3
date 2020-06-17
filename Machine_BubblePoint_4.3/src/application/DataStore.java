@@ -661,13 +661,13 @@ public class DataStore
 
 	public static double toNm(double mm) {
 
-		return mm / 1000;
+		return mm * 1000;
 
 	}
 
 	public static double toNm(String mm) {
 
-		return Double.parseDouble(mm) / 1000;
+		return Double.parseDouble(mm) * 1000;
 	}
 
 	public static double ConvertFlow(String flow) {
@@ -704,7 +704,7 @@ public class DataStore
 		double ans;
 		if (DataStore.getUnitediameter().equals("nm")) {
 
-			ans = Double.parseDouble(diameter) / 1000;
+			ans = Double.parseDouble(diameter) * 1000;
 
 		} else {
 			ans = Double.parseDouble(diameter);
@@ -715,7 +715,7 @@ public class DataStore
 	public static double ConvertDiameter(Double diameter) {
 		if (DataStore.getUnitediameter().equals("nm")) {
 
-			diameter = diameter / 1000;
+			diameter = diameter * 1000;
 
 		}
 

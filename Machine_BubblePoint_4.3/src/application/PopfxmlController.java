@@ -416,7 +416,7 @@ public class PopfxmlController implements Initializable {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				if (valbpt != 10) {
+				if (valbpt != 5) {
 					valbpt = valbpt - 5;
 
 					pbptacc.setText(""+valbpt);

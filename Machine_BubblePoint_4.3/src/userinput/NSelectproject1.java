@@ -204,12 +204,12 @@ public class NSelectproject1 implements Initializable {
 
 		curvefit.setMin(10);
 		poroind.setMin(10);
-		bpind.setMin(10);
+		bpind.setMin(5);
 
 		bpind.setValue(100);
 		poroind.setValue(50);
 		curvefit.setValue(50);
-
+		Myapp.accbpt=""+5;
 		txtsampleid1 = txtsampleid;
 
 		setkeyboardmode();

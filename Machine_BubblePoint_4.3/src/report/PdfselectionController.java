@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 
+import ImageCompress.ImageCompress;
 import application.Main;
 import data_read_write.DatareadN;
 import pdfreport.ExcelReport;
@@ -231,7 +232,8 @@ public class PdfselectionController implements Initializable {
 		File file = fileChooser.showOpenDialog(MyDialoug.dialog);
 
 		try {
-
+			file=ImageCompress.getCompressImage(file);
+			
 			BufferedImage bufferedImage = ImageIO.read(file);
 			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
 			pic.setImage(image);
@@ -251,6 +253,8 @@ public class PdfselectionController implements Initializable {
 
 		try {
 
+			file=ImageCompress.getCompressCover(file);
+		
 			BufferedImage bufferedImage = ImageIO.read(file);
 			Image image = SwingFXUtils.toFXImage(bufferedImage, null);
 			pic1.setImage(image);

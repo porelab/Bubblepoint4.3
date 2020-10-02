@@ -586,7 +586,13 @@ public class NLivetestController implements Initializable {
 				} catch (Exception e) {
 
 				}
-				Mycommand.setDACValue('1', 30000, 0);
+				
+				int max=65535;
+				int fl = Integer.parseInt(Myapp.accbpt);
+				//fl = 110 - fl;
+
+				int min =  max * fl / 100;
+				Mycommand.setDACValue('1', min, 0);
 
 				try {
 
